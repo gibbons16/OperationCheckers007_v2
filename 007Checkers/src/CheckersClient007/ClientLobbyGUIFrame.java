@@ -23,44 +23,27 @@ import javax.swing.ScrollPaneConstants;
 
 import RMIConnection.Interfaces.CheckersClient;
 
-public class ClientLobbyGUIFrame extends JFrame {
-
+public class ClientLobbyGUIFrame extends JFrame 
+{
 
 	private CheckerBoardPanel boardPanel; 
 	private LoginScreen loginPanel;
-	private LobbyPanel tablePanel;
+	private LobbyPanel lobbyPanel;
 	private ClientController controller;
 	
-
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					ClientLobbyGUIFrame frame = new ClientLobbyGUIFrame(null);
-//					frame.setVisible(true);
-//					
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//				
-//			}
-//		});
-//	}
-
 	/**
 	 * Create the frame.
 	 */
-	public ClientLobbyGUIFrame(ClientController client){
+	public ClientLobbyGUIFrame(ClientController client)
+	{
 		
 		boardPanel = new CheckerBoardPanel();
 		loginPanel = new LoginScreen();
-		tablePanel = new LobbyPanel();
+		lobbyPanel = new LobbyPanel();
 		this.controller = client;
 		JButton connectButton = loginPanel.getConnectButton();
-		connectButton.addActionListener(new ActionListener() {
+		connectButton.addActionListener(new ActionListener()
+		{
  
             public void actionPerformed(ActionEvent e)
             {
@@ -89,28 +72,36 @@ public class ClientLobbyGUIFrame extends JFrame {
 	
 	public void switchToTable()
 	{
-		setContentPane(tablePanel);
+		setContentPane(lobbyPanel);
 		repaint();
 		revalidate();
 	}
+	
 	public void switchToCheckersBoard()
 	{
 		setContentPane(boardPanel);
 		repaint();
 		revalidate();
 	}
-	public CheckersClient getContoller()
+	
+	public CheckerBoardPanel getBoardPanel()
+	{
+		return this.boardPanel;
+	}
+	
+	public LoginScreen getLoginScreenPanel()
+	{
+		return this.loginPanel;
+	}
+	
+	public LobbyPanel getLobbyPanel()
+	{
+		return this.lobbyPanel;
+	}
+	
+	public ClientController getClientController()
 	{
 		return this.controller;
-	}
-	public CheckerBoardPanel getCheckersBoardContainter()
-	
-	{
-		return boardPanel;
-	}
-	public Board getBoard()
-	{
-		return boardPanel.getBoard();
 	}
 	
 }
