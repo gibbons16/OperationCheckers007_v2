@@ -56,6 +56,7 @@ public class LobbyPanel extends JPanel {
 		add(tableListScrollPane, gbc_tableListScrollPane);
 		
 		JTextArea tableListTextArea = new JTextArea();
+		tableListTextArea.setEnabled(false);
 		tableListScrollPane.setViewportView(tableListTextArea);
 		
 		JScrollPane playerListScrollPane = new JScrollPane();
@@ -69,6 +70,7 @@ public class LobbyPanel extends JPanel {
 		add(playerListScrollPane, gbc_playerListScrollPane);
 		
 		JTextArea playerListTextArea = new JTextArea();
+		playerListTextArea.setEnabled(false);
 		playerListScrollPane.setViewportView(playerListTextArea);
 		
 		JButton btnJoinTable = new JButton("Join Table");
