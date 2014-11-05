@@ -2,6 +2,8 @@ package CheckersClient007;
 
 import javax.swing.JPanel;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
@@ -15,8 +17,11 @@ import java.awt.Insets;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JTextArea;
+import javax.swing.ListModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
 
 
 public class LobbyPanel extends JPanel {
@@ -85,6 +90,9 @@ public class LobbyPanel extends JPanel {
 		add(playerListScrollPane, gbc_playerListScrollPane);
 		
 		playerListTextArea = new JTextArea();
+		Font font = new Font("Verdana", Font.BOLD, 12);
+		playerListTextArea.setFont(font);
+		playerListTextArea.setForeground(Color.YELLOW);
 		playerListTextArea.setEnabled(false);
 		playerListScrollPane.setViewportView(playerListTextArea);
 		
@@ -114,24 +122,27 @@ public class LobbyPanel extends JPanel {
 	}
 	public void setPlayerList(String[] players)
 	{
+
 		playerListTextArea.setText("");
 		for(String s: players)
 		{
-			playerListTextArea.append(s +"\n");
+			playerListTextArea.append(s + "\n");
 		}
 	
 	}
-	public void setTableList(String[] tables)
+	public void setTableList(int[] tables)
 	{
-        DefaultListModel listModel = (DefaultListModel) tableList.getModel();
-        listModel.removeAllElements();
+		DefaultListModel model = new DefaultListModel<Integer>();
+        
+		
+       
         
         for(int i = 0; i < tables.length; i++)
         {
-        	listModel.addElement(tables[i]);
+        	model.addElement(tables[i]);
         	
         }
-        
+        tableList.setModel(model);
 	}
 
 }

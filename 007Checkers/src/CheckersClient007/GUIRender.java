@@ -33,6 +33,7 @@ public class GUIRender {
 	
 	public void updateTableList(int[] tableIdList)
 	{
+		clientGUI.getLobbyPanel().setTableList(tableIdList);
 		
 	}
 	
