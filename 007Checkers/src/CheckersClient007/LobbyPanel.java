@@ -1,11 +1,19 @@
 package CheckersClient007;
 
 import javax.swing.JPanel;
+
 import java.awt.GridBagLayout;
+
 import javax.swing.JLabel;
+
 import java.awt.GridBagConstraints;
+
 import javax.swing.JScrollPane;
+
 import java.awt.Insets;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;
@@ -19,7 +27,7 @@ public class LobbyPanel extends JPanel {
 	JLabel TableLbl;
 	JLabel playerListlbl;
 	JButton createTableBtn;
-	JTextArea tableListTextArea;
+	JList tableList;
 	JTextArea playerListTextArea;
 	JButton btnJoinTable;
 	JButton btnObserveTable ;
@@ -63,9 +71,8 @@ public class LobbyPanel extends JPanel {
 		gbc_tableListScrollPane.gridy = 1;
 		add(tableListScrollPane, gbc_tableListScrollPane);
 		
-		tableListTextArea = new JTextArea();
-		tableListTextArea.setEnabled(false);
-		tableListScrollPane.setViewportView(tableListTextArea);
+		tableList = new JList();
+		tableListScrollPane.setViewportView(tableList);
 		
 		JScrollPane playerListScrollPane = new JScrollPane();
 		playerListScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -113,6 +120,18 @@ public class LobbyPanel extends JPanel {
 			playerListTextArea.append(s +"\n");
 		}
 	
+	}
+	public void setTableList(String[] tables)
+	{
+        DefaultListModel listModel = (DefaultListModel) tableList.getModel();
+        listModel.removeAllElements();
+        
+        for(int i = 0; i < tables.length; i++)
+        {
+        	listModel.addElement(tables[i]);
+        	
+        }
+        
 	}
 
 }
