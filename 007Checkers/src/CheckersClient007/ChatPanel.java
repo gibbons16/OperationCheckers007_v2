@@ -1,5 +1,6 @@
 package CheckersClient007;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -11,6 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
 
 public class ChatPanel extends JPanel
 {
@@ -26,8 +30,8 @@ public class ChatPanel extends JPanel
 	private JButton sendMessageButton;
 	private JTextField sendMessageTextField;
 	private JTextArea chatBoxTextArea;
-	
-	public ChatPanel()
+	private static ChatPanel chatPanel;
+	private  ChatPanel()
 	{
 		
 		
@@ -99,15 +103,35 @@ public class ChatPanel extends JPanel
 		chatBoxButtonGroup.add(globalMessageRadioButton);
 		chatBoxButtonGroup.add(_PM_MessageRadioButton);
 		
-	
-		
-		initGUI();
 	}
-	
-	private void initGUI()
+	public static ChatPanel getInstance()
 	{
-		
-		
+		if(chatPanel == null)
+		{
+			chatPanel  = new ChatPanel();
+		}
+		return chatPanel;
+	}
+	public void addNewMessage(String msg, String who, boolean global )
+	{
+		// global - true update msg globally
+		if(global)
+		{
+			chatBoxTextArea.append(who + ": " + msg );
+		}
+		else
+		{
+			SimpleAttributeSet green = new SimpleAttributeSet();
+			StyleConstants.setFontFamily(green, "Courier New Italic");
+			StyleConstants.setForeground(green, Color.GREEN);
+			try {
+				chatBoxTextArea.getDocument().insertString(0, "(PM) "+ who + ": " + msg, green);
+			} catch (BadLocationException e) {
+				
+				
+			}
+		}
 	}
 	
+		
 }

@@ -48,7 +48,7 @@ public class CheckerBoardPanel extends JPanel {
 		gbc_board.gridy = 1;
 		add(board, gbc_board);
 		
-		ChatPanel panel = new ChatPanel();
+		ChatPanel panel = ChatPanel.getInstance();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.gridwidth = 3;
 		gbc_panel.insets = new Insets(0, 0, 0, 5);

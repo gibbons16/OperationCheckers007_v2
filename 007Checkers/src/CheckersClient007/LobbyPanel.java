@@ -87,7 +87,7 @@ public class LobbyPanel extends JPanel {
 		gbc_btnObserveTable.gridy = 3;
 		add(btnObserveTable, gbc_btnObserveTable);
 		
-		ChatPanel panel = new ChatPanel();
+		ChatPanel panel = ChatPanel.getInstance();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.gridwidth = 3;
 		gbc_panel.insets = new Insets(0, 0, 0, 5);
