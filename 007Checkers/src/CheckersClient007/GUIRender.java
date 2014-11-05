@@ -16,14 +16,14 @@ public class GUIRender {
 		clientGUI.switchToTable();
 	}
 	
-	public void newGlobalMessage(String message)
+	public void newGlobalMessage(String who, String message)
 	{
-		
+		ChatPanel.getInstance().addNewMessage( message, who, true);
 	}
 	
-	public void newPMMessage(String message)
+	public void newPMMessage(String who, String message)
 	{
-		
+		ChatPanel.getInstance().addNewMessage( message, who, false);
 	}
 	
 	public void updatePlayerList(String[] playerList)
