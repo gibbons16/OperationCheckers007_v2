@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -79,6 +81,15 @@ public class ChatPanel extends JPanel
 		add(chatBoxTextArea, gbc_chatBoxTextArea);
 		
 	    sendMessageButton = new JButton("Send");
+	    sendMessageButton.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+			}
+	    	
+	    });
 		GridBagConstraints gbc_sendMessageButton = new GridBagConstraints();
 		gbc_sendMessageButton.insets = new Insets(0, 0, 0, 5);
 		gbc_sendMessageButton.gridx = 0;
