@@ -16,6 +16,14 @@ public class LobbyPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	JLabel TableLbl;
+	JLabel playerListlbl;
+	JButton createTableBtn;
+	JTextArea tableListTextArea;
+	JTextArea playerListTextArea;
+	JButton btnJoinTable;
+	JButton btnObserveTable ;
+	
 	public LobbyPanel() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
@@ -24,21 +32,21 @@ public class LobbyPanel extends JPanel {
 		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		JLabel TableLbl = new JLabel("Table");
+		TableLbl = new JLabel("Table");
 		GridBagConstraints gbc_TableLbl = new GridBagConstraints();
 		gbc_TableLbl.insets = new Insets(0, 0, 5, 5);
 		gbc_TableLbl.gridx = 1;
 		gbc_TableLbl.gridy = 0;
 		add(TableLbl, gbc_TableLbl);
 		
-		JLabel playerListlbl = new JLabel("Player List");
+		playerListlbl = new JLabel("Player List");
 		GridBagConstraints gbc_playerListlbl = new GridBagConstraints();
 		gbc_playerListlbl.insets = new Insets(0, 0, 5, 0);
 		gbc_playerListlbl.gridx = 2;
 		gbc_playerListlbl.gridy = 0;
 		add(playerListlbl, gbc_playerListlbl);
 		
-		JButton createTableBtn = new JButton("Create Table");
+		createTableBtn = new JButton("Create Table");
 		GridBagConstraints gbc_createTableBtn = new GridBagConstraints();
 		gbc_createTableBtn.insets = new Insets(0, 0, 5, 5);
 		gbc_createTableBtn.gridx = 0;
@@ -55,7 +63,7 @@ public class LobbyPanel extends JPanel {
 		gbc_tableListScrollPane.gridy = 1;
 		add(tableListScrollPane, gbc_tableListScrollPane);
 		
-		JTextArea tableListTextArea = new JTextArea();
+		tableListTextArea = new JTextArea();
 		tableListTextArea.setEnabled(false);
 		tableListScrollPane.setViewportView(tableListTextArea);
 		
@@ -69,18 +77,18 @@ public class LobbyPanel extends JPanel {
 		gbc_playerListScrollPane.gridy = 1;
 		add(playerListScrollPane, gbc_playerListScrollPane);
 		
-		JTextArea playerListTextArea = new JTextArea();
+		playerListTextArea = new JTextArea();
 		playerListTextArea.setEnabled(false);
 		playerListScrollPane.setViewportView(playerListTextArea);
 		
-		JButton btnJoinTable = new JButton("Join Table");
+		btnJoinTable = new JButton("Join Table");
 		GridBagConstraints gbc_btnJoinTable = new GridBagConstraints();
 		gbc_btnJoinTable.insets = new Insets(0, 0, 5, 5);
 		gbc_btnJoinTable.gridx = 0;
 		gbc_btnJoinTable.gridy = 2;
 		add(btnJoinTable, gbc_btnJoinTable);
 		
-		JButton btnObserveTable = new JButton("Observe Table");
+		btnObserveTable = new JButton("Observe Table");
 		GridBagConstraints gbc_btnObserveTable = new GridBagConstraints();
 		gbc_btnObserveTable.insets = new Insets(0, 0, 5, 5);
 		gbc_btnObserveTable.gridx = 0;
@@ -96,6 +104,15 @@ public class LobbyPanel extends JPanel {
 		gbc_panel.gridy = 4;
 		add(panel, gbc_panel);
 
+	}
+	public void setPlayerList(String[] players)
+	{
+		playerListTextArea.setText("");
+		for(String s: players)
+		{
+			playerListTextArea.append(s +"\n");
+		}
+	
 	}
 
 }

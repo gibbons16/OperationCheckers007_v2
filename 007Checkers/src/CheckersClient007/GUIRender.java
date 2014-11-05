@@ -28,7 +28,7 @@ public class GUIRender {
 	
 	public void updatePlayerList(String[] playerList)
 	{
-		
+		clientGUI.getLobbyPanel().setPlayerList(playerList);
 	}
 	
 	public void updateTableList(int[] tableIdList)
