@@ -387,5 +387,58 @@ public class ClientController implements CheckersClient
 	{
 		connection.joinTable(tableId);
 	}
-
+	
+	public void leaveTable() // TCP: 107
+	{
+		connection.leaveTable();
+	}
+	
+	public void makeTable() // TCP: 103
+	{
+		connection.makeTable();
+	}
+	
+	public void move(int fromRow, int fromColumn, int toRow, int toColumn) // TCP: 106
+	{
+		connection.move(fromRow, fromColumn, toRow, toColumn);
+	}
+	
+	public void ready() // TCP: 105
+	{
+		connection.ready();
+	}
+	
+	public void sendMessage(String targetUser, String message) // TCP: 102
+	{
+		connection.sendMsg(targetUser, message);
+	}
+	
+	public void sendGlobalMessage(String message) // TCP: 101
+	{
+		connection.sendMsg_All(message);
+	}
+	
+	// GAME PLAYING METHODS
+	// Note: we are throwing RemoteException, should we change this later?
+	
+	public void getTableStatus(String user, int tableId) throws RemoteException // TCP: 109
+	{
+		connection.getTblStatus(user, tableId);
+	}
+	
+	public void joinTable(String user, int tableId) throws RemoteException // TCP: 104
+	{
+		connection.joinTable(user, tableId);
+	}
+	
+	public void leaveTable(String user) throws RemoteException // TCP: 107
+	{
+		connection.leaveTable(user);
+	}
+	
+	public void makeTable(String user) throws RemoteException // TCP: 103
+	{
+		connection.makeTable(user);
+	}
+	
 }
