@@ -11,72 +11,51 @@ import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class CheckerBoardPanel extends JPanel {
-
-	/**
-	 * Create the panel.
-	 */
-
 	private JLabel gameStatusLbl;
 	private Board board;
-
 	public CheckerBoardPanel() {
-		setLayout(null);
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{0, 43, 854, 0};
+		gridBagLayout.rowHeights = new int[]{59, 405, 210, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
+		setLayout(gridBagLayout);
 		
-//		JTextArea textArea = new JTextArea();
-//		textArea.setBounds(150, 559, 671, 28);
-//		add(textArea);
-//		
-		JButton btnSend = new JButton("Send");
-		btnSend.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnSend.setBounds(26, 559, 97, 25);
-		add(btnSend);
+		JPanel panel_2 = new JPanel();
+		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
+		gbc_panel_2.insets = new Insets(0, 0, 5, 0);
+		gbc_panel_2.fill = GridBagConstraints.BOTH;
+		gbc_panel_2.gridx = 2;
+		gbc_panel_2.gridy = 0;
+		add(panel_2, gbc_panel_2);
 		
-
-//		JTextArea textArea_1 = new JTextArea();
-//		textArea_1.setBounds(150, 451, 652, 95);
-//		add(textArea_1);
-//		
-		 board = new Board(300,300);
-		board.setBounds(230, 30, 394, 394);
-
-
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setBounds(150, 451, 652, 95);
-		add(textArea_1);
+		JButton readyButton = new JButton("Press When Ready");
+		panel_2.add(readyButton);
 		
-		Board boardPanel = new Board(300,300);
-		boardPanel.setBounds(230, 30, 394, 394);
-
-		//boardPanel.add(new Board(boardPanel.getWidth(), boardPanel.getHeight()));
-		add(boardPanel);
-
+		gameStatusLbl = new JLabel("Status: waiting...");
+		panel_2.add(gameStatusLbl);
 		
-		add(board);
+		board= new Board();
+		GridBagConstraints gbc_board = new GridBagConstraints();
+		gbc_board.insets = new Insets(0, 0, 5, 0);
+		gbc_board.fill = GridBagConstraints.BOTH;
+		gbc_board.gridx = 2;
+		gbc_board.gridy = 1;
+		add(board, gbc_board);
 		
-//		JRadioButton rdbtnGlobal = new JRadioButton("Global");
-//		rdbtnGlobal.setBounds(150, 422, 127, 25);
-//		add(rdbtnGlobal);
-//		
-//		JRadioButton rdbtnPm = new JRadioButton("PM");
-//		rdbtnPm.setBounds(546, 422, 53, 25);
-//		add(rdbtnPm);
-		
-//		JComboBox comboBox = new JComboBox();
-//		comboBox.setBounds(607, 426, 31, 22);
-//		add(comboBox);
-		
-		 gameStatusLbl = new JLabel("");
-		gameStatusLbl.setBounds(423, 13, 113, 16);
-		add(gameStatusLbl);
-		
-		JButton btnReady = new JButton("Ready");
-		btnReady.setBounds(283, 9, 97, 25);
-		add(btnReady);
+		ChatPanel panel = new ChatPanel();
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.gridwidth = 3;
+		gbc_panel.insets = new Insets(0, 0, 0, 5);
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.gridx = 0;
+		gbc_panel.gridy = 2;
+		add(panel, gbc_panel);
 
 	}
 

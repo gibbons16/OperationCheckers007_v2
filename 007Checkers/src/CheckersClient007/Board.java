@@ -44,6 +44,7 @@ public class Board extends JPanel {
 
         this.height = height;
         this.width = width;
+        squares = new Square[NUM_SQUARES][NUM_SQUARES];
         this.setSize(width, height);
         GridLayout layout = new GridLayout(NUM_SQUARES, NUM_SQUARES);
         this.setLayout(layout);

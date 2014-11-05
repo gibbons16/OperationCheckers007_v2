@@ -28,7 +28,7 @@ public class ClientLobbyGUIFrame extends JFrame {
 
 	private CheckerBoardPanel boardPanel; 
 	private LoginScreen loginPanel;
-	private TablePanel tablePanel;
+	private LobbyPanel tablePanel;
 	private ClientController controller;
 	
 
@@ -57,7 +57,7 @@ public class ClientLobbyGUIFrame extends JFrame {
 		
 		boardPanel = new CheckerBoardPanel();
 		loginPanel = new LoginScreen();
-		tablePanel = new TablePanel();
+		tablePanel = new LobbyPanel();
 		this.controller = client;
 		JButton connectButton = loginPanel.getConnectButton();
 		connectButton.addActionListener(new ActionListener() {
