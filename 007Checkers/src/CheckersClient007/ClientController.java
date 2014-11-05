@@ -148,7 +148,14 @@ public class ClientController implements CheckersClient
 	public void newMsg(String user, String msg, boolean pm)
 			throws RemoteException 
 	{
-		// TODO Auto-generated method stub
+		if(pm)
+		{
+			guiRender.newPMMessage(user, msg);
+		}
+		else
+		{
+			guiRender.newGlobalMessage(user, msg);
+		}
 		
 	}
 
