@@ -50,7 +50,7 @@ public class GUIRender {
 	// will change the text to "Opponent is ready to play."
 	public void opponentReadys()
 	{
-		this.clientGUI.getCheckersBoardContainter().updateStatus("Opponent is ready to play.");		
+		this.clientGUI.getBoardPanel().updateStatus("Opponent is ready to play.");		
 	}
 	
 	public void startGame(Boolean ourColor /*red=0,black=1*/, byte[][] board)
@@ -62,7 +62,7 @@ public class GUIRender {
 	
 	public void updateGameBoard(byte[][] board /*0=empty, 1=black, 2=red*/)
 	{
-		Board gameBoard = this.clientGUI.getBoard();
+		Board gameBoard = this.clientGUI.getBoardPanel().getBoard();
 		for(int row = 0; row < board.length; row++)
 		{
 			for(int col = 0; col < board.length; col++)
@@ -90,7 +90,7 @@ public class GUIRender {
 	
 	public void updatePlayerTurn(Boolean clientsTurn/*true=client's turn, else opponents turn*/)
 	{
-		Board gameBoard = this.clientGUI.getBoard();
+		Board gameBoard = this.clientGUI.getBoardPanel().getBoard();
 		gameBoard.setMoveStatus(clientsTurn);
 	}
 	
@@ -98,7 +98,7 @@ public class GUIRender {
 	public void observingBoard(byte[][] board /*0=empty, 1=black, 2=red*/, int tableId)
 	{
 		
-		Board gameBoard = this.clientGUI.getBoard();
+		Board gameBoard = this.clientGUI.getBoardPanel().getBoard();
 		gameBoard.setMoveStatus(false);
 		updateGameBoard(board);
 	}
