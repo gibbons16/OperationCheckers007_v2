@@ -18,6 +18,8 @@ public class ClientController implements CheckersClient
 	private static ClientConnection connection;
 	private static RMIServerInterface serverConnection;
 	
+	private static ClientController thisController;
+	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {    
@@ -105,15 +107,22 @@ public class ClientController implements CheckersClient
 	
 	public ClientController()
 	{
-		//guiRender = new GUIRender(this);
 		
+	}
+	
+	public ClientController getInstance()
+	{
+		if(this.thisController == null)
+		{
+			this.thisController = new ClientController();
+		}
+		return this.thisController;
 	}
 	
 	public ClientConnection getClientConnection()
 	{
 		return this.connection;
 	}
-	
 
 	@Override
 	public void connectionOK() throws RemoteException
@@ -246,7 +255,7 @@ public class ClientController implements CheckersClient
 	@Override
 	public void tableList(int[] tids) throws RemoteException
 	{
-		// TODO Auto-generated method stub
+		guiRender.updateTableList(tids);
 		
 	}
 
@@ -367,6 +376,16 @@ public class ClientController implements CheckersClient
 	{
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void disconnect(boolean endProcess/*if d/c from user exiting*/) // TCP: 108
+	{
+		connection.disconnect(endProcess);
+	}
+	
+	public void joinTable(int tableId) // TCP: 104
+	{
+		connection.joinTable(tableId);
 	}
 
 }
