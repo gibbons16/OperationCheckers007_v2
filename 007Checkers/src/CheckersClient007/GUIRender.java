@@ -111,7 +111,7 @@ public class GUIRender {
 	
 	public void addNewTable(int tableId)
 	{
-		this.clientGUI.getLobbyPanel().tableList.
+		this.clientGUI.getLobbyPanel().addNewTable(tableId);
 	}
 	
 }

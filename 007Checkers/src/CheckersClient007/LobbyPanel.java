@@ -111,7 +111,7 @@ public class LobbyPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				ClientController.getInstance().joinTable();
+				//ClientController.getInstance().joinTable();
 			}
 	    	
 	    });
