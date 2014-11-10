@@ -111,7 +111,7 @@ public class LobbyPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//ClientController.getInstance().joinTable();
+				ClientController.getInstance().joinTable((int)tableList.getSelectedValue());
 			}
 	    	
 	    });
@@ -174,6 +174,21 @@ public class LobbyPanel extends JPanel {
 		newModel.addElement(tableId); // adds the new table
 		
 		tableList.setModel(newModel);
+	}
+	
+	public void addNewPlayer(String player)
+	{
+		playerListTextArea.append(player);
+	}
+	
+	public void removePlayer(String targetRemove)
+	{
+		targetRemove = targetRemove.concat("\n");
+		String playerListText = playerListTextArea.getText();
+		System.out.println("playerList before remove: \n"+playerListText);
+		playerListText = playerListText.replace(targetRemove, "");
+		System.out.println("playerList after remove: \n"+playerListText);
+		playerListTextArea.setText(playerListText);
 	}
 
 }
