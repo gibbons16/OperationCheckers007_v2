@@ -13,6 +13,8 @@ import java.awt.GridBagConstraints;
 import javax.swing.JScrollPane;
 
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -60,6 +62,14 @@ public class LobbyPanel extends JPanel {
 		add(playerListlbl, gbc_playerListlbl);
 		
 		createTableBtn = new JButton("Create Table");
+		createTableBtn.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				ClientController.getInstance().makeTable();
+			}
+	    	
+	    });
 		GridBagConstraints gbc_createTableBtn = new GridBagConstraints();
 		gbc_createTableBtn.insets = new Insets(0, 0, 5, 5);
 		gbc_createTableBtn.gridx = 0;
@@ -97,6 +107,14 @@ public class LobbyPanel extends JPanel {
 		playerListScrollPane.setViewportView(playerListTextArea);
 		
 		btnJoinTable = new JButton("Join Table");
+		btnJoinTable.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				ClientController.getInstance().joinTable();
+			}
+	    	
+	    });
 		GridBagConstraints gbc_btnJoinTable = new GridBagConstraints();
 		gbc_btnJoinTable.insets = new Insets(0, 0, 5, 5);
 		gbc_btnJoinTable.gridx = 0;
@@ -120,6 +138,7 @@ public class LobbyPanel extends JPanel {
 		add(panel, gbc_panel);
 
 	}
+	
 	public void setPlayerList(String[] players)
 	{
 
@@ -130,6 +149,7 @@ public class LobbyPanel extends JPanel {
 		}
 	
 	}
+	
 	public void setTableList(int[] tables)
 	{
 		DefaultListModel model = new DefaultListModel<Integer>();
@@ -143,6 +163,20 @@ public class LobbyPanel extends JPanel {
         	
         }
         tableList.setModel(model);
+	}
+	
+	public void addNewTable(int tableId)
+	{
+		ListModel oldModel = tableList.getModel();
+		DefaultListModel newModel = new DefaultListModel<Integer>();
+		
+		for(int i = 0; i < oldModel.getSize(); i++) // adds each of the old tables
+		{
+			newModel.addElement(oldModel.getElementAt(i));
+		}
+		newModel.addElement(tableId); // adds the new table
+		
+		tableList.setModel(newModel);
 	}
 
 }

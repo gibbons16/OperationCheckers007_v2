@@ -109,4 +109,9 @@ public class GUIRender {
 		updateGameBoard(board);
 	}
 	
+	public void addNewTable(int tableId)
+	{
+		this.clientGUI.getLobbyPanel().tableList.
+	}
+	
 }

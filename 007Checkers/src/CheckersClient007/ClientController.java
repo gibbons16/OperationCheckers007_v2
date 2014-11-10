@@ -20,6 +20,8 @@ public class ClientController implements CheckersClient
 	
 	private static ClientController thisController;
 	
+	private String userName;
+	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {    
@@ -148,7 +150,6 @@ public class ClientController implements CheckersClient
 	public void newMsg(String user, String msg, boolean pm)
 			throws RemoteException 
 	{
-		System.out.print("REcieved message.....");
 		if(pm)
 		{
 			guiRender.newPMMessage(user, msg);
@@ -184,8 +185,7 @@ public class ClientController implements CheckersClient
 	@Override
 	public void newTable(int tid) throws RemoteException
 	{
-		// TODO Auto-generated method stub
-		
+		guiRender.addNewTable(tid);
 	}
 
 	@Override
