@@ -148,6 +148,7 @@ public class ClientController implements CheckersClient
 	public void newMsg(String user, String msg, boolean pm)
 			throws RemoteException 
 	{
+		System.out.print("REcieved message.....");
 		if(pm)
 		{
 			guiRender.newPMMessage(user, msg);
@@ -422,6 +423,7 @@ public class ClientController implements CheckersClient
 	
 	public void sendGlobalMessage(String message) // TCP: 101
 	{
+		System.out.println("sending global message....");
 		connection.sendMsg_All(message);
 	}
 	
