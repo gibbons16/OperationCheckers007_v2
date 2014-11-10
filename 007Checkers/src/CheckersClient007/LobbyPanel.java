@@ -153,10 +153,7 @@ public class LobbyPanel extends JPanel {
 	public void setTableList(int[] tables)
 	{
 		DefaultListModel model = new DefaultListModel<Integer>();
-        
 		
-       
-        
         for(int i = 0; i < tables.length; i++)
         {
         	model.addElement(tables[i]);

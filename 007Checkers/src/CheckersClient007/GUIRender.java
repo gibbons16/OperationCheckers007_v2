@@ -29,6 +29,7 @@ public class GUIRender {
 	public void updatePlayerList(String[] playerList)
 	{
 		clientGUI.getLobbyPanel().setPlayerList(playerList);
+		ChatPanel.getInstance().updatePlayerList(playerList);
 	}
 	
 	public void updateTableList(int[] tableIdList)
@@ -37,7 +38,7 @@ public class GUIRender {
 		
 	}
 	
-	public void joinTable(String chatData)
+	public void joinTable()
 	{
 		
 	}
