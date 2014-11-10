@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
+import javax.swing.JScrollPane;
 
 public class ChatPanel extends JPanel
 {
@@ -31,8 +32,9 @@ public class ChatPanel extends JPanel
 	private JComboBox<String> pmTargetComboBox;
 	private JButton sendMessageButton;
 	private JTextField sendMessageTextField;
-	private JTextArea chatBoxTextArea;
 	private static ChatPanel chatPanel;
+	private JScrollPane scrollPane;
+	private JTextArea chatBoxTextArea;
 	private  ChatPanel()
 	{
 		
@@ -41,12 +43,13 @@ public class ChatPanel extends JPanel
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[] {0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowHeights = new int[] {37, 234, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		globalMessageRadioButton = new JRadioButton("Global");
+		globalMessageRadioButton.setEnabled(true);
 		GridBagConstraints gbc_globalMessageRadioButton = new GridBagConstraints();
 		gbc_globalMessageRadioButton.insets = new Insets(0, 0, 5, 5);
 		gbc_globalMessageRadioButton.gridx = 1;
@@ -69,27 +72,41 @@ public class ChatPanel extends JPanel
 		gbc_pmTargetComboBox.gridy = 0;
 		add(pmTargetComboBox, gbc_pmTargetComboBox);
 		
-	    chatBoxTextArea = new JTextArea();
-		chatBoxTextArea.setEnabled(false);
-		GridBagConstraints gbc_chatBoxTextArea = new GridBagConstraints();
-		gbc_chatBoxTextArea.gridheight = 2;
-		gbc_chatBoxTextArea.gridwidth = 9;
-		gbc_chatBoxTextArea.insets = new Insets(0, 0, 5, 0);
-		gbc_chatBoxTextArea.fill = GridBagConstraints.BOTH;
-		gbc_chatBoxTextArea.gridx = 1;
-		gbc_chatBoxTextArea.gridy = 1;
-		add(chatBoxTextArea, gbc_chatBoxTextArea);
-		
 	    sendMessageButton = new JButton("Send");
 	    sendMessageButton.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				ClientController.getInstance().sendGlobalMessage(sendMessageTextField.getText());
+				if(globalMessageRadioButton.isSelected())
+					ClientController.getInstance().sendGlobalMessage(sendMessageTextField.getText());
+				else if(_PM_MessageRadioButton.isSelected())
+				{
+					Object val = pmTargetComboBox.getSelectedItem();
+					if(val != null)
+					{
+						String target = (String)val;
+						ClientController.getInstance().sendMessage(target, sendMessageTextField.getText());
+					}
+				}
+				sendMessageTextField.setText("");	
 				
 			}
 	    	
 	    });
+		
+		scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.gridwidth = 9;
+		gbc_scrollPane.gridheight = 2;
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 1;
+		gbc_scrollPane.gridy = 1;
+		add(scrollPane, gbc_scrollPane);
+		
+		chatBoxTextArea = new JTextArea();
+		chatBoxTextArea.setEditable(false);
+		scrollPane.setViewportView(chatBoxTextArea);
 		GridBagConstraints gbc_sendMessageButton = new GridBagConstraints();
 		gbc_sendMessageButton.insets = new Insets(0, 0, 0, 5);
 		gbc_sendMessageButton.gridx = 0;
@@ -109,14 +126,14 @@ public class ChatPanel extends JPanel
 		
 		// set group
 		chatBoxButtonGroup = new ButtonGroup();
-		globalMessageRadioButton = new JRadioButton("Global");
-		_PM_MessageRadioButton = new JRadioButton("PM");
 		chatBoxButtonGroup.add(globalMessageRadioButton);
 		chatBoxButtonGroup.add(_PM_MessageRadioButton);
+		
 		
 	}
 	public static ChatPanel getInstance()
 	{
+		
 		if(chatPanel == null)
 		{
 			chatPanel  = new ChatPanel();
@@ -128,7 +145,7 @@ public class ChatPanel extends JPanel
 		// global - true update msg globally
 		if(global)
 		{
-			chatBoxTextArea.append(who + ": " + msg );
+			chatBoxTextArea.append(who + ": " + msg + "\n" );
 		}
 		else
 		{
