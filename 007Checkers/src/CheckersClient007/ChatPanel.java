@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -159,6 +161,15 @@ public class ChatPanel extends JPanel
 				
 			}
 		}
+	}
+	public void updatePlayerList(String[] playerList)
+	{
+		DefaultComboBoxModel model = new DefaultComboBoxModel();
+		for(String s : playerList)
+		{
+			model.addElement(s);
+		}
+		pmTargetComboBox.setModel(model);
 	}
 	
 		
