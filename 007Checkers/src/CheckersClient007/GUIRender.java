@@ -115,4 +115,15 @@ public class GUIRender {
 		this.clientGUI.getLobbyPanel().addNewTable(tableId);
 	}
 	
+	public void addNewPlayer(String user)
+	{
+		
+		clientGUI.getLobbyPanel().addNewPlayer(user);
+	
+	}
+	public void removePlayer(String user)
+	{
+		clientGUI.getLobbyPanel().removePlayer(user);
+	}
+	
 }

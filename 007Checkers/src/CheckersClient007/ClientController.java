@@ -169,16 +169,15 @@ public class ClientController implements CheckersClient
 	}
 
 	@Override
-	public void nowJoinedLobby(String user) throws RemoteException
+	public void nowJoinedLobby(String user) throws RemoteException // TCP: 214
 	{
-		// TODO Auto-generated method stub
-		
+		guiRender.addNewPlayer(user);
 	}
 
 	@Override
 	public void nowLeftLobby(String user) throws RemoteException
 	{
-		// TODO Auto-generated method stub
+		guiRender.removePlayer(user);
 		
 	}
 
