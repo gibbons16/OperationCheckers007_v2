@@ -81,10 +81,7 @@ public class ClientController implements CheckersClient
 			}
 		});
 	}
-//	public ClientConnection getClientConnection()
-//	{
-//		return connection;
-//	}
+
 	private void getServerConnection(String host, String clientID) {
 		if (System.getSecurityManager() == null) {
 			 System.setSecurityManager(new SecurityManager());
@@ -96,6 +93,7 @@ public class ClientController implements CheckersClient
 	        if(serverConnection != null){
 	        	System.out.println("Server connection found in registry!");
 	        	serverConnection.registerPlayer(clientID, host);
+	        	this.userName = clientID;
 	        }
 	        else{
 	        	System.out.println("Could not register with the server");	        	
@@ -447,6 +445,11 @@ public class ClientController implements CheckersClient
 	public void makeTable(String user) throws RemoteException // TCP: 103
 	{
 		connection.makeTable(user);
+	}
+	
+	public void observeTable(int tableId) throws RemoteException // TCP: 110
+	{
+		connection.observeTable(this.userName, tableId);
 	}
 	
 }

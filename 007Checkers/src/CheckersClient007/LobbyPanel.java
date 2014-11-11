@@ -15,6 +15,7 @@ import javax.swing.JScrollPane;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -34,7 +35,7 @@ public class LobbyPanel extends JPanel {
 	JLabel TableLbl;
 	JLabel playerListlbl;
 	JButton createTableBtn;
-	JList tableList;
+	JList<Integer> tableList;
 	JTextArea playerListTextArea;
 	JButton btnJoinTable;
 	JButton btnObserveTable ;
@@ -111,7 +112,7 @@ public class LobbyPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				ClientController.getInstance().joinTable((int)tableList.getSelectedValue());
+				ClientController.getInstance().joinTable(tableList.getSelectedValue());
 			}
 	    	
 	    });
@@ -122,6 +123,20 @@ public class LobbyPanel extends JPanel {
 		add(btnJoinTable, gbc_btnJoinTable);
 		
 		btnObserveTable = new JButton("Observe Table");
+		btnObserveTable.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0)
+			{
+				try
+				{
+					ClientController.getInstance().observeTable(tableList.getSelectedValue());
+				} catch (RemoteException e)
+				{
+					e.printStackTrace();
+				}
+			}
+	    });
 		GridBagConstraints gbc_btnObserveTable = new GridBagConstraints();
 		gbc_btnObserveTable.insets = new Insets(0, 0, 5, 5);
 		gbc_btnObserveTable.gridx = 0;
@@ -176,6 +191,22 @@ public class LobbyPanel extends JPanel {
 		tableList.setModel(newModel);
 	}
 	
+	public void removeTable(int tableRemoveId)
+	{
+		ListModel oldModel = tableList.getModel();
+		DefaultListModel newModel = new DefaultListModel<Integer>();
+		
+		for(int i = 0; i < oldModel.getSize(); i++)
+		{
+			if(!oldModel.getElementAt(i).equals(tableRemoveId)) // add every table that isn't the target remove id
+			{
+				newModel.addElement(oldModel.getElementAt(i));
+			}
+		}
+		
+		tableList.setModel(newModel);
+	}
+	
 	public void addNewPlayer(String player)
 	{
 		playerListTextArea.append(player);
@@ -185,9 +216,13 @@ public class LobbyPanel extends JPanel {
 	{
 		targetRemove = targetRemove.concat("\n");
 		String playerListText = playerListTextArea.getText();
+		
 		System.out.println("playerList before remove: \n"+playerListText);
+		
 		playerListText = playerListText.replace(targetRemove, "");
+		
 		System.out.println("playerList after remove: \n"+playerListText);
+		
 		playerListTextArea.setText(playerListText);
 	}
 
