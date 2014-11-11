@@ -51,7 +51,7 @@ public class ChatPanel extends JPanel
 		setLayout(gridBagLayout);
 		
 		globalMessageRadioButton = new JRadioButton("Global");
-		globalMessageRadioButton.setEnabled(true);
+		globalMessageRadioButton.setSelected(true);;
 		GridBagConstraints gbc_globalMessageRadioButton = new GridBagConstraints();
 		gbc_globalMessageRadioButton.insets = new Insets(0, 0, 5, 5);
 		gbc_globalMessageRadioButton.gridx = 1;
@@ -171,6 +171,21 @@ public class ChatPanel extends JPanel
 		}
 		pmTargetComboBox.setModel(model);
 	}
+	public void addPlayer(String player){
+		pmTargetComboBox.addItem(player);
+	}
+	public void removePlayer(String player){	
+		
+		DefaultComboBoxModel<String> model = (DefaultComboBoxModel)pmTargetComboBox.getModel();
+		int index = model.getIndexOf(player);
+		
+		if(index != -1)
+		{
+			model.removeElementAt(index);
+		}
+		pmTargetComboBox.setModel(model);
+	}
+	
 	
 		
 }
