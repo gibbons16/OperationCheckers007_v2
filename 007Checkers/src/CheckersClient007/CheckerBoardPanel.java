@@ -18,6 +18,7 @@ import java.awt.Insets;
 public class CheckerBoardPanel extends JPanel {
 	private JLabel gameStatusLbl;
 	private Board board;
+	
 	public CheckerBoardPanel() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 43, 854, 0};
