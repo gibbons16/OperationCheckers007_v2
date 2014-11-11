@@ -119,11 +119,13 @@ public class GUIRender {
 	{
 		
 		clientGUI.getLobbyPanel().addNewPlayer(user);
+		ChatPanel.getInstance().addPlayer(user);
 	
 	}
 	public void removePlayer(String user)
 	{
 		clientGUI.getLobbyPanel().removePlayer(user);
+		ChatPanel.getInstance().removePlayer(user);
 	}
 	
 }
