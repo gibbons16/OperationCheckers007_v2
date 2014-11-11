@@ -188,7 +188,7 @@ public class ClientController implements CheckersClient
 	@Override
 	public void joinedTable(int tid) throws RemoteException
 	{
-		// TODO Auto-generated method stub
+		guiRender.joinTable();
 		
 	}
 

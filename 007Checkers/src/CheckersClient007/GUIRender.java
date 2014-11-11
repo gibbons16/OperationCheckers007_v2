@@ -40,7 +40,7 @@ public class GUIRender {
 	
 	public void joinTable()
 	{
-		
+		clientGUI.switchToCheckersBoard();
 	}
 	
 	// will change the text to "Waiting on opponent. . . "

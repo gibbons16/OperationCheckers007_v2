@@ -124,7 +124,6 @@ public class LobbyPanel extends JPanel {
 		
 		btnObserveTable = new JButton("Observe Table");
 		btnObserveTable.addActionListener(new ActionListener(){
-
 			@Override
 			public void actionPerformed(ActionEvent arg0)
 			{
