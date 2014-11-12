@@ -19,6 +19,7 @@ public class CheckerBoardPanel extends JPanel {
 	private JLabel gameStatusLbl;
 	private Board board;
 	ChatPanel chatPanel;
+	JButton readyButton;
 	
 	public CheckerBoardPanel() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -36,7 +37,7 @@ public class CheckerBoardPanel extends JPanel {
 		gbc_panel_2.gridy = 0;
 		add(panel_2, gbc_panel_2);
 		
-		JButton readyButton = new JButton("Press When Ready");
+		readyButton = new JButton("Press When Ready");
 		panel_2.add(readyButton);
 		
 		gameStatusLbl = new JLabel("Status: waiting...");
@@ -80,6 +81,15 @@ public class CheckerBoardPanel extends JPanel {
 	public ChatPanel getChatPanel() {
 		return chatPanel;
 	}
-	
+	public void setReadyUp(boolean enability)
+	{
+		readyButton.setEnabled(enability);
+	}
+	public void setStatus(String status)
+	{
+		gameStatusLbl.setText(status);
+		
+	}
 
 }
+

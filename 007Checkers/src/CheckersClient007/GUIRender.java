@@ -137,5 +137,11 @@ public class GUIRender {
 		clientGUI.getLobbyPanel().getChatPanel().removePlayer(user);
 		clientGUI.getBoardPanel().getChatPanel().removePlayer(user);
 	}
+	public void gameStart()
+	{
+		clientGUI.getBoardPanel().setReadyUp(false);
+		clientGUI.getBoardPanel().setStatus("Game Started");
+	
+	}
 	
 }
