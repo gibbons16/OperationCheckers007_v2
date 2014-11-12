@@ -125,9 +125,8 @@ public class ClientController implements CheckersClient
 	}
 
 	@Override
-	public void connectionOK() throws RemoteException
+	public void connectionOK() throws RemoteException // TCP: 200
 	{
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -135,17 +134,17 @@ public class ClientController implements CheckersClient
 	public void youInLobby() throws RemoteException // TCP: 218
 	{
 		guiRender.joinLobby();
+		guiRender.newSystemMessage("You are now in the lobby.");
 	}
 
 	@Override
-	public void youLeftLobby() throws RemoteException
+	public void youLeftLobby() throws RemoteException // TCP: 213
 	{
-		// TODO Auto-generated method stub
-		
+		guiRender.newSystemMessage("You have left the lobby.");
 	}
 
 	@Override
-	public void newMsg(String user, String msg, boolean pm)
+	public void newMsg(String user, String msg, boolean pm) // TCP: 201
 			throws RemoteException 
 	{
 		if(pm)
@@ -173,211 +172,201 @@ public class ClientController implements CheckersClient
 	}
 
 	@Override
-	public void nowLeftLobby(String user) throws RemoteException
+	public void nowLeftLobby(String user) throws RemoteException // TCP: 217
 	{
 		guiRender.removePlayer(user);
 		
 	}
 
 	@Override
-	public void newTable(int tid) throws RemoteException
+	public void newTable(int tid) throws RemoteException // TCP: 202
 	{
 		guiRender.addNewTable(tid);
 	}
 
 	@Override
-	public void joinedTable(int tid) throws RemoteException
+	public void joinedTable(int tid) throws RemoteException // TCP: 210
 	{
 		guiRender.joinTable();
-		
+		guiRender.newSystemMessage("You have joined table ".concat(String.valueOf(tid)).concat("."));
 	}
 
 	@Override
-	public void alertLeftTable() throws RemoteException
+	public void alertLeftTable() throws RemoteException // TCP: 222
 	{
-		// TODO Auto-generated method stub
-		
+		// NOT IMPLEMENTED/NEEDED
 	}
 
 	@Override
-	public void gameStart() throws RemoteException
+	public void gameStart() throws RemoteException // TCP: 203
 	{
-		// TODO Auto-generated method stub
-		
+		guiRender.newSystemMessage("The game has started.");
 	}
 
 	@Override
-	public void colorBlack() throws RemoteException
+	public void colorBlack() throws RemoteException // TCP: 204
 	{
-		// TODO Auto-generated method stub
-		
+		guiRender.newSystemMessage("You are playing as black.");
 	}
 
 	@Override
-	public void colorRed() throws RemoteException
+	public void colorRed() throws RemoteException // TCP: 205
 	{
-		// TODO Auto-generated method stub
-		
+		guiRender.newSystemMessage("You are playing as red.");
 	}
 
 	@Override
-	public void oppMove(int fr, int fc, int tr, int tc) throws RemoteException
+	public void oppMove(int fr, int fc, int tr, int tc) throws RemoteException // TCP: 206
 	{
-		// TODO Auto-generated method stub
-		
+		// move the piece
 	}
 
 	@Override
-	public void curBoardState(int tid, byte[][] boardState)
+	public void curBoardState(int tid, byte[][] boardState) //TCP: 207
 			throws RemoteException
 	{
-		// TODO Auto-generated method stub
-		
+		// TODO
 	}
 
 	@Override
-	public void youWin() throws RemoteException
+	public void youWin() throws RemoteException // TCP: 208
 	{
-		// TODO Auto-generated method stub
+		// TODO indicate we won
 		
 	}
 
 	@Override
-	public void youLose() throws RemoteException
+	public void youLose() throws RemoteException // TCP: 209
 	{
-		// TODO Auto-generated method stub
+		// TODO indiate we lost
 		
 	}
 
 	@Override
-	public void onTable(int tid, String blackSeat, String redSeat)
+	public void onTable(int tid, String blackSeat, String redSeat) // TCP: 219
 			throws RemoteException
 	{
-		// TODO Auto-generated method stub
+		// TODO update table status, possibly in lobby panel
 		
 	}
 
 	@Override
-	public void tableList(int[] tids) throws RemoteException
+	public void tableList(int[] tids) throws RemoteException // TCP: 216
 	{
 		guiRender.updateTableList(tids);
+	}
+
+	@Override
+	public void yourTurn() throws RemoteException // TCP: 221
+	{
+		guiRender.newSystemMessage("It is now your turn.");
+	}
+
+	@Override
+	public void nowObserving(int tid) throws RemoteException // TCP: 230
+	{
+		guiRender.newSystemMessage("You are now observing table ".concat(String.valueOf(tid)).concat("."));
+	}
+
+	@Override
+	public void stoppedObserving(int tid) throws RemoteException // TCP: 235
+	{
 		
 	}
 
 	@Override
-	public void yourTurn() throws RemoteException
+	public void networkException(String msg) throws RemoteException // TCP: 400
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void nowObserving(int tid) throws RemoteException
+	public void nameInUseError() throws RemoteException // TCP: 401
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void stoppedObserving(int tid) throws RemoteException
+	public void nameIllegal() throws RemoteException // TCP: 408
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void networkException(String msg) throws RemoteException
+	public void illegalMove() throws RemoteException // TCP: 402
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void nameInUseError() throws RemoteException
+	public void tableFull() throws RemoteException // TCP: 403
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void nameIllegal() throws RemoteException
+	public void tblNotExists() throws RemoteException // TCP: 411
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void illegalMove() throws RemoteException
+	public void gameNotCreatedYet() throws RemoteException // TCP: 412
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void tableFull() throws RemoteException
+	public void notYourTurn() throws RemoteException // TCP: 410
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void tblNotExists() throws RemoteException
+	public void notObserving() throws RemoteException // TCP: 415
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void gameNotCreatedYet() throws RemoteException
+	public void oppNotReady() throws RemoteException // TCP: 409
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void notYourTurn() throws RemoteException
+	public void errorInLobby() throws RemoteException // TCP: 406
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void notObserving() throws RemoteException
+	public void badMessage() throws RemoteException // TCP: 405
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void oppNotReady() throws RemoteException
+	public void oppLeftTable() throws RemoteException // TCP: 220
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void errorInLobby() throws RemoteException
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void badMessage() throws RemoteException
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void oppLeftTable() throws RemoteException
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void notInLobby() throws RemoteException
+	public void notInLobby() throws RemoteException // TCP: 404
 	{
 		// TODO Auto-generated method stub
 		
@@ -415,7 +404,10 @@ public class ClientController implements CheckersClient
 	
 	public void sendMessage(String targetUser, String message) // TCP: 102
 	{
-		connection.sendMsg(targetUser, message);
+		if(!targetUser.equals(this.userName))
+		{
+			connection.sendMsg(targetUser, message);
+		}
 	}
 	
 	public void sendGlobalMessage(String message) // TCP: 101
