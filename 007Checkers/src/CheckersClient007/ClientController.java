@@ -201,6 +201,7 @@ public class ClientController implements CheckersClient
 	public void gameStart() throws RemoteException // TCP: 203
 	{
 		guiRender.newSystemMessage("The game has started.");
+		guiRender.gameStart();
 	}
 
 	@Override
@@ -277,14 +278,12 @@ public class ClientController implements CheckersClient
 	@Override
 	public void networkException(String msg) throws RemoteException // TCP: 400
 	{
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void nameInUseError() throws RemoteException // TCP: 401
 	{
-		// TODO Auto-generated method stub
 		
 	}
 
