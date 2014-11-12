@@ -126,7 +126,6 @@ public class GUIRender {
 	
 	public void addNewPlayer(String user)
 	{
-		
 		clientGUI.getLobbyPanel().addNewPlayer(user);
 		clientGUI.getLobbyPanel().getChatPanel().addPlayer(user);
 		clientGUI.getBoardPanel().getChatPanel().addPlayer(user);
