@@ -18,23 +18,27 @@ public class GUIRender {
 	
 	public void newGlobalMessage(String who, String message)
 	{
-		ChatPanel.getInstance().addNewMessage( message, who, true);
+		clientGUI.getLobbyPanel().getChatPanel().addNewMessage( message, who, true);
+		clientGUI.getBoardPanel().getChatPanel().addNewMessage( message, who, true);
 	}
 	
 	public void newPMMessage(String who, String message)
 	{
-		ChatPanel.getInstance().addNewMessage( message, who, false);
+		clientGUI.getLobbyPanel().getChatPanel().addNewMessage( message, who, false);
+		clientGUI.getBoardPanel().getChatPanel().addNewMessage( message, who, false);
 	}
 	
 	public void newSystemMessage(String message)
 	{
-		ChatPanel.getInstance().addNewMessage( message, "SYSTEM MESSAGE", true);
+		clientGUI.getLobbyPanel().getChatPanel().addNewMessage( message, "SYSTEM MESSAGE", true);
+		clientGUI.getBoardPanel().getChatPanel().addNewMessage( message, "SYSTEM MESSAGE", true);
 	}
 	
 	public void updatePlayerList(String[] playerList)
 	{
 		clientGUI.getLobbyPanel().setPlayerList(playerList);
-		ChatPanel.getInstance().updatePlayerList(playerList);
+		clientGUI.getLobbyPanel().getChatPanel().updatePlayerList(playerList);
+		clientGUI.getBoardPanel().getChatPanel().updatePlayerList(playerList);
 	}
 	
 	public void updateTableList(int[] tableIdList)
@@ -124,13 +128,15 @@ public class GUIRender {
 	{
 		
 		clientGUI.getLobbyPanel().addNewPlayer(user);
-		ChatPanel.getInstance().addPlayer(user);
+		clientGUI.getLobbyPanel().getChatPanel().addPlayer(user);
+		clientGUI.getBoardPanel().getChatPanel().addPlayer(user);
 	
 	}
 	public void removePlayer(String user)
 	{
 		clientGUI.getLobbyPanel().removePlayer(user);
-		ChatPanel.getInstance().removePlayer(user);
+		clientGUI.getLobbyPanel().getChatPanel().removePlayer(user);
+		clientGUI.getBoardPanel().getChatPanel().removePlayer(user);
 	}
 	
 }

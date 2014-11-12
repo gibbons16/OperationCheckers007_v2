@@ -18,11 +18,12 @@ import java.awt.Insets;
 public class CheckerBoardPanel extends JPanel {
 	private JLabel gameStatusLbl;
 	private Board board;
+	ChatPanel chatPanel;
 	
 	public CheckerBoardPanel() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 43, 854, 0};
-		gridBagLayout.rowHeights = new int[]{59, 405, 210, 0};
+		gridBagLayout.columnWidths = new int[]{0, 52, 854, 0};
+		gridBagLayout.rowHeights = new int[]{59, 204, 210, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
@@ -49,14 +50,25 @@ public class CheckerBoardPanel extends JPanel {
 		gbc_board.gridy = 1;
 		add(board, gbc_board);
 		
-		ChatPanel panel = ChatPanel.getInstance();
+		chatPanel = new ChatPanel();
+		chatPanel.setBackground(Color.green);
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.gridwidth = 3;
-		gbc_panel.insets = new Insets(0, 0, 0, 5);
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 0;
 		gbc_panel.gridy = 2;
-		add(panel, gbc_panel);
+		add(chatPanel, gbc_panel);
+		
+//		ChatPanel panel = ChatPanel.getInstance();
+//		GridBagConstraints gbc_panel = new GridBagConstraints();
+//		gbc_panel.gridwidth = 3;
+//		gbc_panel.insets = new Insets(0, 0, 0, 5);
+//		gbc_panel.fill = GridBagConstraints.BOTH;
+//		gbc_panel.gridx = 0;
+//		gbc_panel.gridy = 2;
+//		
+//		panel.setBackground(Color.green);
+//		add(panel, gbc_panel);
 
 	}
 
@@ -68,6 +80,16 @@ public class CheckerBoardPanel extends JPanel {
 	public void updateStatus(String status)
 	{
 		gameStatusLbl.setText(status);
+	}
+
+
+	public void setChatPanel(ChatPanel chatPanel) {
+		this.chatPanel = chatPanel;
+	}
+
+
+	public ChatPanel getChatPanel() {
+		return chatPanel;
 	}
 	
 

@@ -34,10 +34,9 @@ public class ChatPanel extends JPanel
 	private JComboBox<String> pmTargetComboBox;
 	private JButton sendMessageButton;
 	private JTextField sendMessageTextField;
-	private static ChatPanel chatPanel;
 	private JScrollPane scrollPane;
 	private JTextArea chatBoxTextArea;
-	private  ChatPanel()
+	public  ChatPanel()
 	{
 		
 		
@@ -133,15 +132,7 @@ public class ChatPanel extends JPanel
 		
 		
 	}
-	public static ChatPanel getInstance()
-	{
-		
-		if(chatPanel == null)
-		{
-			chatPanel  = new ChatPanel();
-		}
-		return chatPanel;
-	}
+
 	public void addNewMessage(String msg, String who, boolean global )
 	{
 		// global - true update msg globally

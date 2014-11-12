@@ -39,6 +39,7 @@ public class LobbyPanel extends JPanel {
 	JTextArea playerListTextArea;
 	JButton btnJoinTable;
 	JButton btnObserveTable ;
+	ChatPanel chatPanel;
 	
 	public LobbyPanel() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -142,14 +143,14 @@ public class LobbyPanel extends JPanel {
 		gbc_btnObserveTable.gridy = 3;
 		add(btnObserveTable, gbc_btnObserveTable);
 		
-		ChatPanel panel = ChatPanel.getInstance();
+		 chatPanel =new ChatPanel();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.gridwidth = 3;
 		gbc_panel.insets = new Insets(0, 0, 0, 5);
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 0;
 		gbc_panel.gridy = 4;
-		add(panel, gbc_panel);
+		add(chatPanel, gbc_panel);
 
 	}
 	
@@ -223,6 +224,14 @@ public class LobbyPanel extends JPanel {
 		System.out.println("playerList after remove: \n"+playerListText);
 		
 		playerListTextArea.setText(playerListText);
+	}
+
+	public ChatPanel getChatPanel() {
+		return chatPanel;
+	}
+
+	public void setChatPanel(ChatPanel chatPanel) {
+		this.chatPanel = chatPanel;
 	}
 
 }
