@@ -125,9 +125,8 @@ public class ClientController implements CheckersClient
 	}
 
 	@Override
-	public void connectionOK() throws RemoteException
+	public void connectionOK() throws RemoteException // TCP: 200
 	{
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -135,17 +134,17 @@ public class ClientController implements CheckersClient
 	public void youInLobby() throws RemoteException // TCP: 218
 	{
 		guiRender.joinLobby();
+		guiRender.newSystemMessage("You are now in the lobby.");
 	}
 
 	@Override
-	public void youLeftLobby() throws RemoteException
+	public void youLeftLobby() throws RemoteException // TCP: 213
 	{
-		// TODO Auto-generated method stub
-		
+		guiRender.newSystemMessage("You have left the lobby.");
 	}
 
 	@Override
-	public void newMsg(String user, String msg, boolean pm)
+	public void newMsg(String user, String msg, boolean pm) // TCP: 201
 			throws RemoteException 
 	{
 		if(pm)
@@ -173,27 +172,27 @@ public class ClientController implements CheckersClient
 	}
 
 	@Override
-	public void nowLeftLobby(String user) throws RemoteException
+	public void nowLeftLobby(String user) throws RemoteException // TCP: 217
 	{
 		guiRender.removePlayer(user);
 		
 	}
 
 	@Override
-	public void newTable(int tid) throws RemoteException
+	public void newTable(int tid) throws RemoteException // TCP: 202
 	{
 		guiRender.addNewTable(tid);
 	}
 
 	@Override
-	public void joinedTable(int tid) throws RemoteException
+	public void joinedTable(int tid) throws RemoteException // TCP: 210
 	{
 		guiRender.joinTable();
-		
+		guiRender.newSystemMessage("");
 	}
 
 	@Override
-	public void alertLeftTable() throws RemoteException
+	public void alertLeftTable() throws RemoteException // TCP: 
 	{
 		// TODO Auto-generated method stub
 		
@@ -415,7 +414,10 @@ public class ClientController implements CheckersClient
 	
 	public void sendMessage(String targetUser, String message) // TCP: 102
 	{
-		connection.sendMsg(targetUser, message);
+		if(!targetUser.equals(this.userName))
+		{
+			connection.sendMsg(targetUser, message);
+		}
 	}
 	
 	public void sendGlobalMessage(String message) // TCP: 101

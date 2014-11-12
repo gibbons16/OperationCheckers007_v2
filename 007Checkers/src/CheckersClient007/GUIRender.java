@@ -26,6 +26,11 @@ public class GUIRender {
 		ChatPanel.getInstance().addNewMessage( message, who, false);
 	}
 	
+	public void newSystemMessage(String message)
+	{
+		ChatPanel.getInstance().addNewMessage( message, "SYSTEM MESSAGE", true);
+	}
+	
 	public void updatePlayerList(String[] playerList)
 	{
 		clientGUI.getLobbyPanel().setPlayerList(playerList);
