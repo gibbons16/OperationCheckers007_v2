@@ -88,7 +88,7 @@ public class Board extends JPanel {
     		}
     	}
     }
-    private void intiliazeTest()
+    public void initialize()
     {
     	System.out.println("Testing.......");
     	    
@@ -134,6 +134,15 @@ public class Board extends JPanel {
     {
     	canMove = moveStatus;
     }
+
+	public PieceType getPlayer() {
+		return player;
+	}
+
+	public void setPlayerColor(PieceType player) {
+		this.player = player;
+	}
+    
  }
   
 

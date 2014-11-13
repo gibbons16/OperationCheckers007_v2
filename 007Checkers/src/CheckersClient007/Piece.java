@@ -42,6 +42,7 @@ public  class Piece extends ImageIcon{
     }
 
 
+
     public int getRow() {
         return row;
     }
