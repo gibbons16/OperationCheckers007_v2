@@ -58,7 +58,7 @@ public class LobbyPanel extends JPanel {
 		gbc_TableLbl.gridy = 0;
 		add(TableLbl, gbc_TableLbl);
 		
-		playerListlbl = new JLabel("Player List");
+		playerListlbl = new JLabel("Players in Lobby");
 		GridBagConstraints gbc_playerListlbl = new GridBagConstraints();
 		gbc_playerListlbl.insets = new Insets(0, 0, 5, 0);
 		gbc_playerListlbl.gridx = 2;
@@ -96,6 +96,7 @@ public class LobbyPanel extends JPanel {
 
 			@Override
 			public void valueChanged(ListSelectionEvent arg0) {
+				btnJoinTable.setEnabled(false);
 				try {
 					ClientController.getInstance().getTableStatus(tableList.getSelectedValue());
 				} catch (RemoteException e) {
@@ -132,6 +133,7 @@ public class LobbyPanel extends JPanel {
 			}
 	    	
 	    });
+		btnJoinTable.setEnabled(false); // starts off disabled, becomes enabled when user has joinable game highlighted
 		GridBagConstraints gbc_btnJoinTable = new GridBagConstraints();
 		gbc_btnJoinTable.insets = new Insets(0, 0, 5, 5);
 		gbc_btnJoinTable.gridx = 0;
