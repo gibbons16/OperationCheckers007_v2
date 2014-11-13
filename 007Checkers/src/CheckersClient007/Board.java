@@ -27,6 +27,8 @@ public class Board extends JPanel {
     public static Color color2 = new Color(139, 69, 19);
     // 0 - no move 1 - can move
     public boolean canMove;
+    
+    public PieceType player;
 
     public Board() {
         width = 800;

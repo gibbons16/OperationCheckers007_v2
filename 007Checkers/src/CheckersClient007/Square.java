@@ -115,13 +115,16 @@ public class Square extends JPanel implements MouseListener {
                     if (newSelectedSquare.getPiece() != null) {
                         if (!selectedSquare.getBackground().equals(newSelectedSquare.getBackground())) {
 
-                            newSelectedSquare.setPiece(tempPiece);
-                            selectedSquare.setPiece(null);
+//                            newSelectedSquare.setPiece(tempPiece);
+//                            selectedSquare.setPiece(null);
+                        	
+                        	ClientController.getInstance().move(selectedSquare.getxCoor(),
+                        			selectedSquare.getyCoor(), newSelectedSquare.getxCoor(), newSelectedSquare.getyCoor());
                         }
                         
                     } else {
-                        newSelectedSquare.setPiece(tempPiece);
-                        selectedSquare.setPiece(null);
+//                        newSelectedSquare.setPiece(tempPiece);
+//                        selectedSquare.setPiece(null);
                     }
                 }
 

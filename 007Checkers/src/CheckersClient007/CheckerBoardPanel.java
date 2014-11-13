@@ -38,6 +38,16 @@ public class CheckerBoardPanel extends JPanel {
 		add(panel_2, gbc_panel_2);
 		
 		readyButton = new JButton("Press When Ready");
+		readyButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				ClientController.getInstance().ready();
+				
+				
+			}
+			
+		});
 		panel_2.add(readyButton);
 		
 		gameStatusLbl = new JLabel("Status: waiting...");
