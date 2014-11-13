@@ -174,4 +174,9 @@ public class GUIRender {
 		clientGUI.getBoardPanel().getBoard().setPlayerColor(playerColor);
 	}
 	
+	public void allowClientMoves(boolean isAllowed)
+	{
+		clientGUI.getBoardPanel().getBoard().setMoveStatus(isAllowed);
+	}
+	
 }

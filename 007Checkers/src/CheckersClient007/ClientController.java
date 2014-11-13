@@ -269,6 +269,7 @@ public class ClientController implements CheckersClient
 	public void yourTurn() throws RemoteException // TCP: 221
 	{
 		guiRender.newSystemMessage("It is now your turn.");
+		guiRender.allowClientMoves(true);
 	}
 
 	@Override
@@ -305,6 +306,7 @@ public class ClientController implements CheckersClient
 	public void illegalMove() throws RemoteException // TCP: 402
 	{
 		guiRender.showError("Illegal move.");
+		guiRender.allowClientMoves(true);
 	}
 
 	@Override
