@@ -208,6 +208,7 @@ public class ClientController implements CheckersClient
 	public void colorBlack() throws RemoteException // TCP: 204
 	{
 		guiRender.newSystemMessage("You are playing as black.");
+		
 	}
 
 	@Override
@@ -248,7 +249,14 @@ public class ClientController implements CheckersClient
 			throws RemoteException
 	{
 		// TODO update table status, possibly in lobby panel
-		
+		if(blackSeat.equals("-1") || redSeat.equals("-1"))
+		{
+			guiRender.setTableJoinable(true);
+		}
+		else
+		{
+			guiRender.setTableJoinable(false);
+		}
 	}
 
 	@Override
@@ -284,28 +292,25 @@ public class ClientController implements CheckersClient
 	@Override
 	public void nameInUseError() throws RemoteException // TCP: 401
 	{
-		
+		guiRender.showError("That name is already in use.");
 	}
 
 	@Override
 	public void nameIllegal() throws RemoteException // TCP: 408
 	{
-		// TODO Auto-generated method stub
-		
+		guiRender.showError("Username is not allowed to have whitespaces.");
 	}
 
 	@Override
 	public void illegalMove() throws RemoteException // TCP: 402
 	{
-		// TODO Auto-generated method stub
-		
+		guiRender.showError("Illegal move.");
 	}
 
 	@Override
 	public void tableFull() throws RemoteException // TCP: 403
 	{
-		// TODO Auto-generated method stub
-		
+		guiRender.showError("Table full.");
 	}
 
 	@Override
@@ -418,9 +423,9 @@ public class ClientController implements CheckersClient
 	// GAME PLAYING METHODS
 	// Note: we are throwing RemoteException, should we change this later?
 	
-	public void getTableStatus(String user, int tableId) throws RemoteException // TCP: 109
+	public void getTableStatus(int tableId) throws RemoteException // TCP: 109
 	{
-		connection.getTblStatus(user, tableId);
+		connection.getTblStatus(this.userName, tableId);
 	}
 	
 	public void joinTable(String user, int tableId) throws RemoteException // TCP: 104

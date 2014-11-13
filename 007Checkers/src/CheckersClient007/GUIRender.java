@@ -1,5 +1,7 @@
 package CheckersClient007;
 
+import javax.swing.JOptionPane;
+
 public class GUIRender {
 	
 	private ClientController clientController;
@@ -32,6 +34,13 @@ public class GUIRender {
 	{
 		clientGUI.getLobbyPanel().getChatPanel().addNewMessage( message, "SYSTEM MESSAGE", true);
 		clientGUI.getBoardPanel().getChatPanel().addNewMessage( message, "SYSTEM MESSAGE", true);
+	}
+	
+	public void showError(String error)
+	{
+		JOptionPane.showMessageDialog(clientGUI
+                , error
+                , "ERROR", JOptionPane.ERROR_MESSAGE);
 	}
 	
 	public void updatePlayerList(String[] playerList)
@@ -131,17 +140,38 @@ public class GUIRender {
 		clientGUI.getBoardPanel().getChatPanel().addPlayer(user);
 	
 	}
+	
 	public void removePlayer(String user)
 	{
 		clientGUI.getLobbyPanel().removePlayer(user);
 		clientGUI.getLobbyPanel().getChatPanel().removePlayer(user);
 		clientGUI.getBoardPanel().getChatPanel().removePlayer(user);
 	}
+	
 	public void gameStart()
 	{
 		clientGUI.getBoardPanel().setReadyUp(false);
 		clientGUI.getBoardPanel().setStatus("Game Started");
+		clientGUI.getBoardPanel().getBoard().initialize();
+	}
 	
+	public void setTableJoinable(boolean isJoinable)
+	{
+		clientGUI.getLobbyPanel().makeTableJoinable(isJoinable);
+	}
+	
+	public void setPlayerColor(boolean isBlack)
+	{
+		PieceType playerColor;
+		if(isBlack)
+		{
+			playerColor = PieceType.BLACK;
+		}
+		else
+		{
+			playerColor = PieceType.RED;
+		}
+		clientGUI.getBoardPanel().getBoard().setPlayerColor(playerColor);
 	}
 	
 }

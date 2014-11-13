@@ -23,6 +23,8 @@ import javax.swing.JTextArea;
 import javax.swing.ListModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 
@@ -89,6 +91,19 @@ public class LobbyPanel extends JPanel {
 		add(tableListScrollPane, gbc_tableListScrollPane);
 		
 		tableList = new JList();
+		tableList.addListSelectionListener(new ListSelectionListener()
+		{
+
+			@Override
+			public void valueChanged(ListSelectionEvent arg0) {
+				try {
+					ClientController.getInstance().getTableStatus(tableList.getSelectedValue());
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		tableListScrollPane.setViewportView(tableList);
 		
 		JScrollPane playerListScrollPane = new JScrollPane();
@@ -163,6 +178,18 @@ public class LobbyPanel extends JPanel {
 			playerListTextArea.append(s + "\n");
 		}
 	
+	}
+	
+	public void makeTableJoinable(boolean isJoinable)
+	{
+		if(isJoinable)
+		{
+			btnJoinTable.setEnabled(true);
+		}
+		else
+		{
+			btnJoinTable.setEnabled(false);
+		}
 	}
 	
 	public void setTableList(int[] tables)
