@@ -90,7 +90,7 @@ public class Board extends JPanel {
     }
     public void initialize()
     {
-    	System.out.println("Testing.......");
+    	
     	    
     	    	for(int i = 0; i < this.NUM_SQUARES; i++)
     	    	{
@@ -102,7 +102,7 @@ public class Board extends JPanel {
     	    				this.setPiece(i,j,PieceType.RED);
     	    		}
     	    	}
-    	    
+    	    repaint();
     }
     
     public void setPiece(int row, int col, PieceType type)
