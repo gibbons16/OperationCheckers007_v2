@@ -99,7 +99,7 @@ public class Square extends JPanel implements MouseListener {
         Square newSelectedSquare = (Square) (me.getSource());
         // check to see if the square where the mouse was originally pressed is
         // the same as the square where the mouse is released
-        if (newSelectedSquare.equals(pressed) && board.getMoveStatus()) {
+        if (newSelectedSquare.equals(pressed) && board.getMoveStatus() ) {
             // change the square the is selected 
             if (Square.selectedSquare != null) {
                 if ((selectedSquare.getxCoor() + selectedSquare.getyCoor()) % 2 == 0) {
@@ -110,33 +110,33 @@ public class Square extends JPanel implements MouseListener {
                 }
 
                 Piece tempPiece = selectedSquare.getPiece();
-                if (tempPiece != null && tempPiece.getType() == board.getPlayer() &&   !newSelectedSquare.equals(selectedSquare)) {
+                if (tempPiece != null && tempPiece.getType() == board.getPlayer() &&   !newSelectedSquare.equals(selectedSquare) && newSelectedSquare.getPiece() == null) {
 
-                    if (newSelectedSquare.getPiece() != null) {
-                        if (!selectedSquare.getBackground().equals(newSelectedSquare.getBackground())) {
+                       
 
-//                            newSelectedSquare.setPiece(tempPiece);
-//                            selectedSquare.setPiece(null);
+                			System.out.println("moving");
                         	
                         	ClientController.getInstance().move(selectedSquare.getxCoor(),
                         			selectedSquare.getyCoor(), newSelectedSquare.getxCoor(), newSelectedSquare.getyCoor());
-                        }
-                        
-                    } else {
-//                        newSelectedSquare.setPiece(tempPiece);
-//                        selectedSquare.setPiece(null);
-                    	
-                    	ClientController.getInstance().move(selectedSquare.getxCoor(),
-                    			selectedSquare.getyCoor(), newSelectedSquare.getxCoor(), newSelectedSquare.getyCoor());
-                    }
+                        	selectedSquare = null;
+                        	board.setMoveStatus(false);
+                    
+
+                }else
+                {
+                    this.setBackground(Color.GRAY);
+
+                    selectedSquare = newSelectedSquare;
                 }
 
 
             }
+            else{
 
             this.setBackground(Color.GRAY);
 
-            selectedSquare = this;
+            selectedSquare = newSelectedSquare;
+            }
             repaint();
 
         }

@@ -82,7 +82,9 @@ public class GUIRender {
 	
 	public void updateGameBoard(byte[][] board /*0=empty, 1=black, 2=red*/)
 	{
+		
 		Board gameBoard = this.clientGUI.getBoardPanel().getBoard();
+		gameBoard.clearAllPieces();
 		for(int row = 0; row < board.length; row++)
 		{
 			for(int col = 0; col < board.length; col++)
@@ -96,6 +98,7 @@ public class GUIRender {
 				}
 			}
 		}
+		gameBoard.repaint();
 	}
 	
 	public void clientWon()
@@ -178,5 +181,6 @@ public class GUIRender {
 	{
 		clientGUI.getBoardPanel().getBoard().setMoveStatus(isAllowed);
 	}
+	
 	
 }

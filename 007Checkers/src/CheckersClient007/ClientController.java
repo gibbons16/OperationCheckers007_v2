@@ -208,6 +208,7 @@ public class ClientController implements CheckersClient
 	public void colorBlack() throws RemoteException // TCP: 204
 	{
 		guiRender.newSystemMessage("You are playing as black.");
+		guiRender.setPlayerColor(true);
 		
 	}
 
@@ -215,6 +216,7 @@ public class ClientController implements CheckersClient
 	public void colorRed() throws RemoteException // TCP: 205
 	{
 		guiRender.newSystemMessage("You are playing as red.");
+		guiRender.setPlayerColor(false);
 	}
 
 	@Override
@@ -227,7 +229,7 @@ public class ClientController implements CheckersClient
 	public void curBoardState(int tid, byte[][] boardState) //TCP: 207
 			throws RemoteException
 	{
-		// TODO
+		guiRender.updateGameBoard(boardState);
 	}
 
 	@Override

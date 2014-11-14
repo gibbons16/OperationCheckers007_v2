@@ -96,9 +96,9 @@ public class Board extends JPanel {
     	    	{
     	    		for(int j = 0; j < this.NUM_SQUARES; j++)
     	    		{
-    	    			if ((i + j) % 2 == 0 && i < 3) 
+    	    			if ((i + j) % 2 != 0 && i < 3) 
     	    				this.setPiece(i,j,PieceType.BLACK);
-    	    			else if ((i + j) % 2 == 0 && i > 4) 
+    	    			else if ((i + j) % 2 != 0 && i > 4) 
     	    				this.setPiece(i,j,PieceType.RED);
     	    		}
     	    	}
