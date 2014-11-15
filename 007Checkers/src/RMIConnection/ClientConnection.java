@@ -115,7 +115,7 @@ public class ClientConnection implements RMIServerInterface {
 	}
 
 	public void disconnect(boolean endProcess) {
-		serverCon.disconnect(userName);	
+
 		if(endProcess){
 			System.exit(1);
 		}

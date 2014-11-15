@@ -20,6 +20,7 @@ public class CheckerBoardPanel extends JPanel {
 	private Board board;
 	ChatPanel chatPanel;
 	JButton readyButton;
+	private JButton btnLeaveTable;
 	
 	public CheckerBoardPanel() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -28,6 +29,22 @@ public class CheckerBoardPanel extends JPanel {
 		gridBagLayout.columnWeights = new double[]{1.0, 0.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
+		
+		btnLeaveTable = new JButton("Leave Table");
+		btnLeaveTable.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				ClientController.getInstance().leaveTable();
+				
+			}
+			
+		});
+		GridBagConstraints gbc_btnLeaveTable = new GridBagConstraints();
+		gbc_btnLeaveTable.insets = new Insets(0, 0, 5, 5);
+		gbc_btnLeaveTable.gridx = 0;
+		gbc_btnLeaveTable.gridy = 0;
+		add(btnLeaveTable, gbc_btnLeaveTable);
 		
 		JPanel panel_2 = new JPanel();
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();

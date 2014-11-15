@@ -103,12 +103,12 @@ public class GUIRender {
 	
 	public void clientWon()
 	{
-		
+		JOptionPane.showMessageDialog(clientGUI, "You're a winner!", "You're a winner!", JOptionPane.PLAIN_MESSAGE);
 	}
 	
 	public void clientLost()
 	{
-		
+		JOptionPane.showMessageDialog(clientGUI, "You're a loser!", "You're a loser!", JOptionPane.PLAIN_MESSAGE);
 	}
 	
 	public void updatePlayerTurn(Boolean clientsTurn/*true=client's turn, else opponents turn*/)
