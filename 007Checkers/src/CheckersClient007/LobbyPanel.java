@@ -36,20 +36,21 @@ public class LobbyPanel extends JPanel {
 	 */
 	private JLabel TableLbl;
 	private JLabel playerListlbl;
-	private JButton createTableBtn;
 	private JList<Integer> tableList;
 	private JTextArea playerListTextArea;
-	private JButton btnJoinTable;
-	private JButton btnObserveTable ;
 	private JLabel gameDescriptionLabel;
 	private ChatPanel chatPanel;
+	private JPanel panel;
+	private JButton btnNewButton;
+	private JButton btnJoinTable;
+	private JButton btnCreateTable;
 	
 	public LobbyPanel() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 139, 102, 64, 315, 0};
+		gridBagLayout.columnWidths = new int[]{201, 288, 305, 0};
+		gridBagLayout.rowHeights = new int[]{0, 60, 102, 0, 64, 315, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		TableLbl = new JLabel("Table");
@@ -66,25 +67,68 @@ public class LobbyPanel extends JPanel {
 		gbc_playerListlbl.gridy = 0;
 		add(playerListlbl, gbc_playerListlbl);
 		
-		createTableBtn = new JButton("Create Table");
-		createTableBtn.addActionListener(new ActionListener(){
+		panel = new JPanel();
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.anchor = GridBagConstraints.WEST;
+		gbc_panel.gridheight = 2;
+		gbc_panel.insets = new Insets(0, 0, 5, 5);
+		gbc_panel.gridx = 0;
+		gbc_panel.gridy = 1;
+		add(panel, gbc_panel);
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[]{0, 0};
+		gbl_panel.rowHeights = new int[]{0, 0, 0, 0};
+		gbl_panel.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel.setLayout(gbl_panel);
+		
+		btnCreateTable = new JButton("Create Table");
+		btnCreateTable.addActionListener( new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				ClientController.getInstance().makeTable();
+				 ClientController.getInstance().makeTable();
+				
 			}
-	    	
-	    });
-		GridBagConstraints gbc_createTableBtn = new GridBagConstraints();
-		gbc_createTableBtn.insets = new Insets(0, 0, 5, 5);
-		gbc_createTableBtn.gridx = 0;
-		gbc_createTableBtn.gridy = 1;
-		add(createTableBtn, gbc_createTableBtn);
+			
+		});
+		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
+		gbc_btnNewButton_2.anchor = GridBagConstraints.WEST;
+		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 0);
+		gbc_btnNewButton_2.gridx = 0;
+		gbc_btnNewButton_2.gridy = 0;
+		panel.add(btnCreateTable, gbc_btnNewButton_2);
+		
+		btnJoinTable = new JButton("Join Table");
+		btnJoinTable.setEnabled(false);
+		btnJoinTable.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+					ClientController.getInstance().joinTable(tableList.getSelectedValue());
+	
+				
+			}
+			
+		});
+		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
+		gbc_btnNewButton_1.anchor = GridBagConstraints.WEST;
+		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 0);
+		gbc_btnNewButton_1.gridx = 0;
+		gbc_btnNewButton_1.gridy = 1;
+		panel.add(btnJoinTable, gbc_btnNewButton_1);
+		
+		btnNewButton = new JButton("Observe Table");
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.gridx = 0;
+		gbc_btnNewButton.gridy = 2;
+		panel.add(btnNewButton, gbc_btnNewButton);
 		
 		JScrollPane tableListScrollPane = new JScrollPane();
 		tableListScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		GridBagConstraints gbc_tableListScrollPane = new GridBagConstraints();
-		gbc_tableListScrollPane.gridheight = 3;
+		gbc_tableListScrollPane.gridheight = 4;
 		gbc_tableListScrollPane.insets = new Insets(0, 0, 5, 5);
 		gbc_tableListScrollPane.fill = GridBagConstraints.BOTH;
 		gbc_tableListScrollPane.gridx = 1;
@@ -111,7 +155,7 @@ public class LobbyPanel extends JPanel {
 		JScrollPane playerListScrollPane = new JScrollPane();
 		playerListScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		GridBagConstraints gbc_playerListScrollPane = new GridBagConstraints();
-		gbc_playerListScrollPane.gridheight = 3;
+		gbc_playerListScrollPane.gridheight = 4;
 		gbc_playerListScrollPane.insets = new Insets(0, 0, 5, 0);
 		gbc_playerListScrollPane.fill = GridBagConstraints.BOTH;
 		gbc_playerListScrollPane.gridx = 2;
@@ -125,58 +169,23 @@ public class LobbyPanel extends JPanel {
 		playerListTextArea.setEnabled(false);
 		playerListScrollPane.setViewportView(playerListTextArea);
 		
-		btnJoinTable = new JButton("Join Table");
-		btnJoinTable.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				ClientController.getInstance().joinTable(tableList.getSelectedValue());
-			}
-	    	
-	    });
-		btnJoinTable.setEnabled(false); // starts off disabled, becomes enabled when user has joinable game highlighted
-		GridBagConstraints gbc_btnJoinTable = new GridBagConstraints();
-		gbc_btnJoinTable.insets = new Insets(0, 0, 5, 5);
-		gbc_btnJoinTable.gridx = 0;
-		gbc_btnJoinTable.gridy = 2;
-		add(btnJoinTable, gbc_btnJoinTable);
-		
-		btnObserveTable = new JButton("Observe Table");
-		btnObserveTable.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent arg0)
-			{
-				try
-				{
-					ClientController.getInstance().observeTable(tableList.getSelectedValue());
-				} catch (RemoteException e)
-				{
-					e.printStackTrace();
-				}
-			}
-	    });
-		GridBagConstraints gbc_btnObserveTable = new GridBagConstraints();
-		gbc_btnObserveTable.insets = new Insets(0, 0, 5, 5);
-		gbc_btnObserveTable.gridx = 0;
-		gbc_btnObserveTable.gridy = 3;
-		add(btnObserveTable, gbc_btnObserveTable);
-		
 		gameDescriptionLabel = new JLabel("Game Description:\n(no game selected)");
 		GridBagConstraints gbc_gameDescriptionLabel = new GridBagConstraints();
+		gbc_gameDescriptionLabel.anchor = GridBagConstraints.NORTHWEST;
+		gbc_gameDescriptionLabel.gridheight = 2;
 		gbc_gameDescriptionLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_gameDescriptionLabel.gridx = 0;
-		gbc_gameDescriptionLabel.gridy = 4;
+		gbc_gameDescriptionLabel.gridy = 3;
 		add(this.gameDescriptionLabel, gbc_gameDescriptionLabel);
 		
 		
 		chatPanel =new ChatPanel();
-		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.gridwidth = 3;
-		gbc_panel.insets = new Insets(0, 0, 0, 5);
-		gbc_panel.fill = GridBagConstraints.BOTH;
-		gbc_panel.gridx = 0;
-		gbc_panel.gridy = 4;
-		add(chatPanel, gbc_panel);
+		GridBagConstraints gbc_panel1 = new GridBagConstraints();
+		gbc_panel1.gridwidth = 3;
+		gbc_panel1.fill = GridBagConstraints.BOTH;
+		gbc_panel1.gridx = 0;
+		gbc_panel1.gridy = 5;
+		add(chatPanel, gbc_panel1);
 
 	}
 	

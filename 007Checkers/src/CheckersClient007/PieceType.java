@@ -10,7 +10,7 @@ package CheckersClient007;
  */
 public enum PieceType {
 
-    RED, BLACK;
+    RED, BLACK, RED_KING, BLACK_KING;
 
     public int getPieceValue() {
         int retValue = 0;
@@ -20,6 +20,12 @@ public enum PieceType {
                 break;
             case BLACK:
             	retValue = 2;
+            	break;
+            case RED_KING:
+            	retValue = 3;
+            	break;
+            case BLACK_KING:
+            	retValue = 4;
             	break;
             	
 
