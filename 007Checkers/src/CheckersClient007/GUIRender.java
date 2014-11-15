@@ -203,11 +203,14 @@ public class GUIRender {
 	}
 
 	public void nowObserving(int tid) {
-		ObserveFrame f = new ObserveFrame(tid);
-		f.setSize(400, 400);
-		f.setVisible(true);
-		f.getBoard().setMoveStatus(false);
-		observations.put(tid, f);
+		if(!observations.containsKey(tid))
+		{
+			ObserveFrame f = new ObserveFrame(tid);
+			f.setSize(400, 400);
+			f.setVisible(true);
+			f.getBoard().setMoveStatus(false);
+			observations.put(tid, f);
+		}
 		
 		clientGUI.getLobbyPanel().getChatPanel().setCanPM(false);
 		clientGUI.getBoardPanel().getChatPanel().setCanPM(false);
