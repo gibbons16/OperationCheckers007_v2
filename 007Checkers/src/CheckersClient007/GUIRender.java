@@ -18,8 +18,11 @@ public class GUIRender {
 		observations = new HashMap<>();
 	}
 
-	public void joinLobby() {
+	public void joinLobby()
+	{
 		this.ourTID = -1;
+		clientGUI.getLobbyPanel().getChatPanel().setCanGlobalMessage(true);
+		clientGUI.getBoardPanel().getChatPanel().setCanGlobalMessage(true);
 		clientGUI.switchToTable();
 	}
 
@@ -62,16 +65,13 @@ public class GUIRender {
 
 	public void joinTable(int tid) {
 		this.ourTID = tid;
+		clientGUI.getLobbyPanel().getChatPanel().setCanGlobalMessage(false);
+		clientGUI.getBoardPanel().getChatPanel().setCanGlobalMessage(false);
 		clientGUI.switchToCheckersBoard();
 	}
 
-	// will change the text to "Waiting on opponent. . . "
-	public void clientReadys() {
-
-	}
-
-	// will change the text to "Opponent is ready to play."
-	public void opponentReadys() {
+	public void opponentReadys()
+	{
 		this.clientGUI.getBoardPanel().updateStatus(
 				"Opponent is ready to play.");
 	}
@@ -163,25 +163,25 @@ public class GUIRender {
 		clientGUI.getLobbyPanel().makeTableJoinable(isJoinable);
 	}
 
-	public void updateGameDescription(int tableId, String blackClient,
-			String redClient) {
+	public void updateGameDescription(int tableId, String blackClient, String redClient)
+	{
 		String gameStats = "Table ID = ".concat(String.valueOf(tableId))
 				.concat("\n");
-		if (!blackClient.equals("-1") && !redClient.equals("-1")) // if both
-																	// seats are
-																	// full
+		if (!blackClient.equals("-1") && !redClient.equals("-1")) // if both seats are full
 		{
-			gameStats = gameStats.concat("[Black] ").concat(blackClient)
-					.concat("\n");
-			gameStats = gameStats.concat("[Red] ").concat(redClient)
-					.concat("\n");
-		} else if (blackClient.equals("-1") || blackClient.equals("-1")) {
+			gameStats = gameStats.concat("[Black] ").concat(blackClient).concat("\n");
+			gameStats = gameStats.concat("[Red] ").concat(redClient).concat("\n");
+		}
+		else if (blackClient.equals("-1") ^ redClient.equals("-1"))
+		{
 			gameStats = gameStats.concat("[Player] ");
 			gameStats = blackClient.equals("-1") ? gameStats.concat(redClient)
 					: gameStats.concat(blackClient);
 			gameStats = gameStats.concat("\n")
 					.concat("<i>One seat open.</i>\n");
-		} else {
+		} 
+		else
+		{
 			gameStats = gameStats.concat("<i>Game is empty.</i>").concat("\n");
 		}
 		clientGUI.getLobbyPanel().updateGameDescription(gameStats);
@@ -208,6 +208,9 @@ public class GUIRender {
 		f.setVisible(true);
 		f.getBoard().setMoveStatus(false);
 		observations.put(tid, f);
+		
+		clientGUI.getLobbyPanel().getChatPanel().setCanPM(false);
+		clientGUI.getBoardPanel().getChatPanel().setCanPM(false);
 	}
 
 	public void stopObserving(int tid) {
@@ -215,6 +218,12 @@ public class GUIRender {
 		if (f != null) {
 			f.dispose();
 			observations.remove(f);
+		}
+		
+		if(observations.keySet().isEmpty())
+		{
+			clientGUI.getLobbyPanel().getChatPanel().setCanPM(true);
+			clientGUI.getBoardPanel().getChatPanel().setCanPM(true);
 		}
 	}
 

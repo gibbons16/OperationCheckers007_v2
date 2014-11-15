@@ -31,17 +31,19 @@ public class ChatPanel extends JPanel
 	private JRadioButton globalMessageRadioButton;
 	private JRadioButton _PM_MessageRadioButton;
 	
-	//private JComboBox<String> pmTargetComboBox;
 	private JTextField pmTextField;
 	private JButton sendMessageButton;
 	private JTextField sendMessageTextField;
 	private JScrollPane scrollPane;
 	private JTextArea chatBoxTextArea;
+	
+	private boolean canPM;
+	private boolean canGlobalMessage;
+	
 	public  ChatPanel()
 	{
-		
-		
-		
+		canPM = true;
+		canGlobalMessage = true;
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -74,34 +76,18 @@ public class ChatPanel extends JPanel
 		gbc_pmTextField.gridy = 0;
 		add(pmTextField, gbc_pmTextField);
 		
-//		pmTargetComboBox = new JComboBox<>();
-//		GridBagConstraints gbc_pmTargetComboBox = new GridBagConstraints();
-//		gbc_pmTargetComboBox.gridwidth = 3;
-//		gbc_pmTargetComboBox.insets = new Insets(0, 0, 5, 5);
-//		gbc_pmTargetComboBox.fill = GridBagConstraints.HORIZONTAL;
-//		gbc_pmTargetComboBox.gridx = 5;
-//		gbc_pmTargetComboBox.gridy = 0;
-//		add(pmTargetComboBox, gbc_pmTargetComboBox);
-		
 	    sendMessageButton = new JButton("Send");
 	    sendMessageButton.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(globalMessageRadioButton.isSelected())
+				if(globalMessageRadioButton.isSelected() && canGlobalMessage)
 					ClientController.getInstance().sendGlobalMessage(sendMessageTextField.getText());
-				else if(_PM_MessageRadioButton.isSelected())
+				else if(_PM_MessageRadioButton.isSelected() && canPM)
 				{
-//					Object val = pmTargetComboBox.getSelectedItem();
-//					if(val != null)
-//					{
-//						String target = (String)val;
-//						ClientController.getInstance().sendMessage(target, sendMessageTextField.getText());
-//					}
 					ClientController.getInstance().sendMessage(pmTextField.getText(), sendMessageTextField.getText());
 				}
-				sendMessageTextField.setText("");	
-				
+				sendMessageTextField.setText("");
 			}
 	    	
 	    });
@@ -143,52 +129,41 @@ public class ChatPanel extends JPanel
 		
 		
 	}
+	
+	public void setCanPM(boolean canPM)
+	{
+		this.canPM = canPM;
+		this._PM_MessageRadioButton.setEnabled(canGlobalMessage);
+	}
+	
+	public void setCanGlobalMessage(boolean canGlobalMessage)
+	{
+		this.canGlobalMessage = canGlobalMessage;
+		this.globalMessageRadioButton.setEnabled(canGlobalMessage);
+	}
 
 	public void addNewMessage(String msg, String who, boolean global )
 	{
-		// global - true update msg globally
-		if(global)
+		if(global && canGlobalMessage)
 		{
 			chatBoxTextArea.append(who + ": " + msg + "\n" );
 		}
-		else
+		else if(canPM)
 		{
 			SimpleAttributeSet green = new SimpleAttributeSet();
 			StyleConstants.setFontFamily(green, "Courier New Italic");
 			StyleConstants.setForeground(green, Color.GREEN);
-			try {
+			try
+			{
 				chatBoxTextArea.getDocument().insertString(0, "(PM) "+ who + ": " + msg, green);
-			} catch (BadLocationException e) {
+			} 
+			catch (BadLocationException e)
+			{
 				
 				
 			}
 		}
 	}
-	
-//	public void updatePlayerList(String[] playerList)
-//	{
-//		DefaultComboBoxModel model = new DefaultComboBoxModel();
-//		for(String s : playerList)
-//		{
-//			model.addElement(s);
-//		}
-//		pmTargetComboBox.setModel(model);
-//	}
-//	public void addPlayer(String player){
-//		pmTargetComboBox.addItem(player);
-//	}
-//	public void removePlayer(String player){	
-//		
-//		DefaultComboBoxModel<String> model = (DefaultComboBoxModel)pmTargetComboBox.getModel();
-//		int index = model.getIndexOf(player);
-//		
-//		if(index != -1)
-//		{
-//			model.removeElementAt(index);
-//		}
-//		pmTargetComboBox.setModel(model);
-//	}
-	
 	
 		
 }
