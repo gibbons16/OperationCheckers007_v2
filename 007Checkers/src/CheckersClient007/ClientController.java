@@ -235,15 +235,13 @@ public class ClientController implements CheckersClient
 	@Override
 	public void youWin() throws RemoteException // TCP: 208
 	{
-		// TODO indicate we won
-		
+		guiRender.clientWon();
 	}
 
 	@Override
 	public void youLose() throws RemoteException // TCP: 209
 	{
-		// TODO indiate we lost
-		
+		guiRender.clientLost();
 	}
 
 	@Override
