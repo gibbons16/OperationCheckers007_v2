@@ -19,6 +19,7 @@ public class GUIRender {
 	}
 
 	public void joinLobby() {
+		this.ourTID = -1;
 		clientGUI.switchToTable();
 	}
 
@@ -59,7 +60,8 @@ public class GUIRender {
 
 	}
 
-	public void joinTable() {
+	public void joinTable(int tid) {
+		this.ourTID = tid;
 		clientGUI.switchToCheckersBoard();
 	}
 

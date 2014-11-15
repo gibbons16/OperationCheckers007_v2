@@ -187,7 +187,7 @@ public class ClientController implements CheckersClient
 	@Override
 	public void joinedTable(int tid) throws RemoteException // TCP: 210
 	{
-		guiRender.joinTable();
+		guiRender.joinTable(tid);
 		guiRender.newSystemMessage("You have joined table ".concat(String.valueOf(tid)).concat("."));
 	}
 
