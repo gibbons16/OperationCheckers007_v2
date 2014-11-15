@@ -41,10 +41,8 @@ public class GUIRender {
 	}
 
 	public void newSystemMessage(String message) {
-		clientGUI.getLobbyPanel().getChatPanel()
-				.addNewMessage(message, "SYSTEM MESSAGE", true);
-		clientGUI.getBoardPanel().getChatPanel()
-				.addNewMessage(message, "SYSTEM MESSAGE", true);
+		clientGUI.getLobbyPanel().getChatPanel().addNewSystemMessage(message);
+		clientGUI.getBoardPanel().getChatPanel().addNewSystemMessage(message);
 	}
 
 	public void showError(String error) {
@@ -159,8 +157,18 @@ public class GUIRender {
 		clientGUI.getBoardPanel().getBoard().initialize();
 	}
 
-	public void setTableJoinable(boolean isJoinable) {
-		clientGUI.getLobbyPanel().makeTableJoinable(isJoinable);
+	public void setTableFull(boolean isFull)
+	{
+		if(isFull)
+		{
+			clientGUI.getLobbyPanel().makeTableObservable(true);
+			clientGUI.getLobbyPanel().makeTableJoinable(false);
+		}
+		else
+		{
+			clientGUI.getLobbyPanel().makeTableJoinable(true);
+			clientGUI.getLobbyPanel().makeTableObservable(false);
+		}
 	}
 
 	public void updateGameDescription(int tableId, String blackClient, String redClient)

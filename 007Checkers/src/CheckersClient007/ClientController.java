@@ -249,11 +249,11 @@ public class ClientController implements CheckersClient
 	{
 		if(blackSeat.equals("-1") || redSeat.equals("-1"))
 		{
-			guiRender.setTableJoinable(true);
+			guiRender.setTableFull(false);
 		}
 		else
 		{
-			guiRender.setTableJoinable(false);
+			guiRender.setTableFull(true);
 		}
 		guiRender.updateGameDescription(tid, blackSeat, redSeat);
 	}

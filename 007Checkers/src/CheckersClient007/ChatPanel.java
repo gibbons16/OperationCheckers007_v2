@@ -162,5 +162,10 @@ public class ChatPanel extends JPanel
 		}
 	}
 	
+	public void addNewSystemMessage(String msg)
+	{
+		chatBoxTextArea.append("[System Message] ".concat(msg).concat("\n"));
+	}
+	
 		
 }
