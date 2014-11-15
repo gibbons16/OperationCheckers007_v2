@@ -41,9 +41,10 @@ public class LobbyPanel extends JPanel {
 	private JLabel gameDescriptionLabel;
 	private ChatPanel chatPanel;
 	private JPanel panel;
-	private JButton btnNewButton;
+	private JButton btnObserveTable;
 	private JButton btnJoinTable;
 	private JButton btnCreateTable;
+	
 	
 	public LobbyPanel() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -119,11 +120,25 @@ public class LobbyPanel extends JPanel {
 		gbc_btnNewButton_1.gridy = 1;
 		panel.add(btnJoinTable, gbc_btnNewButton_1);
 		
-		btnNewButton = new JButton("Observe Table");
+		btnObserveTable = new JButton("Observe Table");
+		btnObserveTable.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					ClientController.getInstance().observeTable(tableList.getSelectedValue());
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+			
+		});
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.gridx = 0;
 		gbc_btnNewButton.gridy = 2;
-		panel.add(btnNewButton, gbc_btnNewButton);
+		panel.add(btnObserveTable, gbc_btnNewButton);
 		
 		JScrollPane tableListScrollPane = new JScrollPane();
 		tableListScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
