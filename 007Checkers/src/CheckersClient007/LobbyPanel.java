@@ -169,7 +169,7 @@ public class LobbyPanel extends JPanel {
 		playerListTextArea.setEnabled(false);
 		playerListScrollPane.setViewportView(playerListTextArea);
 		
-		gameDescriptionLabel = new JLabel("Game Description:\n(no game selected)");
+		gameDescriptionLabel = new JLabel("<html>Game Description:<br><i>(no game selected)</i></html>");
 		GridBagConstraints gbc_gameDescriptionLabel = new GridBagConstraints();
 		gbc_gameDescriptionLabel.anchor = GridBagConstraints.NORTHWEST;
 		gbc_gameDescriptionLabel.gridheight = 2;
@@ -275,7 +275,9 @@ public class LobbyPanel extends JPanel {
 	
 	public void updateGameDescription(String gameStats)
 	{
-		this.gameDescriptionLabel.setText("Game Description".concat("\n").concat(gameStats));
+		gameStats = gameStats.replace("\n","<br>"); // replaces all newlines with html tagging
+		gameStats = "<html>Game Description:<br>".concat(gameStats).concat("</html>");
+		gameDescriptionLabel.setText(gameStats);
 	}
 
 	public ChatPanel getChatPanel() {

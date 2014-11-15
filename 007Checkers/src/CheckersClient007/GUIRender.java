@@ -163,6 +163,27 @@ public class GUIRender {
 		clientGUI.getLobbyPanel().makeTableJoinable(isJoinable);
 	}
 	
+	public void updateGameDescription(int tableId, String blackClient, String redClient)
+	{
+		String gameStats = "Table ID = ".concat(String.valueOf(tableId)).concat("\n");
+		if(!blackClient.equals("-1") && !redClient.equals("-1")) // if both seats are full
+		{
+			gameStats = gameStats.concat("[Black] ").concat(blackClient).concat("\n");
+			gameStats = gameStats.concat("[Red] ").concat(redClient).concat("\n");
+		}
+		else if(blackClient.equals("-1") || blackClient.equals("-1"))
+		{
+			gameStats = gameStats.concat("[Player] ");
+			gameStats = blackClient.equals("-1") ? gameStats.concat(redClient) : gameStats.concat(blackClient);
+			gameStats = gameStats.concat("\n").concat("<i>One seat open.</i>\n");
+		}
+		else
+		{
+			gameStats = gameStats.concat("<i>Game is empty.</i>").concat("\n");
+		}
+		clientGUI.getLobbyPanel().updateGameDescription(gameStats);
+	}
+	
 	public void setPlayerColor(boolean isBlack)
 	{
 		PieceType playerColor;

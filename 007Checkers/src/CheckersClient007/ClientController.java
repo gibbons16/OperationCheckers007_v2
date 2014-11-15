@@ -256,7 +256,7 @@ public class ClientController implements CheckersClient
 		{
 			guiRender.setTableJoinable(false);
 		}
-		// call guiRender description pooper
+		guiRender.updateGameDescription(tid, blackSeat, redSeat);
 	}
 
 	@Override
