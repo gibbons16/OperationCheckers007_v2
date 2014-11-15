@@ -208,7 +208,7 @@ public class GUIRender {
 		observations.put(tid, f);
 	}
 
-	public void stopObservering(int tid) {
+	public void stopObserving(int tid) {
 		ObserveFrame f = observations.get(tid);
 		if (f != null) {
 			f.dispose();
