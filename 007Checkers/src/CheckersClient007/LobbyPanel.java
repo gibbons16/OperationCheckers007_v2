@@ -108,8 +108,6 @@ public class LobbyPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				
 					ClientController.getInstance().joinTable(tableList.getSelectedValue());
-	
-				
 			}
 			
 		});
@@ -121,6 +119,7 @@ public class LobbyPanel extends JPanel {
 		panel.add(btnJoinTable, gbc_btnNewButton_1);
 		
 		btnObserveTable = new JButton("Observe Table");
+		btnObserveTable.setEnabled(false);
 		btnObserveTable.addActionListener(new ActionListener(){
 
 			@Override
@@ -230,6 +229,18 @@ public class LobbyPanel extends JPanel {
 		else
 		{
 			btnJoinTable.setEnabled(false);
+		}
+	}
+	
+	public void makeTableObservable(boolean isObservable)
+	{
+		if(isObservable)
+		{
+			this.btnObserveTable.setEnabled(true);
+		}
+		else
+		{
+			this.btnObserveTable.setEnabled(false);
 		}
 	}
 	
