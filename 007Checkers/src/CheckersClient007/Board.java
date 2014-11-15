@@ -21,6 +21,8 @@ public class Board extends JPanel {
  
     String BLACK_IMAGE = "src\\Images\\black.jpg";
     String RED_IMAGE = "src\\Images\\red.jpg";
+    String RED_KING_IMAGE = "src\\Images\\redKing.jpg";
+    String BLACK_KING_IMAGE = "src\\Images\\blackKing.jpg";
     private int width;
     private int height;
     public static Color color1 = new Color(184, 134, 11);
@@ -28,7 +30,7 @@ public class Board extends JPanel {
     // 0 - no move 1 - can move
     public boolean canMove;
     
-    public PieceType player;
+    public String player;
 
     public Board() {
         width = 800;
@@ -111,8 +113,12 @@ public class Board extends JPanel {
     	{
     		if(type == PieceType.BLACK)
     			squares[row][col].setPiece(new Piece( this.BLACK_IMAGE,  type,  row,  col));
-    		else
+    		else if(type == PieceType.RED)
     			squares[row][col].setPiece(new Piece( this.RED_IMAGE,  type,  row,  col));
+    		else if (type == PieceType.BLACK_KING)
+    			squares[row][col].setPiece(new Piece(this.BLACK_KING_IMAGE, type, row, col));
+    		else
+    			squares[row][col].setPiece(new Piece(this.RED_KING_IMAGE, type, row, col));
     	}
     	
     
@@ -135,11 +141,11 @@ public class Board extends JPanel {
     	canMove = moveStatus;
     }
 
-	public PieceType getPlayer() {
+	public String getPlayer() {
 		return player;
 	}
 
-	public void setPlayerColor(PieceType player) {
+	public void setPlayerColor(String player) {
 		this.player = player;
 	}
     

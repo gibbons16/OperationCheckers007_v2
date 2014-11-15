@@ -32,4 +32,24 @@ public enum PieceType {
         }
         return retValue;
     }
+    public String getColor()
+    {
+    	String color = "";
+    	switch(this){
+        case RED:
+        	color = "RED";
+            break;
+        case BLACK:
+        	color = "BLACK";
+        	break;
+        case RED_KING:
+        	color = "RED";
+        	break;
+        case BLACK_KING:
+        	color = "BLACK";
+        	break;
+    	}
+    	return color;
+    }
+    
 }

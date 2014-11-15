@@ -110,7 +110,7 @@ public class Square extends JPanel implements MouseListener {
                 }
 
                 Piece tempPiece = selectedSquare.getPiece();
-                if (tempPiece != null && tempPiece.getType() == board.getPlayer() &&   !newSelectedSquare.equals(selectedSquare) && newSelectedSquare.getPiece() == null) {
+                if (tempPiece != null && tempPiece.getType().getColor() == board.getPlayer() &&   !newSelectedSquare.equals(selectedSquare) && newSelectedSquare.getPiece() == null) {
 
                        
 
