@@ -133,13 +133,21 @@ public class ChatPanel extends JPanel
 	public void setCanPM(boolean canPM)
 	{
 		this.canPM = canPM;
-		this._PM_MessageRadioButton.setEnabled(canGlobalMessage);
+		this._PM_MessageRadioButton.setEnabled(canPM);
+		if(!canPM)
+		{
+			this._PM_MessageRadioButton.setSelected(canPM);
+		}
 	}
 	
 	public void setCanGlobalMessage(boolean canGlobalMessage)
 	{
 		this.canGlobalMessage = canGlobalMessage;
 		this.globalMessageRadioButton.setEnabled(canGlobalMessage);
+		if(!canGlobalMessage)
+		{
+			this.globalMessageRadioButton.setSelected(canGlobalMessage);
+		}
 	}
 
 	public void addNewMessage(String msg, String who, boolean global )
@@ -148,7 +156,7 @@ public class ChatPanel extends JPanel
 		{
 			chatBoxTextArea.append(who + ": " + msg + "\n" );
 		}
-		else if(canPM)
+		else if(!global && canPM)
 		{
 			SimpleAttributeSet green = new SimpleAttributeSet();
 			StyleConstants.setFontFamily(green, "Courier New Italic");
