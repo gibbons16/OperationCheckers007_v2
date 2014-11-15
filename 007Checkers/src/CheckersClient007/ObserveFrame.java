@@ -35,6 +35,11 @@ public class ObserveFrame extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.addWindowListener(new WindowAdapter() {
+			  public void windowClosing(WindowEvent e) {
+				  ClientController.getInstance().removeObserving(tid);
+			  }
+			});
 		board = new Board();
 		contentPane.add(board, BorderLayout.CENTER);
 	}

@@ -440,5 +440,9 @@ public class ClientController implements CheckersClient
 	{
 		connection.observeTable(this.userName, tableId);
 	}
+	public void removeObserving(int tableId)
+	{
+		guiRender.removeObserver(tableId);
+	}
 	
 }

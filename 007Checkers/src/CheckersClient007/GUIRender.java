@@ -217,7 +217,7 @@ public class GUIRender {
 		ObserveFrame f = observations.get(tid);
 		if (f != null) {
 			f.dispose();
-			observations.remove(f);
+			observations.remove(tid);
 		}
 		
 		if(observations.keySet().isEmpty())
@@ -225,6 +225,11 @@ public class GUIRender {
 			clientGUI.getLobbyPanel().getChatPanel().setCanPM(true);
 			clientGUI.getBoardPanel().getChatPanel().setCanPM(true);
 		}
+	}
+	public void removeObserver(int tid)
+	{
+		stopObserving(tid);
+	
 	}
 
 }
