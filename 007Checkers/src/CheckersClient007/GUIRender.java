@@ -46,8 +46,8 @@ public class GUIRender {
 	public void updatePlayerList(String[] playerList)
 	{
 		clientGUI.getLobbyPanel().setPlayerList(playerList);
-		clientGUI.getLobbyPanel().getChatPanel().updatePlayerList(playerList);
-		clientGUI.getBoardPanel().getChatPanel().updatePlayerList(playerList);
+		//clientGUI.getLobbyPanel().getChatPanel().updatePlayerList(playerList);
+		//clientGUI.getBoardPanel().getChatPanel().updatePlayerList(playerList);
 	}
 	
 	public void updateTableList(int[] tableIdList)
@@ -139,16 +139,16 @@ public class GUIRender {
 	public void addNewPlayer(String user)
 	{
 		clientGUI.getLobbyPanel().addNewPlayer(user);
-		clientGUI.getLobbyPanel().getChatPanel().addPlayer(user);
-		clientGUI.getBoardPanel().getChatPanel().addPlayer(user);
+		//clientGUI.getLobbyPanel().getChatPanel().addPlayer(user);
+		//clientGUI.getBoardPanel().getChatPanel().addPlayer(user);
 	
 	}
 	
 	public void removePlayer(String user)
 	{
 		clientGUI.getLobbyPanel().removePlayer(user);
-		clientGUI.getLobbyPanel().getChatPanel().removePlayer(user);
-		clientGUI.getBoardPanel().getChatPanel().removePlayer(user);
+		//clientGUI.getLobbyPanel().getChatPanel().removePlayer(user);
+		//clientGUI.getBoardPanel().getChatPanel().removePlayer(user);
 	}
 	
 	public void gameStart()
