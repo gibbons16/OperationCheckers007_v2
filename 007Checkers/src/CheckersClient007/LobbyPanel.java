@@ -37,7 +37,7 @@ public class LobbyPanel extends JPanel {
 	private JLabel TableLbl;
 	private JLabel playerListlbl;
 	private JList<Integer> tableList;
-	private JTextArea playerListTextArea;
+	private JList<String> playerList;
 	private JLabel gameDescriptionLabel;
 	private ChatPanel chatPanel;
 	private JPanel panel;
@@ -48,9 +48,9 @@ public class LobbyPanel extends JPanel {
 	
 	public LobbyPanel() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{201, 288, 305, 0};
+		gridBagLayout.columnWidths = new int[]{290, 288, 305, 0};
 		gridBagLayout.rowHeights = new int[]{0, 60, 102, 0, 64, 315, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
@@ -177,16 +177,17 @@ public class LobbyPanel extends JPanel {
 		gbc_playerListScrollPane.gridy = 1;
 		add(playerListScrollPane, gbc_playerListScrollPane);
 		
-		playerListTextArea = new JTextArea();
+		playerList = new JList();
 		Font font = new Font("Verdana", Font.BOLD, 12);
-		playerListTextArea.setFont(font);
-		playerListTextArea.setForeground(Color.YELLOW);
-		playerListTextArea.setEnabled(false);
-		playerListScrollPane.setViewportView(playerListTextArea);
+		playerList.setFont(font);
+		playerList.setForeground(Color.YELLOW);
+		playerList.setEnabled(false);
+		playerListScrollPane.setViewportView(playerList);
 		
 		gameDescriptionLabel = new JLabel("<html>Game Description:<br><i>(no game selected)</i></html>");
 		GridBagConstraints gbc_gameDescriptionLabel = new GridBagConstraints();
-		gbc_gameDescriptionLabel.anchor = GridBagConstraints.NORTHWEST;
+		gbc_gameDescriptionLabel.fill = GridBagConstraints.VERTICAL;
+		gbc_gameDescriptionLabel.anchor = GridBagConstraints.WEST;
 		gbc_gameDescriptionLabel.gridheight = 2;
 		gbc_gameDescriptionLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_gameDescriptionLabel.gridx = 0;
@@ -207,11 +208,16 @@ public class LobbyPanel extends JPanel {
 	public void setPlayerList(String[] players)
 	{
 
-		playerListTextArea.setText("");
-		for(String s: players)
-		{
-			playerListTextArea.append(s + "\n");
-		}
+		
+	DefaultListModel model = new DefaultListModel<Integer>();
+		
+        for(int i = 0; i < players.length; i++)
+        {
+        	model.addElement(players[i]);
+        	
+        }
+        playerList.setModel(model);
+	
 	
 	}
 	
@@ -271,22 +277,34 @@ public class LobbyPanel extends JPanel {
 	
 	public void addNewPlayer(String player)
 	{
-		playerListTextArea.append(player);
+		ListModel oldModel = playerList.getModel();
+		DefaultListModel newModel = new DefaultListModel<Integer>();
+		
+		for(int i = 0; i < oldModel.getSize(); i++) // adds each of the old tables
+		{
+			newModel.addElement(oldModel.getElementAt(i));
+		}
+		newModel.addElement(player); // adds the new table
+		
+		playerList.setModel(newModel);
 	}
 	
 	public void removePlayer(String targetRemove)
 	{
-		targetRemove = targetRemove.concat("\n");
-		String playerListText = playerListTextArea.getText();
+		ListModel oldModel = playerList.getModel();
+		DefaultListModel newModel = new DefaultListModel<Integer>();
 		
-		System.out.println("playerList before remove: \n"+playerListText);
+		for(int i = 0; i < oldModel.getSize(); i++)
+		{
+			if(!oldModel.getElementAt(i).equals(targetRemove)) // add every table that isn't the target remove id
+			{
+				newModel.addElement(oldModel.getElementAt(i));
+			}
+		}
 		
-		playerListText = playerListText.replace(targetRemove, "");
-		
-		System.out.println("playerList after remove: \n"+playerListText);
-		
-		playerListTextArea.setText(playerListText);
+		playerList.setModel(newModel);
 	}
+	
 	
 	public void updateGameDescription(String gameStats)
 	{

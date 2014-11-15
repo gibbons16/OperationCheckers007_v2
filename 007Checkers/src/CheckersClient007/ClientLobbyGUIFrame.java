@@ -66,7 +66,7 @@ public class ClientLobbyGUIFrame extends JFrame
 			  }
 			});
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 800, 800);
+		setBounds(0, 0, 925, 800);
 		
 		JMenuBar menuBar = new JMenuBar();
 		//menuBar.getSize().width;
