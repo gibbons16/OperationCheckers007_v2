@@ -158,18 +158,7 @@ public class ChatPanel extends JPanel
 		}
 		else if(!global && canPM)
 		{
-			SimpleAttributeSet green = new SimpleAttributeSet();
-			StyleConstants.setFontFamily(green, "Courier New Italic");
-			StyleConstants.setForeground(green, Color.GREEN);
-			try
-			{
-				chatBoxTextArea.getDocument().insertString(0, "(PM) "+ who + ": " + msg, green);
-			} 
-			catch (BadLocationException e)
-			{
-				
-				
-			}
+			chatBoxTextArea.append("[PM] ".concat(who).concat(": ").concat(msg).concat("\n"));
 		}
 	}
 	
