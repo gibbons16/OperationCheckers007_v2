@@ -31,7 +31,8 @@ public class ChatPanel extends JPanel
 	private JRadioButton globalMessageRadioButton;
 	private JRadioButton _PM_MessageRadioButton;
 	
-	private JComboBox<String> pmTargetComboBox;
+	//private JComboBox<String> pmTargetComboBox;
+	private JTextField pmTextField;
 	private JButton sendMessageButton;
 	private JTextField sendMessageTextField;
 	private JScrollPane scrollPane;
@@ -64,14 +65,23 @@ public class ChatPanel extends JPanel
 		gbc__PM_MessageRadioButton.gridy = 0;
 		add(_PM_MessageRadioButton, gbc__PM_MessageRadioButton);
 		
-		pmTargetComboBox = new JComboBox<>();
-		GridBagConstraints gbc_pmTargetComboBox = new GridBagConstraints();
-		gbc_pmTargetComboBox.gridwidth = 3;
-		gbc_pmTargetComboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_pmTargetComboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_pmTargetComboBox.gridx = 5;
-		gbc_pmTargetComboBox.gridy = 0;
-		add(pmTargetComboBox, gbc_pmTargetComboBox);
+		pmTextField = new JTextField();
+		GridBagConstraints gbc_pmTextField = new GridBagConstraints();
+		gbc_pmTextField.gridwidth = 3;
+		gbc_pmTextField.insets = new Insets(0, 0, 5, 5);
+		gbc_pmTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_pmTextField.gridx = 5;
+		gbc_pmTextField.gridy = 0;
+		add(pmTextField, gbc_pmTextField);
+		
+//		pmTargetComboBox = new JComboBox<>();
+//		GridBagConstraints gbc_pmTargetComboBox = new GridBagConstraints();
+//		gbc_pmTargetComboBox.gridwidth = 3;
+//		gbc_pmTargetComboBox.insets = new Insets(0, 0, 5, 5);
+//		gbc_pmTargetComboBox.fill = GridBagConstraints.HORIZONTAL;
+//		gbc_pmTargetComboBox.gridx = 5;
+//		gbc_pmTargetComboBox.gridy = 0;
+//		add(pmTargetComboBox, gbc_pmTargetComboBox);
 		
 	    sendMessageButton = new JButton("Send");
 	    sendMessageButton.addActionListener(new ActionListener(){
@@ -82,12 +92,13 @@ public class ChatPanel extends JPanel
 					ClientController.getInstance().sendGlobalMessage(sendMessageTextField.getText());
 				else if(_PM_MessageRadioButton.isSelected())
 				{
-					Object val = pmTargetComboBox.getSelectedItem();
-					if(val != null)
-					{
-						String target = (String)val;
-						ClientController.getInstance().sendMessage(target, sendMessageTextField.getText());
-					}
+//					Object val = pmTargetComboBox.getSelectedItem();
+//					if(val != null)
+//					{
+//						String target = (String)val;
+//						ClientController.getInstance().sendMessage(target, sendMessageTextField.getText());
+//					}
+					ClientController.getInstance().sendMessage(pmTextField.getText(), sendMessageTextField.getText());
 				}
 				sendMessageTextField.setText("");	
 				
@@ -153,29 +164,30 @@ public class ChatPanel extends JPanel
 			}
 		}
 	}
-	public void updatePlayerList(String[] playerList)
-	{
-		DefaultComboBoxModel model = new DefaultComboBoxModel();
-		for(String s : playerList)
-		{
-			model.addElement(s);
-		}
-		pmTargetComboBox.setModel(model);
-	}
-	public void addPlayer(String player){
-		pmTargetComboBox.addItem(player);
-	}
-	public void removePlayer(String player){	
-		
-		DefaultComboBoxModel<String> model = (DefaultComboBoxModel)pmTargetComboBox.getModel();
-		int index = model.getIndexOf(player);
-		
-		if(index != -1)
-		{
-			model.removeElementAt(index);
-		}
-		pmTargetComboBox.setModel(model);
-	}
+	
+//	public void updatePlayerList(String[] playerList)
+//	{
+//		DefaultComboBoxModel model = new DefaultComboBoxModel();
+//		for(String s : playerList)
+//		{
+//			model.addElement(s);
+//		}
+//		pmTargetComboBox.setModel(model);
+//	}
+//	public void addPlayer(String player){
+//		pmTargetComboBox.addItem(player);
+//	}
+//	public void removePlayer(String player){	
+//		
+//		DefaultComboBoxModel<String> model = (DefaultComboBoxModel)pmTargetComboBox.getModel();
+//		int index = model.getIndexOf(player);
+//		
+//		if(index != -1)
+//		{
+//			model.removeElementAt(index);
+//		}
+//		pmTargetComboBox.setModel(model);
+//	}
 	
 	
 		

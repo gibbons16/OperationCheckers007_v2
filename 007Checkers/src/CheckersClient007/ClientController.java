@@ -250,7 +250,6 @@ public class ClientController implements CheckersClient
 	public void onTable(int tid, String blackSeat, String redSeat) // TCP: 219
 			throws RemoteException
 	{
-		// TODO update table status, possibly in lobby panel
 		if(blackSeat.equals("-1") || redSeat.equals("-1"))
 		{
 			guiRender.setTableJoinable(true);
@@ -259,6 +258,7 @@ public class ClientController implements CheckersClient
 		{
 			guiRender.setTableJoinable(false);
 		}
+		// call guiRender description pooper
 	}
 
 	@Override
@@ -334,8 +334,7 @@ public class ClientController implements CheckersClient
 	@Override
 	public void notYourTurn() throws RemoteException // TCP: 410
 	{
-		// TODO Auto-generated method stub
-		
+		guiRender.showError("It is the opponent's turn.");
 	}
 
 	@Override

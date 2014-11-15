@@ -34,14 +34,15 @@ public class LobbyPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	JLabel TableLbl;
-	JLabel playerListlbl;
-	JButton createTableBtn;
-	JList<Integer> tableList;
-	JTextArea playerListTextArea;
-	JButton btnJoinTable;
-	JButton btnObserveTable ;
-	ChatPanel chatPanel;
+	private JLabel TableLbl;
+	private JLabel playerListlbl;
+	private JButton createTableBtn;
+	private JList<Integer> tableList;
+	private JTextArea playerListTextArea;
+	private JButton btnJoinTable;
+	private JButton btnObserveTable ;
+	private JLabel gameDescriptionLabel;
+	private ChatPanel chatPanel;
 	
 	public LobbyPanel() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -160,7 +161,15 @@ public class LobbyPanel extends JPanel {
 		gbc_btnObserveTable.gridy = 3;
 		add(btnObserveTable, gbc_btnObserveTable);
 		
-		 chatPanel =new ChatPanel();
+		gameDescriptionLabel = new JLabel("Game Description:\n(no game selected)");
+		GridBagConstraints gbc_gameDescriptionLabel = new GridBagConstraints();
+		gbc_gameDescriptionLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_gameDescriptionLabel.gridx = 0;
+		gbc_gameDescriptionLabel.gridy = 4;
+		add(this.gameDescriptionLabel, gbc_gameDescriptionLabel);
+		
+		
+		chatPanel =new ChatPanel();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.gridwidth = 3;
 		gbc_panel.insets = new Insets(0, 0, 0, 5);
@@ -253,6 +262,11 @@ public class LobbyPanel extends JPanel {
 		System.out.println("playerList after remove: \n"+playerListText);
 		
 		playerListTextArea.setText(playerListText);
+	}
+	
+	public void updateGameDescription(String gameStats)
+	{
+		this.gameDescriptionLabel.setText("Game Description".concat("\n").concat(gameStats));
 	}
 
 	public ChatPanel getChatPanel() {
