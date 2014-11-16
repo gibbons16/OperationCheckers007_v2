@@ -1,6 +1,7 @@
 package CheckersClient007;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
@@ -12,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JList;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -86,6 +88,35 @@ public class ClientLobbyGUIFrame extends JFrame
 		menuBar.add(mnCustomize);
 		JMenuItem changeColor1 = new JMenuItem("Change Board Color 1");
 		mnCustomize.add(changeColor1);
+		changeColor1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Color c = JColorChooser.showDialog(null, "Choose a Color", null);
+			      if (c != null)
+			      {
+			    	  Board.setColor1(c);
+			      }
+				
+			}
+			
+			
+		});
+		JMenuItem changeColor2 = new JMenuItem("Change Board Color 2");
+		changeColor2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Color c = JColorChooser.showDialog(null, "Choose a Color", null);
+			      if (c != null)
+			      {
+			    	  Board.setColor2(c);
+			      }
+				
+			}
+			
+			
+		});
 		
 		setContentPane(loginPanel);
 	}
