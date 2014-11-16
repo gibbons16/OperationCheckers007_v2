@@ -234,6 +234,7 @@ public class ClientController implements CheckersClient
 	@Override
 	public void youWin() throws RemoteException // TCP: 208
 	{
+		
 		guiRender.clientWon();
 	}
 
@@ -448,5 +449,5 @@ public class ClientController implements CheckersClient
 	{
 		guiRender.repaintAllBoards();
 	}
-	}
+	
 }

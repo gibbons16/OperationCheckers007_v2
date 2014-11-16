@@ -89,7 +89,13 @@ public class CheckerBoardPanel extends JPanel {
 
 	}
 
-	
+	public void reset()
+	{
+		readyButton.setEnabled(true);
+		gameStatusLbl.setText("Status: waiting...");
+		board.clearAllPieces();
+		repaint();
+	}
 	public Board getBoard()
 	{
 		return board;

@@ -106,11 +106,15 @@ public class GUIRender {
 	}
 
 	public void clientWon() {
+		this.clientGUI.getBoardPanel().reset();
 		JOptionPane.showMessageDialog(clientGUI, "You're a winner!",
 				"You're a winner!", JOptionPane.PLAIN_MESSAGE);
 	}
 
 	public void clientLost() {
+		
+		this.clientGUI.getBoardPanel().reset();
+
 		JOptionPane.showMessageDialog(clientGUI, "You're a loser!",
 				"You're a loser!", JOptionPane.PLAIN_MESSAGE);
 	}
@@ -252,5 +256,6 @@ public class GUIRender {
 		}
 		clientGUI.getBoardPanel().getBoard().repaint();
 	}
+	
 
 }

@@ -5,6 +5,7 @@
 package CheckersClient007;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 
 import javax.swing.ImageIcon;
@@ -89,6 +90,7 @@ public class Board extends JPanel {
     			squares[i][j].setPiece(null);
     		}
     	}
+    	repaint();
     }
     public void initialize()
     {
@@ -155,6 +157,7 @@ public class Board extends JPanel {
 
 	public static void setColor1(Color color1) {
 		Board.color1 = color1;
+		ClientController.getInstance().repaintBoards();
 	
 	}
 
@@ -163,11 +166,24 @@ public class Board extends JPanel {
 	}
 
 	public static void setColor2(Color color2) {
+		
 		Board.color2 = color2;
+		ClientController.getInstance().repaintBoards();
 	}
 	
 	
-    
+	@Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        for(Square[] row: squares)
+        {
+        	for(Square s : row )
+        	{
+        		s.repaint();
+        	}
+        }
+    }//end of paintComponent method
  }
   
 
