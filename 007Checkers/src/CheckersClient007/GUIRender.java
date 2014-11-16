@@ -1,10 +1,8 @@
 package CheckersClient007;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.swing.JOptionPane;
-import javax.swing.text.html.HTMLDocument.Iterator;
 
 public class GUIRender {
 
@@ -244,13 +242,6 @@ public class GUIRender {
 		stopObserving(tid);
 	
 	}
-	public void repaintAllBoards()
-	{
-		for (Map.Entry<Integer, ObserveFrame> entry : observations.entrySet())
-		{
-		   entry.getValue().repaint();
-		}
-		clientGUI.getBoardPanel().getBoard().repaint();
-	}
+	
 
 }

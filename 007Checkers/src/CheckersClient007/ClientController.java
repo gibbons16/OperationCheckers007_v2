@@ -444,9 +444,5 @@ public class ClientController implements CheckersClient
 	{
 		guiRender.removeObserver(tableId);
 	}
-	public void repaintBoards()
-	{
-		guiRender.repaintAllBoards();
-	}
-	}
+	
 }

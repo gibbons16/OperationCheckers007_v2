@@ -103,9 +103,8 @@ public class ClientLobbyGUIFrame extends JFrame
 			
 		});
 		JMenuItem changeColor2 = new JMenuItem("Change Board Color 2");
-		mnCustomize.add(changeColor2);
 		changeColor2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				Color c = JColorChooser.showDialog(null, "Choose a Color", null);
