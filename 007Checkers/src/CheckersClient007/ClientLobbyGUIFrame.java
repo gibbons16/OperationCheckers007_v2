@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JMenuBar;
@@ -80,6 +81,11 @@ public class ClientLobbyGUIFrame extends JFrame
 		
 		JMenu mnConnection = new JMenu("Connection");
 		menuBar.add(mnConnection);
+		
+		JMenu mnCustomize = new JMenu("Customize");
+		menuBar.add(mnCustomize);
+		JMenuItem changeColor1 = new JMenuItem("Change Board Color 1");
+		mnCustomize.add(changeColor1);
 		
 		setContentPane(loginPanel);
 	}
