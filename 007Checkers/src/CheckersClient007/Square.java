@@ -158,6 +158,13 @@ public class Square extends JPanel implements MouseListener {
         super.paintComponent(g);
 
         //g.setColor(Color.black);
+        if ((this.getxCoor() + this.getyCoor()) % 2 == 0) {
+
+            this.setBackground(Board.color1);
+        } else {
+            this.setBackground(Board.color2);
+        }
+
         if (piece != null) {
             piece.paintIcon(this, g, 5, 5);
             

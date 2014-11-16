@@ -155,6 +155,7 @@ public class Board extends JPanel {
 
 	public static void setColor1(Color color1) {
 		Board.color1 = color1;
+	
 	}
 
 	public static Color getColor2() {
