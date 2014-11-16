@@ -148,6 +148,24 @@ public class Board extends JPanel {
 	public void setPlayerColor(String player) {
 		this.player = player;
 	}
+
+	public static Color getColor1() {
+		return color1;
+	}
+
+	public static void setColor1(Color color1) {
+		Board.color1 = color1;
+	}
+
+	public static Color getColor2() {
+		return color2;
+	}
+
+	public static void setColor2(Color color2) {
+		Board.color2 = color2;
+	}
+	
+	
     
  }
   
