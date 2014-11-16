@@ -27,7 +27,7 @@ public class Square extends JPanel implements MouseListener {
     private int xCoor;
     private int yCoor;
     private Board board;
-    private boolean selected;
+ 
     public Square() {
     }
 
@@ -39,7 +39,7 @@ public class Square extends JPanel implements MouseListener {
         this.xCoor = xCoor;
         this.yCoor = yCoor;
         this.board = board;
-        this.selected = false;
+      
         available = false;
     }
 
@@ -93,7 +93,7 @@ public class Square extends JPanel implements MouseListener {
     public void mousePressed(MouseEvent me) {
         Square s = (Square) (me.getSource());
         pressed = s;
-        this.selected=true;
+    
     }
 
     @Override
@@ -111,7 +111,7 @@ public class Square extends JPanel implements MouseListener {
                 } else {
                     selectedSquare.setBackground(Board.color2);
                 }
-                this.selected = false;
+           
 
                 Piece tempPiece = selectedSquare.getPiece();
                 if (tempPiece != null && tempPiece.getType().getColor() == board.getPlayer() &&   !newSelectedSquare.equals(selectedSquare) && newSelectedSquare.getPiece() == null) {
@@ -162,7 +162,7 @@ public class Square extends JPanel implements MouseListener {
         super.paintComponent(g);
 
         //g.setColor(Color.black);
-        if (!this.selected && (this.getxCoor() + this.getyCoor()) % 2 == 0) {
+        if ( (this.getxCoor() + this.getyCoor()) % 2 == 0) {
 
             this.setBackground(Board.color1);
         } else {
