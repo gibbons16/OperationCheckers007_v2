@@ -82,9 +82,6 @@ public class ClientLobbyGUIFrame extends JFrame
 		JMenu mnPersonalStats = new JMenu("Personal Stats");
 		menuBar.add(mnPersonalStats);
 		
-		JMenu mnConnection = new JMenu("Connection");
-		menuBar.add(mnConnection);
-		
 		JMenu mnCustomize = new JMenu("Customize");
 		menuBar.add(mnCustomize);
 		JMenuItem changeColor1 = new JMenuItem("Change Board Color 1");
