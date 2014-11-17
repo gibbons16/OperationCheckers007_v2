@@ -123,6 +123,11 @@ public class ClientController implements CheckersClient
 	{
 		return this.connection;
 	}
+	
+	public void setUserName(String userName)
+	{
+		this.userName = userName;
+	}
 
 	@Override
 	public void connectionOK() throws RemoteException // TCP: 200
@@ -403,9 +408,13 @@ public class ClientController implements CheckersClient
 	
 	public void sendMessage(String targetUser, String message) // TCP: 102
 	{
-		if(!targetUser.equals(this.userName))
+		if(targetUser.equals(this.userName))
 		{
 			connection.sendMsg(targetUser, message);
+		}
+		else
+		{
+			guiRender.showError("Don't message yourself!");
 		}
 	}
 	

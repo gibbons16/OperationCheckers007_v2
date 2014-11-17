@@ -54,6 +54,7 @@ public class ClientLobbyGUIFrame extends JFrame
             public void actionPerformed(ActionEvent e)
             {
             	controller.getClientConnection().connectToServer(loginPanel.getIpAddress(), loginPanel.getUserName());
+            	controller.setUserName(loginPanel.getUserName());
             }
         });      
 		this.addWindowListener(new WindowAdapter() {
