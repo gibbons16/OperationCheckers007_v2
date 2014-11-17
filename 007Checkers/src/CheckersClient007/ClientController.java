@@ -261,6 +261,14 @@ public class ClientController implements CheckersClient
 		{
 			guiRender.setTableFull(true);
 		}
+		if(blackSeat.equals(this.userName) && !redSeat.equals("-1"))
+		{
+			guiRender.newSystemMessage("You are playing against ".concat(redSeat));
+		}
+		else if(redSeat.equals(this.userName) && !blackSeat.equals("-1"))
+		{
+			guiRender.newSystemMessage("You are playing against ".concat(blackSeat));
+		}
 		guiRender.updateGameDescription(tid, blackSeat, redSeat);
 	}
 
