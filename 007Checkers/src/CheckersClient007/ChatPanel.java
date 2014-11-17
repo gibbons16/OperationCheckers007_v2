@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
@@ -154,17 +155,28 @@ public class ChatPanel extends JPanel
 	{
 		if(global && canGlobalMessage)
 		{
-			chatBoxTextArea.append(who + ": " + msg + "\n" );
+			chatBoxTextArea.append(getFormattedLocalTime() + " " + who + ": " + msg + "\n" );
 		}
 		else if(!global && canPM)
 		{
-			chatBoxTextArea.append("[PM] ".concat(who).concat(": ").concat(msg).concat("\n"));
+			chatBoxTextArea.append(getFormattedLocalTime().concat(" [PM] ").concat(who).concat(": ").concat(msg).concat("\n"));
 		}
 	}
 	
 	public void addNewSystemMessage(String msg)
 	{
-		chatBoxTextArea.append("[System Message] ".concat(msg).concat("\n"));
+		chatBoxTextArea.append(getFormattedLocalTime().concat(" [System Message] ").concat(msg).concat("\n"));
+	}
+	
+	public String getFormattedLocalTime()
+	{
+		return "["
+				.concat(String.valueOf(Calendar.getInstance().get(Calendar.HOUR_OF_DAY)))
+				.concat(":")
+				.concat(String.valueOf(Calendar.getInstance().get(Calendar.MINUTE)))
+				.concat(":")
+				.concat(String.valueOf(Calendar.getInstance().get(Calendar.SECOND)))
+				.concat("]");
 	}
 	
 		

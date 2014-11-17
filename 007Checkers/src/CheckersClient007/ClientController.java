@@ -93,7 +93,6 @@ public class ClientController implements CheckersClient
 	        if(serverConnection != null){
 	        	System.out.println("Server connection found in registry!");
 	        	serverConnection.registerPlayer(clientID, host);
-	        	this.userName = clientID;
 	        }
 	        else{
 	        	System.out.println("Could not register with the server");	        	
