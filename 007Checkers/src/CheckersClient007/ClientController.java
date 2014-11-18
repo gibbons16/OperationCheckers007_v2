@@ -48,7 +48,7 @@ public class ClientController implements CheckersClient
 			        connection.registerPlayer(name, "127.0.0.1");
 			        
 			        // TESTING THE GUI:
-			        ClientLobbyGUIFrame frame = new ClientLobbyGUIFrame(tester);
+			        ClientLobbyGUIFrame frame = new ClientLobbyGUIFrame();
 					frame.setVisible(true);
 					guiRender = new GUIRender(tester, frame);
 					
@@ -415,9 +415,10 @@ public class ClientController implements CheckersClient
 	
 	public void sendMessage(String targetUser, String message) // TCP: 102
 	{
-		if(targetUser.equals(this.userName))
+		if(!targetUser.equals(this.userName))
 		{
 			connection.sendMsg(targetUser, message);
+			guiRender.newPMMessage(this.userName, message);
 		}
 		else
 		{

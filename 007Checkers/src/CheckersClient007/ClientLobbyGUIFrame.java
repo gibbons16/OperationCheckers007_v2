@@ -35,26 +35,24 @@ public class ClientLobbyGUIFrame extends JFrame
 	private CheckerBoardPanel boardPanel; 
 	private LoginScreen loginPanel;
 	private LobbyPanel lobbyPanel;
-	private ClientController controller;
 	
 	/**
 	 * Create the frame.
 	 */
-	public ClientLobbyGUIFrame(ClientController client)
+	public ClientLobbyGUIFrame()
 	{
 		
 		boardPanel = new CheckerBoardPanel();
 		loginPanel = new LoginScreen();
 		lobbyPanel = new LobbyPanel();
-		this.controller = client;
 		JButton connectButton = loginPanel.getConnectButton();
 		connectButton.addActionListener(new ActionListener()
 		{
  
             public void actionPerformed(ActionEvent e)
             {
-            	controller.getClientConnection().connectToServer(loginPanel.getIpAddress(), loginPanel.getUserName());
-            	controller.setUserName(loginPanel.getUserName());
+            	ClientController.getInstance().getClientConnection().connectToServer(loginPanel.getIpAddress(), loginPanel.getUserName());
+            	ClientController.getInstance().setUserName(loginPanel.getUserName());
             }
         });      
 		this.addWindowListener(new WindowAdapter() {
@@ -147,11 +145,6 @@ public class ClientLobbyGUIFrame extends JFrame
 	public LobbyPanel getLobbyPanel()
 	{
 		return this.lobbyPanel;
-	}
-	
-	public ClientController getClientController()
-	{
-		return this.controller;
 	}
 	
 }
