@@ -170,12 +170,16 @@ public class ChatPanel extends JPanel
 	
 	public String getFormattedLocalTime()
 	{
+		int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+		int minute = Calendar.getInstance().get(Calendar.MINUTE);
+		int second = Calendar.getInstance().get(Calendar.SECOND);
+		
 		return "["
-				.concat(String.valueOf(Calendar.getInstance().get(Calendar.HOUR_OF_DAY)))
+				.concat(hour < 10 ? "0" : "").concat(String.valueOf(hour))
 				.concat(":")
-				.concat(String.valueOf(Calendar.getInstance().get(Calendar.MINUTE)))
+				.concat(minute < 10 ? "0" : "").concat(String.valueOf(minute))
 				.concat(":")
-				.concat(String.valueOf(Calendar.getInstance().get(Calendar.SECOND)))
+				.concat(second < 10 ? "0" : "").concat(String.valueOf(second))
 				.concat("]");
 	}
 	
