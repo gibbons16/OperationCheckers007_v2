@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollBar;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.BadLocationException;
@@ -149,6 +150,8 @@ public class ChatPanel extends JPanel
 		{
 			this.globalMessageRadioButton.setSelected(canGlobalMessage);
 		}
+		JScrollBar vertical = scrollPane.getVerticalScrollBar();
+		vertical.setValue( vertical.getMaximum() );
 	}
 
 	public void addNewMessage(String msg, String who, boolean global )
@@ -161,6 +164,8 @@ public class ChatPanel extends JPanel
 		{
 			chatBoxTextArea.append(getFormattedLocalTime().concat(" [PM] ").concat(who).concat(": ").concat(msg).concat("\n"));
 		}
+		JScrollBar vertical = scrollPane.getVerticalScrollBar();
+		vertical.setValue( vertical.getMaximum() );
 	}
 	
 	public void addNewSystemMessage(String msg)
