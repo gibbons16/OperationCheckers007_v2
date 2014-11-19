@@ -25,7 +25,7 @@ public class ClientController implements CheckersClient
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {    
-				ClientController tester = new ClientController();
+				 thisController = ClientController.getInstance();
 				
 //				tester.setLocationRelativeTo(null);
 //				tester.setVisible(true);
@@ -39,7 +39,7 @@ public class ClientController implements CheckersClient
 			    	String name = "CheckersClient"+(int)(Math.random()*10000);
 			    		//export the player to the registry. Stub is a reference to the object in the reg.
 			        CheckersClient stub =
-			            (CheckersClient) UnicastRemoteObject.exportObject((CheckersClient)tester, 0);
+			            (CheckersClient) UnicastRemoteObject.exportObject((CheckersClient)thisController, 0);
 			        //get the registry
 			        Registry registry = LocateRegistry.getRegistry();
 
@@ -50,29 +50,13 @@ public class ClientController implements CheckersClient
 			        // TESTING THE GUI:
 			        ClientLobbyGUIFrame frame = new ClientLobbyGUIFrame();
 					frame.setVisible(true);
-					guiRender = new GUIRender(tester, frame);
+					guiRender = new GUIRender(thisController, frame);
 					
 			        System.out.println("TestClient bound to registry!");
 			        //connect to the RMI server connection on this pc (localhost) and give it the id of this client.
-			    	tester.getServerConnection("localhost", name);
+			        thisController.getServerConnection("localhost", name);
 			    	
-			    	//add a hook to disconnect for when the user force quits / alt+f4 / cmd+q's
-			    	Runtime.getRuntime().addShutdownHook(new Thread()
-			    	{
-			    	    @Override
-			    	    public void run()
-			    	    {
-							try {
-								
-								serverConnection.disconnect(false);
-							} catch (RemoteException e) {
-								/** 
-								 * Now cracks a noble heart. Good-night, sweet prince;
-								 * And flights of angels sing thee to thy rest.
-								**/
-							}
-			    	    }
-			    	});
+			    	
 			    	
 			    }catch(RemoteException e){
 			    	System.out.println("Error binding client to registry.");
