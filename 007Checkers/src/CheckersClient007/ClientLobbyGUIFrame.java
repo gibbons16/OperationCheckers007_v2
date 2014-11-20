@@ -76,6 +76,18 @@ public class ClientLobbyGUIFrame extends JFrame
 		
 		JMenu mnHelp = new JMenu("Help");
 		menuBar.add(mnHelp);
+		JMenuItem helpManual = new JMenuItem("Help Manual");
+		mnHelp.add(helpManual);
+		helpManual.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				HelpManual help = new HelpManual();
+				help.setSize(600,500);
+				help.setVisible(true);
+			}
+			
+		});
 		
 		JMenu mnPersonalStats = new JMenu("Personal Stats");
 		menuBar.add(mnPersonalStats);

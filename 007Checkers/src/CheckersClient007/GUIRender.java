@@ -8,14 +8,12 @@ import javax.swing.text.html.HTMLDocument.Iterator;
 
 public class GUIRender {
 
-	private ClientController clientController;
 	private ClientLobbyGUIFrame clientGUI;
 	// actual game played by the user tid
 	private int ourTID;
 	private HashMap<Integer, ObserveFrame> observations;
 
-	public GUIRender(ClientController controller, ClientLobbyGUIFrame gui) {
-		clientController = controller;
+	public GUIRender(ClientLobbyGUIFrame gui) {
 		clientGUI = gui;
 		observations = new HashMap<>();
 	}
