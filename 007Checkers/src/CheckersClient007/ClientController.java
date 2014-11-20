@@ -20,12 +20,12 @@ public class ClientController implements CheckersClient
 	
 	private static ClientController thisController;
 	
-	private String userName;
+	private String userName = null;
 	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {    
-				 thisController = ClientController.getInstance();
+				thisController = ClientController.getInstance();
 				
 //				tester.setLocationRelativeTo(null);
 //				tester.setVisible(true);
@@ -47,10 +47,9 @@ public class ClientController implements CheckersClient
 			        registry.rebind(name, stub);
 			        connection.registerPlayer(name, "127.0.0.1");
 			        
-			        // TESTING THE GUI:
 			        ClientLobbyGUIFrame frame = new ClientLobbyGUIFrame();
 					frame.setVisible(true);
-					guiRender = new GUIRender(thisController, frame);
+					guiRender = new GUIRender(frame);
 					
 			        System.out.println("TestClient bound to registry!");
 			        //connect to the RMI server connection on this pc (localhost) and give it the id of this client.
@@ -369,7 +368,10 @@ public class ClientController implements CheckersClient
 	
 	public void disconnect(boolean endProcess/*if d/c from user exiting*/) // TCP: 108
 	{
-		connection.disconnect(endProcess);
+		if(userName != null)
+		{
+			connection.disconnect(endProcess);
+		}
 	}
 	
 	public void joinTable(int tableId) // TCP: 104
