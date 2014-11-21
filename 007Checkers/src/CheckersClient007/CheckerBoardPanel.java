@@ -1,16 +1,13 @@
 package CheckersClient007;
 
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JButton;
 
-import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import javax.swing.JRadioButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;

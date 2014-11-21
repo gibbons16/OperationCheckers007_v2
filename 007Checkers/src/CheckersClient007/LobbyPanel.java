@@ -19,14 +19,11 @@ import java.rmi.RemoteException;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
-import javax.swing.JTextArea;
 import javax.swing.ListModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
 
 
 public class LobbyPanel extends JPanel {

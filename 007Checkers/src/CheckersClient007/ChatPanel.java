@@ -1,13 +1,21 @@
 package CheckersClient007;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
 
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -18,6 +26,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollBar;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EmptyBorder;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -28,6 +38,9 @@ public class ChatPanel extends JPanel
 	
 	private GridBagLayout chatAreaLayout;
 	private GridBagConstraints gridConstraints;
+	
+	private BufferedImage backgroundImage;
+	private final String BACKGROUND_IMAGE_FILE_LOCATION = "src\\Images\\metal007background.jpg";
 	
 	private ButtonGroup chatBoxButtonGroup;
 	private JRadioButton globalMessageRadioButton;
@@ -44,6 +57,18 @@ public class ChatPanel extends JPanel
 	
 	public  ChatPanel()
 	{
+		try
+		{
+			backgroundImage = ImageIO.read(new File(BACKGROUND_IMAGE_FILE_LOCATION));
+		}
+		catch (IOException e)
+		{
+			backgroundImage = null;
+			System.out.println("ERROR: Chat image background not found.");
+			e.printStackTrace();
+		}
+		this.setBorder(new EmptyBorder(20, 20, 20, 20));
+		
 		canPM = true;
 		canGlobalMessage = true;
 		
@@ -95,6 +120,7 @@ public class ChatPanel extends JPanel
 	    });
 		
 		scrollPane = new JScrollPane();
+		scrollPane.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.GRAY, Color.LIGHT_GRAY));
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.gridwidth = 9;
 		gbc_scrollPane.gridheight = 2;
@@ -106,6 +132,8 @@ public class ChatPanel extends JPanel
 		
 		chatBoxTextArea = new JTextArea();
 		chatBoxTextArea.setEditable(false);
+		chatBoxTextArea.setBackground(Color.BLACK);
+		chatBoxTextArea.setForeground(Color.GREEN);
 		scrollPane.setViewportView(chatBoxTextArea);
 		GridBagConstraints gbc_sendMessageButton = new GridBagConstraints();
 		gbc_sendMessageButton.insets = new Insets(0, 0, 0, 5);
@@ -113,7 +141,11 @@ public class ChatPanel extends JPanel
 		gbc_sendMessageButton.gridy = 3;
 		add(sendMessageButton, gbc_sendMessageButton);
 		
+		// TODO make the flashing "type line" green
 		sendMessageTextField = new JTextField();
+		sendMessageTextField.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.GRAY, Color.LIGHT_GRAY));
+		sendMessageTextField.setBackground(Color.BLACK);
+		sendMessageTextField.setForeground(Color.GREEN);
 		GridBagConstraints gbc_sendMessageTextField = new GridBagConstraints();
 		gbc_sendMessageTextField.gridwidth = 9;
 		gbc_sendMessageTextField.fill = GridBagConstraints.HORIZONTAL;
@@ -121,6 +153,34 @@ public class ChatPanel extends JPanel
 		gbc_sendMessageTextField.gridy = 3;
 		add(sendMessageTextField, gbc_sendMessageTextField);
 		sendMessageTextField.setColumns(10);
+		sendMessageTextField.addKeyListener(
+	            new KeyListener(){
+	            	
+					@Override
+					public void keyPressed(KeyEvent arg0)
+					{
+						if(arg0.getKeyCode() == KeyEvent.VK_ENTER){
+							if(globalMessageRadioButton.isSelected() && canGlobalMessage)
+								ClientController.getInstance().sendGlobalMessage(sendMessageTextField.getText());
+							else if(_PM_MessageRadioButton.isSelected() && canPM)
+							{
+								ClientController.getInstance().sendMessage(pmTextField.getText(), sendMessageTextField.getText());
+							}
+							sendMessageTextField.setText("");
+	                    }   
+					}
+
+					@Override
+					public void keyReleased(KeyEvent arg0)
+					{
+					}
+
+					@Override
+					public void keyTyped(KeyEvent arg0)
+					{
+					}
+	            }
+	        );
 
 		
 		
@@ -130,6 +190,17 @@ public class ChatPanel extends JPanel
 		chatBoxButtonGroup.add(_PM_MessageRadioButton);
 		
 		
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g)
+	{
+		super.paintComponent(g);
+		
+		if(backgroundImage != null)
+		{
+			g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+		}
 	}
 	
 	public void setCanPM(boolean canPM)
