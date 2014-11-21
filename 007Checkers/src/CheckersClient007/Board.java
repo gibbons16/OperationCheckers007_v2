@@ -21,8 +21,8 @@ public class Board extends JPanel {
     private final int NUM_SQUARES = 8;
     private Square[][] squares;
  
-    String BLACK_IMAGE = "src\\Images\\black.jpg";
-    String RED_IMAGE = "src\\Images\\red.jpg";
+    String BLACK_IMAGE = "src\\Images\\black.gif";
+    String RED_IMAGE = "src\\Images\\red.gif";
     String RED_KING_IMAGE = "src\\Images\\redKing.jpg";
     String BLACK_KING_IMAGE = "src\\Images\\blackKing.jpg";
     private int width;
