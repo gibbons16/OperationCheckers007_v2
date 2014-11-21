@@ -7,6 +7,7 @@ package CheckersClient007;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Point;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -26,12 +27,15 @@ public class Board extends JPanel {
     String BLACK_KING_IMAGE = "src\\Images\\blackKing.jpg";
     private int width;
     private int height;
+    // 0 - normal view  1 - flipped board view
+    private boolean viewInverted;
     public static Color color1 = new Color(184, 134, 11);
     public static Color color2 = new Color(139, 69, 19);
     // 0 - no move 1 - can move
     public boolean canMove;
     
     public String player;
+   
 
     public Board() {
         width = 800;
@@ -42,6 +46,7 @@ public class Board extends JPanel {
         GridLayout layout = new GridLayout(NUM_SQUARES, NUM_SQUARES);
         this.canMove = false;
         this.setLayout(layout);
+        viewInverted = false;
         createBoard();
     }
 
@@ -53,6 +58,7 @@ public class Board extends JPanel {
         this.setSize(width, height);
         GridLayout layout = new GridLayout(NUM_SQUARES, NUM_SQUARES);
         this.setLayout(layout);
+        viewInverted = false;
         createBoard();
 
     }
@@ -111,6 +117,8 @@ public class Board extends JPanel {
     
     public void setPiece(int row, int col, PieceType type)
     {
+    	row = this.translatePiecePos(row);
+    	col = this.translatePiecePos(col);
     	if(row < this.NUM_SQUARES && col < this.NUM_SQUARES)
     	{
     		if(type == PieceType.BLACK)
@@ -148,6 +156,7 @@ public class Board extends JPanel {
 	}
 
 	public void setPlayerColor(String player) {
+		
 		this.player = player;
 	}
 
@@ -170,10 +179,46 @@ public class Board extends JPanel {
 		Board.color2 = color2;
 		ClientController.getInstance().repaintBoards();
 	}
+	public int translatePiecePos(int pos)
+	{
+		
+		if(this.viewInverted){
+			switch(pos ){
+			case 0:
+				return 7;
+			case 1:
+				return 6;
+			case 2:
+				return 5;
+			case 3:
+				return 4;
+			case 4:
+				return 3;
+			case 5:
+				return 2;
+			case 6:
+				return 1;
+			case 7:
+				return 0;
+			default:
+				return -1;
+			}
+		}
+		else
+			return pos;
+	}
 	
-	
+	public boolean isViewInverted() {
+		return viewInverted;
+	}
+
+	public void setViewInverted(boolean viewInverted) {
+		this.viewInverted = viewInverted;
+	}
+
 	@Override
     protected void paintComponent(Graphics g) {
+		
         super.paintComponent(g);
 
         for(Square[] row: squares)

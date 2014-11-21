@@ -120,8 +120,8 @@ public class Square extends JPanel implements MouseListener {
                 	
                 			System.out.println("moving");
                         	
-                        	ClientController.getInstance().move(selectedSquare.getxCoor(),
-                        			selectedSquare.getyCoor(), newSelectedSquare.getxCoor(), newSelectedSquare.getyCoor());
+                        	ClientController.getInstance().move(board.translatePiecePos(selectedSquare.getxCoor()),
+                        			board.translatePiecePos(selectedSquare.getyCoor()), board.translatePiecePos(newSelectedSquare.getxCoor()), board.translatePiecePos(newSelectedSquare.getyCoor()));
                         	selectedSquare = null;
                         	board.setMoveStatus(false);
                     
@@ -162,13 +162,16 @@ public class Square extends JPanel implements MouseListener {
         super.paintComponent(g);
 
         //g.setColor(Color.black);
-        if ( (this.getxCoor() + this.getyCoor()) % 2 == 0) {
-
-            this.setBackground(Board.color1);
-        } else {
-            this.setBackground(Board.color2);
+        if(!this.equals(Square.selectedSquare))
+        {
+	        if ( (this.getxCoor() + this.getyCoor()) % 2 == 0) 
+	        {
+	            this.setBackground(Board.color1);
+	        } else
+	        {
+	            this.setBackground(Board.color2);
+	        }
         }
-
         if (piece != null) {
             piece.paintIcon(this, g, 5, 5);
             

@@ -201,13 +201,17 @@ public class GUIRender {
 
 	public void setPlayerColor(boolean isBlack) {
 		PieceType playerColor;
+		boolean invertBoard = false;
 		if (isBlack) {
 			playerColor = PieceType.BLACK;
+			invertBoard = true;
 		} else {
 			playerColor = PieceType.RED;
+			invertBoard = false;
 		}
 		clientGUI.getBoardPanel().getBoard()
 				.setPlayerColor(playerColor.getColor());
+		clientGUI.getBoardPanel().getBoard().setViewInverted(invertBoard);;
 	}
 
 	public void allowClientMoves(boolean isAllowed) {
