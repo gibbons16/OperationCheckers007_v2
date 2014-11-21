@@ -41,9 +41,6 @@ public class HelpManual extends JFrame
 		this.setTitle("Help Manual");
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
-//		Color seansGreen = new Color(0, 255, 0, 96);
-//		this.setDefaultLookAndFeelDecorated(false);
-//		this.setBackground(seansGreen);
 		this.addComponentListener(new ComponentAdapter()
 		{
 				public void componentResized(ComponentEvent event)
@@ -57,9 +54,14 @@ public class HelpManual extends JFrame
 		this.helpPanel.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		
 		this.helpTextLabel = new JLabel();
+		this.helpTextLabel.setOpaque(true);
+		this.helpTextLabel.setBackground(Color.BLACK);
+		this.helpTextLabel.setBorder(new EmptyBorder(20, 20, 20, 20));
 		setFileText(String.valueOf((int)(this.getWidth()*SIZE_ADJUSTMENT)));
+		
 		this.helpScrollPane = new JScrollPane();
 		this.helpScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		this.helpScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		this.helpScrollPane.setViewportView(this.helpTextLabel);
 		this.helpPanel.add(this.helpScrollPane);
 		

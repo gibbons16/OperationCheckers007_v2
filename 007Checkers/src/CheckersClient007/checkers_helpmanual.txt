@@ -2,98 +2,100 @@
 <div style=\"width:[WIDTHHERE]px;\">
 	<body>
 
-	<font size = 7><b><u>Help Manual</b></u></font>
-	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Last edited: 11/18/2014 by Sean Gibbons
+	<font face = "Arial" size = 6 color=green><b><u>Help Manual</b></u></font>
+		<font face = "Arial" color=green>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <i>Last edited: 11/20/2014 by Sean Gibbons</i></font>
 
 
 	<p>
-		Welcome to the Operation Checkers 007 help manual. 
-		This document is designed to describe and explain all the functionality that Operation Checkers 007 has to offer.<br>
+		<font face = "Arial" color=green>
+			Welcome to the Operation Checkers 007 help manual. 
+			This document is designed to describe and explain all the functionality that Operation Checkers 007 has to offer.<br>
+		</font>
 	</p>
 	<br>
-	<font size = 5><u>Table of Contents</u></font><br>
+	<font face = "Arial" size = 5 color=green><u>Table of Contents</u></font><br>
 	<ol>
-		<li>Logging In</li>
-		<li>The Lobby</li>
-		<li>Creating a Game</li>
-		<li>Joining a Game</li>
-		<li>Observing a Game</li>
-		<li>Starting a Game</li>
-		<li>Playing a Game</li>
-		<li>Chat</li>
-		<li>Customizing Board Colors</li>
+		<li><font face = "Arial" color=green>Logging In</font></li>
+		<li><font face = "Arial" color=green>The Lobby</font></li>
+		<li><font face = "Arial" color=green>Creating a Game</font></li>
+		<li><font face = "Arial" color=green>Joining a Game</font></li>
+		<li><font face = "Arial" color=green>Observing a Game</font></li>
+		<li><font face = "Arial" color=green>Starting a Game</font></li>
+		<li><font face = "Arial" color=green>Playing a Game</font></li>
+		<li><font face = "Arial" color=green>Chat</font></li>
+		<li><font face = "Arial" color=green>Customizing Board Colors</font></li>
 	</ol>
 	<br>
 	<br>
-	<font size = 4><b>1. Logging In</b></font><br>
-	<p>
+	<font face = "Arial" size = 4 color=green><b>1. Logging In</b></font><br>
+	<p><font face = "Arial" color=green>
 		To log into Operation Checkers 007, start Operation Checkers 007. The login screen should appear.
 		Type in the name you would like to use while playing Operation Checkers 007.
 		The name cannot have any white spaces in it. In the IP text-box, type in the WSU Checkers Server
 		IP address and press the connect button. You should be logged into the lobby if the name and IP
 		provided are valid.
-	</p>
+	</font></p>
 	<br>
 	<br>
-	<font size = 4><b>2. The Lobby</b></font><br>
-	<p>
+	<font face = "Arial" size = 4 color=green><b>2. The Lobby</b></font><br>
+	<p><font face = "Arial" color=green>
 		The lobby allows you to chat with other users, see what other users are in the lobby, see what tables
 		are on the WSU Checkers Server, and interact with these tables. To see how to use the chat, see our section
 		about about chat. Selecting a table from the table list will display the game description. The game description
 		includes the table ID and who is in the game. To create, join, or observe a game, see the Create a Game, Joining 
 		a Game, and Observing a Game sections.
-	</p>
+	</font></p>
 	<br>
 	<br>
-	<font size = 4><b>3. Creating a Game</b></font><br>
-	<p>
+	<font face = "Arial" size = 4 color=green><b>3. Creating a Game</b></font><br>
+	<p><font face = "Arial" color=green>
 		To create a game, make sure you are in the Lobby and hit the "Create Game" button, located in the upper-left button menu.
 		This will create a table with a new, randomly generated ID and place you on the table. Creating a game will cause
 		you to leave the lobby. Note that creating a game is not starting a game. To see how starting a game works, see the
 		Starting a Game section.
-	</p>
+	</font></p>
 	<br>
 	<br>
-	<font size = 4><b>4. Joining a Game</b></font><br>
-	<p>
+	<font face = "Arial" size = 4 color=green><b>4. Joining a Game</b></font><br>
+	<p><font face = "Arial" color=green>
 		To join a game, make sure you are in the Lobby. Select the table ID from the table ID list that you wish to
 		join. After Operation Checkers 007 loads the game's description and/or status, the Join Button, located in
 		the upper-left button area, should become enabled if the game is capable of having one more player. You can only
 		join games that have 0 or 1 player and cannot join a game that is already started.
-	</p>
+	</font></p>
 	<br>
 	<br>
-	<font size = 4><b>5. Observing a Game</b></font><br>
-	<p>
+	<font face = "Arial" size = 4 color=green><b>5. Observing a Game</b></font><br>
+	<p><font face = "Arial" color=green>
 		To observe a game, make sure you are in the Lobby. Select the table ID from the table ID list that you wish to
 		observe. After Operation Checkers 007 loads the game's description and/or status, the Observe Button, located in
 		the upper-left button area, should become enabled if the game is capable of being observed. You can only observe games
 		that have two players on the table. Any amount of games can be observed at any time. You cannot observe your own game or
 		the same game twice, however. 
-	</p>
+	</font></p>
 	<br>
 	<br>
-	<font size = 4><b>6. Starting a Game</b></font><br>
-	<p>
+	<font face = "Arial" size = 4 color=green><b>6. Starting a Game</b></font><br>
+	<p><font face = "Arial" color=green>
 		After you are on a game table, the game can be started once both players have indicated they are ready to play by hitting the 
 		Ready button located at the top of the table screen. Once both players have hit ready, the game will start. System messages 
 		should indicate who goes first and what color you are playing as.
-	</p>
+	</font></p>
 	<br>
 	<br>
-	<font size = 4><b>7. Playing a Game</b></font><br>
-	<p>
+	<font face = "Arial" size = 4 color=green><b>7. Playing a Game</b></font><br>
+	<p><font face = "Arial" color=green>
 		After the game has started, each player may begin making moves when it is their turn. System messages will indicate when it is 
 		your turn. To make a move, click on the piece you wish to move and then click on the space you wish to move the piece. If it is
 		a valid move, the board will update and it will be the other player's turn. This version of checkers does not allow jumping
 		multiple pieces at a time. A piece can move backwards once it reaches the furthest wall on the opponents side of the board.
 		Once the last piece has been jumped, the game ends and who won is indicated in a pop-up. If either player disconnects or returns 
 		to the Lobby during the game, the other player wins. 
-	</p>
+	</font></p>
 	<br>
 	<br>
-	<font size = 4><b>8. Chat</b></font><br>
-	<p>
+	<font face = "Arial" size = 4 color=green><b>8. Chat</b></font><br>
+	<p><font face = "Arial" color=green>
 		The chat panel is located on the bottom half of the screen in lobby and at a table. Messages received are displayed in
 		the larger box on top. To send a message, type in the smaller box on the bottom and hit send. If you have the global
 		radio button selected, the message will send to all players capable of receiving global messages. If you have the PM
@@ -104,11 +106,11 @@
 		send or receive Private Messages while you are observing any game, to prevent cheating. System messages will also displayed
 		through the receiving chat box. System messages are used to indicate various information to you, such as when you have joined 
 		or left the lobby.
-	</p>
+	</font></p>
 	<br>
 	<br>
-	<font size = 4><b>9. Customizing Board Colors</b></font><br>
-	<p>
+	<font face = "Arial" size = 4 color=green><b>9. Customizing Board Colors</b></font><br>
+	<p><font face = "Arial" color=green>
 		To customize the two colors of your checkers board, select the Customize button in the toolbar at the top of the screen. A dropdown
 		selection will appear, allowing you to choose which color you would like to change. After selecting what you would like to change, a
 		pop-up titled, "Choose a Color" will appear. There are five different styles for customizing a color: swatches, HSV, HSL, RGB, and 
@@ -116,7 +118,7 @@
 		located at the bottom of the pop-up. If you decide not to change the color, hit the Cancel button at the bottom of the pop-up. This color
 		applies to your tables and games that you are observing. This customization will be reset after you close Operation Checkers 007.
 		
-	</p>
+	</font><p>
 	</body>
 </div>
 </html>
