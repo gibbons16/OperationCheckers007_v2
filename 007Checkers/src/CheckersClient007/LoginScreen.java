@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 
 public class LoginScreen extends JPanel {
 
-	private  ImageIcon imageIcon = new ImageIcon("src\\Images\\black.jpg");
+	private  ImageIcon loginLogo = new ImageIcon("src\\Images\\bondlogo007.jpg");
 	private JButton btnConnect;
 	private JTextField userNameTestField;
 	private JTextField ipAddressTestField;
@@ -30,7 +30,7 @@ public class LoginScreen extends JPanel {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-	   imageLabel = new JLabel(imageIcon);
+	   imageLabel = new JLabel(loginLogo);
 		
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.gridheight = 4;
