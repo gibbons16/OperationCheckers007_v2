@@ -16,16 +16,16 @@ public enum PieceType {
         int retValue = 0;
         switch (this) {
             case RED:
-                retValue = 1;
+                retValue = 2;
                 break;
             case BLACK:
-            	retValue = 2;
+            	retValue = 1;
             	break;
             case RED_KING:
-            	retValue = 3;
+            	retValue = 4;
             	break;
             case BLACK_KING:
-            	retValue = 4;
+            	retValue = 3;
             	break;
             	
 

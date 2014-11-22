@@ -21,7 +21,7 @@ public class ClientController implements CheckersClient
 	private static ClientController thisController;
 	
 	private String userName = null;
-	
+	private byte[][] prevState = null;
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {    
@@ -215,7 +215,10 @@ public class ClientController implements CheckersClient
 	public void curBoardState(int tid, byte[][] boardState) //TCP: 207
 			throws RemoteException
 	{
+		
 		guiRender.updateGameBoard(tid, boardState);
+		
+		
 	}
 
 	@Override
@@ -452,5 +455,10 @@ public class ClientController implements CheckersClient
 	{
 		guiRender.repaintAllBoards();
 	}
+
+	public String getUserName() {
+		return userName;
+	}
+	
 	
 }

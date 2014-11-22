@@ -9,13 +9,16 @@ import javax.swing.text.html.HTMLDocument.Iterator;
 public class GUIRender {
 
 	private ClientLobbyGUIFrame clientGUI;
+	private boolean isBlack;
+	private  PersonalStatsModel personalStatsModel;
 	// actual game played by the user tid
 	private int ourTID;
 	private HashMap<Integer, ObserveFrame> observations;
-
+	private byte[][] prevState = null;
 	public GUIRender(ClientLobbyGUIFrame gui) {
 		clientGUI = gui;
 		observations = new HashMap<>();
+		personalStatsModel = new PersonalStatsModel(ClientController.getInstance().getUserName());
 	}
 
 	public void joinLobby()
@@ -84,7 +87,45 @@ public class GUIRender {
 		}
 
 		else if (tid == ourTID) {
+			if(prevState != null )
+			{
+				int userPieceType = 0;
+				int opponentPieceType = 0;
+				if(isBlack)
+				{
+					userPieceType = 1;
+					opponentPieceType = 2;
+				}
+				else{
+					userPieceType = 2;
+					opponentPieceType = 1;
+				}
+				// increment if user has jumped an opponent's piece
+				if(this.jumpedPiece(board, userPieceType ))
+				{
+					this.personalStatsModel.setNumberOfPiecesTaken(this.personalStatsModel.getNumberOfPiecesTaken() + 1);
+				}
+				
+				// increment if oppponent has jumped a user's piece
+				if(this.jumpedPiece(board, opponentPieceType ))
+				{
+					this.personalStatsModel.setNumberOfPiecesLost((this.personalStatsModel.getNumberOfPiecesLost() + 1));
+				}
+				
+				// increment if user has promoted a checker's piece
+				if(this.isMoreKings(board,userPieceType ))
+				{
+					this.personalStatsModel.setNumberOfKingsEarned(this.personalStatsModel.getNumberOfKingsEarned() + 1);
+					
+				}
+				// incremnt if opponent has promoted a checker's piece
+				if(this.isMoreKings(board, opponentPieceType))
+				{
+					this.personalStatsModel.setnumbero(this.personalStatsModel.getNumberOfKingsEarned() + 1);
+				}
+			}
 			gameBoard = clientGUI.getBoardPanel().getBoard();
+			this.prevState =  board;
 		}
 
 		gameBoard.clearAllPieces();
@@ -144,15 +185,12 @@ public class GUIRender {
 
 	public void addNewPlayer(String user) {
 		clientGUI.getLobbyPanel().addNewPlayer(user);
-		// clientGUI.getLobbyPanel().getChatPanel().addPlayer(user);
-		// clientGUI.getBoardPanel().getChatPanel().addPlayer(user);
 
 	}
 
 	public void removePlayer(String user) {
 		clientGUI.getLobbyPanel().removePlayer(user);
-		// clientGUI.getLobbyPanel().getChatPanel().removePlayer(user);
-		// clientGUI.getBoardPanel().getChatPanel().removePlayer(user);
+
 	}
 
 	public void gameStart() {
@@ -200,6 +238,7 @@ public class GUIRender {
 	}
 
 	public void setPlayerColor(boolean isBlack) {
+		this.isBlack = isBlack;
 		PieceType playerColor;
 		boolean invertBoard = false;
 		if (isBlack) {
@@ -258,6 +297,111 @@ public class GUIRender {
 		}
 		clientGUI.getBoardPanel().getBoard().repaint();
 	}
+	// return true - a 
+	private boolean jumpedPiece(byte[][] boardState, int pieceType)
+	{
+		int numberOfPiecesPrev  =  0;
+		int numberOfPiecesNow = 0;
+		
+		// number of pieces prev
+		for(int i = 0; i < this.prevState.length; i++)
+		{
+			for(int j = 0; j < this.prevState[i].length; j++)
+			{
+				if(pieceType == 1 || pieceType == 3)
+				{
+					if(this.prevState[i][j] == 2 || prevState[i][j] == 4)
+					{
+						numberOfPiecesPrev++;
+					}
+					
+				}
+				else{
+					if(this.prevState[i][j] == 1 || prevState[i][j] == 3)
+					{
+						numberOfPiecesPrev++;
+					}
+				}
+				
+			}
+		}
+		
+		for(int i = 0; i < boardState.length; i++)
+		{
+			for(int j = 0; j < boardState[i].length; j++)
+			{
+				if(pieceType == 1 || pieceType == 3)
+				{
+					if(boardState[i][j] == 2 || boardState[i][j] == 4)
+					{
+						numberOfPiecesNow++;
+					}
+					
+				}
+				else{
+					if(boardState[i][j] == 1 || boardState[i][j] == 3)
+					{
+						numberOfPiecesNow++;
+					}
+				}
+				
+			}
+		}
+		
+		return (numberOfPiecesPrev < numberOfPiecesNow);
+	}
 	
+	private boolean isMoreKings(byte[][] boardState , int pieceType)
+	{
+		int numberOfPiecesPrev  =  0;
+		int numberOfPiecesNow = 0;
+		
+		// number of pieces prev
+		for(int i = 0; i < this.prevState.length; i++)
+		{
+			for(int j = 0; j < this.prevState[i].length; j++)
+			{
+				if(pieceType == 1 || pieceType == 3)
+				{
+					if(prevState[i][j] == 4)
+					{
+						numberOfPiecesPrev++;
+					}
+					
+				}
+				else{
+					if( prevState[i][j] == 3)
+					{
+						numberOfPiecesPrev++;
+					}
+				}
+				
+			}
+		}
+		
+		for(int i = 0; i < boardState.length; i++)
+		{
+			for(int j = 0; j < boardState[i].length; j++)
+			{
+				if(pieceType == 1 || pieceType == 3)
+				{
+					if(boardState[i][j] == 4)
+					{
+						numberOfPiecesNow++;
+					}
+					
+				}
+				else{
+					if( boardState[i][j] == 3)
+					{
+						numberOfPiecesNow++;
+					}
+				}
+				
+			}
+		}
+		
+		return (numberOfPiecesPrev < numberOfPiecesNow);
+	}
 
 }
