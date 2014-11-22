@@ -19,6 +19,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -41,6 +42,8 @@ public class ChatPanel extends JPanel
 	
 	private BufferedImage backgroundImage;
 	private final String BACKGROUND_IMAGE_FILE_LOCATION = "src\\Images\\metal007background.jpg";
+	private final String EXECUTION_IMAGE_FILE_LOCATION = "src\\Images\\executebutton.png";
+	private final String EXECUTION_CLICKED_IMAGE_FILE_LOCATION = "src\\Images\\executebutton_clicked.png";
 	
 	private ButtonGroup chatBoxButtonGroup;
 	private JRadioButton globalMessageRadioButton;
@@ -80,6 +83,9 @@ public class ChatPanel extends JPanel
 		setLayout(gridBagLayout);
 		
 		globalMessageRadioButton = new JRadioButton("Global");
+		globalMessageRadioButton.setBackground(new Color(0,49,0,255)); // dark green
+		globalMessageRadioButton.setForeground(new Color(0,255,0,255)); // light green
+		globalMessageRadioButton.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.GRAY, Color.LIGHT_GRAY));
 		globalMessageRadioButton.setSelected(true);;
 		GridBagConstraints gbc_globalMessageRadioButton = new GridBagConstraints();
 		gbc_globalMessageRadioButton.insets = new Insets(0, 0, 5, 5);
@@ -88,6 +94,9 @@ public class ChatPanel extends JPanel
 		add(globalMessageRadioButton, gbc_globalMessageRadioButton);
 		
 		_PM_MessageRadioButton = new JRadioButton("PM");
+		_PM_MessageRadioButton.setBackground(new Color(0,49,0,255)); // dark green
+		_PM_MessageRadioButton.setForeground(new Color(0,255,0,255)); // light green
+		_PM_MessageRadioButton.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.GRAY, Color.LIGHT_GRAY));
 		GridBagConstraints gbc__PM_MessageRadioButton = new GridBagConstraints();
 		gbc__PM_MessageRadioButton.insets = new Insets(0, 0, 5, 5);
 		gbc__PM_MessageRadioButton.gridx = 4;
@@ -95,6 +104,10 @@ public class ChatPanel extends JPanel
 		add(_PM_MessageRadioButton, gbc__PM_MessageRadioButton);
 		
 		pmTextField = new JTextField();
+		pmTextField.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.GRAY, Color.LIGHT_GRAY));
+		pmTextField.setCaretColor(Color.GREEN);
+		pmTextField.setBackground(Color.BLACK);
+		pmTextField.setForeground(Color.GREEN);
 		GridBagConstraints gbc_pmTextField = new GridBagConstraints();
 		gbc_pmTextField.gridwidth = 3;
 		gbc_pmTextField.insets = new Insets(0, 0, 5, 5);
@@ -103,9 +116,12 @@ public class ChatPanel extends JPanel
 		gbc_pmTextField.gridy = 0;
 		add(pmTextField, gbc_pmTextField);
 		
-	    sendMessageButton = new JButton("Send");
-	    sendMessageButton.addActionListener(new ActionListener(){
-
+	    sendMessageButton = new JButton("", new ImageIcon(EXECUTION_IMAGE_FILE_LOCATION));
+	    //sendMessageButton.setSize(65, 30);
+	    sendMessageButton.setBorder(new EmptyBorder(0,0,0,0));
+	    sendMessageButton.setPressedIcon(new ImageIcon(EXECUTION_CLICKED_IMAGE_FILE_LOCATION));
+	    sendMessageButton.addActionListener(new ActionListener()
+	    {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(globalMessageRadioButton.isSelected() && canGlobalMessage)
@@ -141,9 +157,9 @@ public class ChatPanel extends JPanel
 		gbc_sendMessageButton.gridy = 3;
 		add(sendMessageButton, gbc_sendMessageButton);
 		
-		// TODO make the flashing "type line" green
 		sendMessageTextField = new JTextField();
 		sendMessageTextField.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.GRAY, Color.LIGHT_GRAY));
+		sendMessageTextField.setCaretColor(Color.GREEN);
 		sendMessageTextField.setBackground(Color.BLACK);
 		sendMessageTextField.setForeground(Color.GREEN);
 		GridBagConstraints gbc_sendMessageTextField = new GridBagConstraints();
