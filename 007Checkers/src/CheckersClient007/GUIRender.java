@@ -1,5 +1,6 @@
 package CheckersClient007;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,7 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.text.html.HTMLDocument.Iterator;
 
 public class GUIRender {
-
+	private ArrayList<Byte[][]> allBoardStates = new ArrayList<>();
 	private ClientLobbyGUIFrame clientGUI;
 	private boolean isBlack;
 	private  PersonalStatsModel personalStatsModel;
@@ -88,6 +89,26 @@ public class GUIRender {
 		}
 
 		else if (tid == ourTID) {
+			
+			gameBoard = clientGUI.getBoardPanel().getBoard();
+	
+		}
+
+		gameBoard.clearAllPieces();
+		for (int row = 0; row < board.length; row++) {
+			for (int col = 0; col < board.length; col++) {
+				if (board[row][col] == 1) {
+					gameBoard.setPiece(row, col, PieceType.BLACK);
+				} else if (board[row][col] == 2) {
+					gameBoard.setPiece(row, col, PieceType.RED);
+				} else if (board[row][col] == 3)
+					gameBoard.setPiece(row, col, PieceType.BLACK_KING);
+				else if (board[row][col] == 4)
+					gameBoard.setPiece(row, col, PieceType.RED_KING);
+			}
+		}
+		if( tid == ourTID)
+		{
 			if(prevState != null )
 			{
 				int userPieceType = 0;
@@ -124,22 +145,11 @@ public class GUIRender {
 				{
 					this.personalStatsModel.setNumberOfKingsAllowed(this.personalStatsModel.getNumberOfKingsAllowed()+1);
 				}
+				this.prevState = board;
 			}
-			gameBoard = clientGUI.getBoardPanel().getBoard();
-			this.prevState =  board;
-		}
-
-		gameBoard.clearAllPieces();
-		for (int row = 0; row < board.length; row++) {
-			for (int col = 0; col < board.length; col++) {
-				if (board[row][col] == 1) {
-					gameBoard.setPiece(row, col, PieceType.BLACK);
-				} else if (board[row][col] == 2) {
-					gameBoard.setPiece(row, col, PieceType.RED);
-				} else if (board[row][col] == 3)
-					gameBoard.setPiece(row, col, PieceType.BLACK_KING);
-				else if (board[row][col] == 4)
-					gameBoard.setPiece(row, col, PieceType.RED_KING);
+			else
+			{
+			 this.prevState = board;
 			}
 		}
 		gameBoard.repaint();
@@ -200,6 +210,9 @@ public class GUIRender {
 	public void gameStart() {
 		clientGUI.getBoardPanel().setReadyUp(false);
 		clientGUI.getBoardPanel().setStatus("Game Started");
+		if(this.personalStatsModel == null && ClientController.getInstance().getUserName() != null){
+			personalStatsModel = new PersonalStatsModel(ClientController.getInstance().getUserName());
+		}
 		clientGUI.getBoardPanel().getBoard().initialize();
 	}
 
@@ -351,8 +364,9 @@ public class GUIRender {
 				
 			}
 		}
-		
-		return (numberOfPiecesPrev < numberOfPiecesNow);
+		System.out.println("Prev: " + numberOfPiecesPrev);
+		System.out.println("Now: " + numberOfPiecesNow);
+		return (numberOfPiecesPrev > numberOfPiecesNow);
 	}
 	
 	private boolean isMoreKings(byte[][] boardState , int pieceType)
@@ -367,14 +381,14 @@ public class GUIRender {
 			{
 				if(pieceType == 1 || pieceType == 3)
 				{
-					if(prevState[i][j] == 4)
+					if(prevState[i][j] == 3)
 					{
 						numberOfPiecesPrev++;
 					}
 					
 				}
 				else{
-					if( prevState[i][j] == 3)
+					if( prevState[i][j] == 4)
 					{
 						numberOfPiecesPrev++;
 					}
@@ -389,14 +403,14 @@ public class GUIRender {
 			{
 				if(pieceType == 1 || pieceType == 3)
 				{
-					if(boardState[i][j] == 4)
+					if(boardState[i][j] == 3)
 					{
 						numberOfPiecesNow++;
 					}
 					
 				}
 				else{
-					if( boardState[i][j] == 3)
+					if( boardState[i][j] == 4)
 					{
 						numberOfPiecesNow++;
 					}
@@ -404,7 +418,7 @@ public class GUIRender {
 				
 			}
 		}
-		
+
 		return (numberOfPiecesPrev < numberOfPiecesNow);
 	}
 	public void addPersonalStatsView()

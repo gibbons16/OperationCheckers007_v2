@@ -61,36 +61,42 @@ public class PersonalStatsModel {
 	}
 	public void setNumberOfKingsAllowed(int numberOfKingsTaken) {
 		this.numberOfKingsAllowed = numberOfKingsTaken;
+		this.updateViews();
 	}
 	public int getNumberOfKingsEarned() {
 		return numberOfKingsEarned;
 	}
 	public void setNumberOfKingsEarned(int numberOfKingsEarned) {
 		this.numberOfKingsEarned = numberOfKingsEarned;
+		this.updateViews();
 	}
 	public int getNumberOfPiecesTaken() {
 		return numberOfPiecesTaken;
 	}
 	public void setNumberOfPiecesTaken(int numberOfPiecesTaken) {
 		this.numberOfPiecesTaken = numberOfPiecesTaken;
+		this.updateViews();
 	}
 	public int getNumberOfPiecesLost() {
 		return numberOfPiecesLost;
 	}
 	public void setNumberOfPiecesLost(int numberOfPiecesEarned) {
 		this.numberOfPiecesLost = numberOfPiecesEarned;
+		this.updateViews();
 	}
 	public int getNumberOfGamesWon() {
 		return numberOfGamesWon;
 	}
 	public void setNumberOfGamesWon(int numberOfGamesWon) {
 		this.numberOfGamesWon = numberOfGamesWon;
+		this.updateViews();
 	}
 	public int getNumberOfGamesLost() {
 		return numberOfGamesLost;
 	}
 	public void setNumberOfGamesLost(int numberOfGamesLost) {
 		this.numberOfGamesLost = numberOfGamesLost;
+		this.updateViews();
 	}
 //	public int getNumberOfForfeits() {
 //		return numberOfForfeits;

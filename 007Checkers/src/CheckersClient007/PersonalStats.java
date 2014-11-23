@@ -31,7 +31,7 @@ public class PersonalStats extends JFrame {
 			statsArea.append(s);
 			statsArea.append("\n");
 		}
-		
+		repaint();
 	}
 	public JTextArea getStats()
 	{

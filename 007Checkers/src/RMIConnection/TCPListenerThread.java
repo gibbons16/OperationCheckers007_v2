@@ -231,6 +231,7 @@ public class TCPListenerThread extends Thread {
 			}
 		}
 		catch(Exception ex){
+			ex.printStackTrace();
 			rmiInt.outputToConsole("Invalid msg from server: "+ex.getMessage());
 		}
 	}
