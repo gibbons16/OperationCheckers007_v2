@@ -23,8 +23,8 @@ public class Board extends JPanel {
  
     String BLACK_IMAGE = "src\\Images\\black.gif";
     String RED_IMAGE = "src\\Images\\red.gif";
-    String RED_KING_IMAGE = "src\\Images\\redKing.jpg";
-    String BLACK_KING_IMAGE = "src\\Images\\blackKing.jpg";
+    String RED_KING_IMAGE = "src\\Images\\redKing.gif";
+    String BLACK_KING_IMAGE = "src\\Images\\blackKing.gif";
     private int width;
     private int height;
     // 0 - normal view  1 - flipped board view
