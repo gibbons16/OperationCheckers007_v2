@@ -5,8 +5,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class PersonalStatsModel {
+	private ArrayList<PersonalStats> views;
 	private File statsFile;
 	private String numberOfKingsAllowedStr = "Number of Kings Allowed";
 	private int numberOfKingsAllowed;
@@ -20,13 +22,15 @@ public class PersonalStatsModel {
 	private int numberOfGamesWon;
 	private String numberOfGamesLostStr = "Number of games lost";
 	private int numberOfGamesLost;
-	private String numberOfForfeitsStr = "Number of times opponent forfeited";
-	private int numberOfForfeits;
-	private String numberOfTimesYouForfeited = "Number of times forfeitted";
-	private int numberOfTimesForefeited;
+//	private String numberOfForfeitsStr = "Number of times opponent forfeited";
+//	private int numberOfForfeits;
+//	private String numberOfTimesYouForfeited = "Number of times forfeitted";
+//	private int numberOfTimesForefeited;
 	private final String STATS_DIR = "src\\Stats";
 	public PersonalStatsModel(String userName)
 	{
+		System.out.println("Username: " + userName);
+		views = new ArrayList<>();
 		statsFile = new File(STATS_DIR + "\\" + userName +".bin");
 		if(checkExistingUserStats())
 		{
@@ -49,8 +53,8 @@ public class PersonalStatsModel {
 		 numberOfPiecesLost =0;
 		 numberOfGamesWon = 0;
 		 numberOfGamesLost = 0;
-		 numberOfForfeits = 0;
-		 numberOfTimesForefeited = 0;
+//		 numberOfForfeits = 0;
+//		 numberOfTimesForefeited = 0;
 	}
 	public int getNumberOfKingsAllowed() {
 		return numberOfKingsAllowed;
@@ -88,18 +92,18 @@ public class PersonalStatsModel {
 	public void setNumberOfGamesLost(int numberOfGamesLost) {
 		this.numberOfGamesLost = numberOfGamesLost;
 	}
-	public int getNumberOfForfeits() {
-		return numberOfForfeits;
-	}
-	public void setNumberOfForfeits(int numberOfForfeits) {
-		this.numberOfForfeits = numberOfForfeits;
-	}
-	public int getNumberOfTimesForefeited() {
-		return numberOfTimesForefeited;
-	}
-	public void setNumberOfTimesForefeited(int numberOfTimesForefeited) {
-		this.numberOfTimesForefeited = numberOfTimesForefeited;
-	}
+//	public int getNumberOfForfeits() {
+//		return numberOfForfeits;
+//	}
+//	public void setNumberOfForfeits(int numberOfForfeits) {
+//		this.numberOfForfeits = numberOfForfeits;
+//	}
+//	public int getNumberOfTimesForefeited() {
+//		return numberOfTimesForefeited;
+//	}
+//	public void setNumberOfTimesForefeited(int numberOfTimesForefeited) {
+//		this.numberOfTimesForefeited = numberOfTimesForefeited;
+//	}
 	
 	public void updateStatsEntries() 
 	{
@@ -112,8 +116,8 @@ public class PersonalStatsModel {
 			o.write((numberOfPiecesLostStr +": " + numberOfPiecesLost + "\n").getBytes());
 			o.write((numberOfGamesWonStr +": " + numberOfGamesWon + "\n").getBytes());
 			o.write((numberOfGamesLostStr +": " + numberOfGamesLost + "\n").getBytes());
-			o.write((numberOfForfeitsStr +": " + numberOfForfeits + "\n").getBytes());
-			o.write((numberOfTimesYouForfeited +": " + numberOfTimesForefeited + "\n").getBytes());
+//			o.write((numberOfForfeitsStr +": " + numberOfForfeits + "\n").getBytes());
+//			o.write((numberOfTimesYouForfeited +": " + numberOfTimesForefeited + "\n").getBytes());
 			o.flush();
 			o.close();
 			
@@ -144,7 +148,7 @@ public class PersonalStatsModel {
 			{
 				String[] lineEntries = newLine.split(":");
 				String tag = lineEntries[0];
-				int val = Integer.parseInt(lineEntries[1]);
+				int val = Integer.parseInt(lineEntries[1].trim());
 				
 				if(tag.equals(numberOfKingsAllowedStr))
 				{
@@ -170,14 +174,14 @@ public class PersonalStatsModel {
 				{
 					this.setNumberOfGamesLost(val);
 				}
-				else if (tag.equals(numberOfForfeitsStr))
-				{
-					this.setNumberOfForfeits(val);
-				}
-				else if (tag.equals(numberOfTimesYouForfeited))
-				{
-					this.setNumberOfTimesForefeited(val);
-				}	
+//				else if (tag.equals(numberOfForfeitsStr))
+//				{
+//					this.setNumberOfForfeits(val);
+//				}
+//				else if (tag.equals(numberOfTimesYouForfeited))
+//				{
+//					this.setNumberOfTimesForefeited(val);
+//				}	
 				
 			}
 
@@ -188,6 +192,31 @@ public class PersonalStatsModel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		updateViews();
+	}
+	public void addView (PersonalStats view)
+	{
+		this.views.add(view);
+	}
+	public void updateViews()
+	{
+		String t = getString();
+		for(PersonalStats view : views)
+		{
+			view.setStats(getString().split("\n"));
+		}
+	}
+	
+	
+	public String getString() {
+		String returnStr = "";
+		returnStr = returnStr + numberOfKingsAllowedStr +": " + numberOfKingsAllowed + "\n";
+		returnStr = returnStr + numberOfKingsEarnedStr +": " + numberOfKingsEarned + "\n";
+		returnStr = returnStr + numberOfPiecesTakenStr +": " + numberOfPiecesTaken + "\n";
+		returnStr = returnStr + numberOfPiecesLostStr +": " + numberOfPiecesLost + "\n";
+		returnStr = returnStr + numberOfGamesWonStr +": " + numberOfGamesWon + "\n";
+		returnStr = returnStr + numberOfGamesLostStr +": " + numberOfGamesLost + "\n";
+		return returnStr;
 	}
 	
 }

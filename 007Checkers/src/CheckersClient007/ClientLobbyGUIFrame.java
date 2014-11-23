@@ -1,6 +1,5 @@
 package CheckersClient007;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.TextArea;
@@ -35,7 +34,7 @@ public class ClientLobbyGUIFrame extends JFrame
 	private CheckerBoardPanel boardPanel; 
 	private LoginScreen loginPanel;
 	private LobbyPanel lobbyPanel;
-	
+	private PersonalStats pesonalStats;
 	/**
 	 * Create the frame.
 	 */
@@ -89,8 +88,19 @@ public class ClientLobbyGUIFrame extends JFrame
 		});
 		
 		JMenu mnPersonalStats = new JMenu("Personal Stats");
+		JMenuItem openPersonalStats = new JMenuItem("Open Personal Stats");
 		menuBar.add(mnPersonalStats);
-		
+		mnPersonalStats.add(openPersonalStats);
+		openPersonalStats.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				ClientController.getInstance().addPersonalStatsView();
+
+				
+			}
+			
+		});
 		JMenu mnCustomize = new JMenu("Customize");
 		menuBar.add(mnCustomize);
 		JMenuItem changeColor1 = new JMenuItem("Change Board Color 1");

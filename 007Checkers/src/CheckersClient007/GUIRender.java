@@ -18,7 +18,7 @@ public class GUIRender {
 	public GUIRender(ClientLobbyGUIFrame gui) {
 		clientGUI = gui;
 		observations = new HashMap<>();
-		personalStatsModel = new PersonalStatsModel(ClientController.getInstance().getUserName());
+		
 	}
 
 	public void joinLobby()
@@ -27,6 +27,7 @@ public class GUIRender {
 		clientGUI.getLobbyPanel().getChatPanel().setCanGlobalMessage(true);
 		clientGUI.getBoardPanel().getChatPanel().setCanGlobalMessage(true);
 		clientGUI.switchToTable();
+		
 	}
 
 	public void newGlobalMessage(String who, String message) {
@@ -121,7 +122,7 @@ public class GUIRender {
 				// incremnt if opponent has promoted a checker's piece
 				if(this.isMoreKings(board, opponentPieceType))
 				{
-					this.personalStatsModel.setnumbero(this.personalStatsModel.getNumberOfKingsEarned() + 1);
+					this.personalStatsModel.setNumberOfKingsAllowed(this.personalStatsModel.getNumberOfKingsAllowed()+1);
 				}
 			}
 			gameBoard = clientGUI.getBoardPanel().getBoard();
@@ -146,6 +147,8 @@ public class GUIRender {
 
 	public void clientWon() {
 		this.clientGUI.getBoardPanel().reset();
+		this.personalStatsModel.setNumberOfGamesWon(this.personalStatsModel.getNumberOfGamesWon() + 1);
+		this.personalStatsModel.updateStatsEntries();
 		JOptionPane.showMessageDialog(clientGUI, "You're a winner!",
 				"You're a winner!", JOptionPane.PLAIN_MESSAGE);
 	}
@@ -153,7 +156,8 @@ public class GUIRender {
 	public void clientLost() {
 		
 		this.clientGUI.getBoardPanel().reset();
-
+		this.personalStatsModel.setNumberOfGamesLost(this.personalStatsModel.getNumberOfGamesLost()+1);
+		this.personalStatsModel.updateStatsEntries();
 		JOptionPane.showMessageDialog(clientGUI, "You're a loser!",
 				"You're a loser!", JOptionPane.PLAIN_MESSAGE);
 	}
@@ -402,6 +406,18 @@ public class GUIRender {
 		}
 		
 		return (numberOfPiecesPrev < numberOfPiecesNow);
+	}
+	public void addPersonalStatsView()
+	{
+		if(this.personalStatsModel == null && ClientController.getInstance().getUserName() != null){
+			personalStatsModel = new PersonalStatsModel(ClientController.getInstance().getUserName());
+		}
+		 PersonalStats personalStats = new PersonalStats(ClientController.getInstance().getUserName());
+		personalStats.setVisible(true);
+		personalStats.setSize(600,500);
+		this.personalStatsModel.addView(personalStats);
+		this.personalStatsModel.updateViews();
+		
 	}
 
 }

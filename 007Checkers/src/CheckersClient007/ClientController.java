@@ -21,7 +21,6 @@ public class ClientController implements CheckersClient
 	private static ClientController thisController;
 	
 	private String userName = null;
-	private byte[][] prevState = null;
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {    
@@ -458,6 +457,10 @@ public class ClientController implements CheckersClient
 
 	public String getUserName() {
 		return userName;
+	}
+	public void addPersonalStatsView()
+	{
+		guiRender.addPersonalStatsView();
 	}
 	
 	

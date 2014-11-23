@@ -74,7 +74,9 @@ public class ClientConnection implements RMIServerInterface {
 			return false;
 		}
 		else{
+			this.userName = userName;
 		  try {
+			  
 	            socket = new Socket(ip, 45322);
 	            lnOut("Connected to server!");;
 	            streamFromServer = new DataInputStream( socket.getInputStream());
