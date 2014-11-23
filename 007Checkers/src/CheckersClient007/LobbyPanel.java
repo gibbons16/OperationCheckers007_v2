@@ -1,9 +1,11 @@
 package CheckersClient007;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
@@ -15,6 +17,9 @@ import javax.swing.JScrollPane;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.rmi.RemoteException;
 
 import javax.swing.DefaultListModel;
@@ -41,14 +46,27 @@ public class LobbyPanel extends JPanel {
 	private JButton btnObserveTable;
 	private JButton btnJoinTable;
 	private JButton btnCreateTable;
-	
+	private BufferedImage backgroundImage;
+
+	private final String BACKGROUND_IMAGE_FILE_LOCATION = "src\\Images\\metal007background.jpg";
+	private JPanel pipePanel;
 	
 	public LobbyPanel() {
+		try
+		{
+			backgroundImage = ImageIO.read(new File(BACKGROUND_IMAGE_FILE_LOCATION));
+		}
+		catch (IOException e)
+		{
+			backgroundImage = null;
+			System.out.println("ERROR: Chat image background not found.");
+			e.printStackTrace();
+		}
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{290, 288, 305, 0};
-		gridBagLayout.rowHeights = new int[]{0, 60, 102, 0, 64, 250, 0};
+		gridBagLayout.rowHeights = new int[]{0, 60, 102, 0, 64, 0, 250, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		TableLbl = new JLabel("Table");
@@ -114,6 +132,7 @@ public class LobbyPanel extends JPanel {
 		gbc_btnNewButton_1.gridx = 0;
 		gbc_btnNewButton_1.gridy = 1;
 		panel.add(btnJoinTable, gbc_btnNewButton_1);
+		panel.setOpaque(false);
 		
 		btnObserveTable = new JButton("Observe Table");
 		btnObserveTable.setEnabled(false);
@@ -181,6 +200,7 @@ public class LobbyPanel extends JPanel {
 		playerListScrollPane.setViewportView(playerList);
 		
 		gameDescriptionLabel = new JLabel("<html>Game Description:<br><i>(no game selected)</i></html>");
+		gameDescriptionLabel.setForeground(Color.white);
 		GridBagConstraints gbc_gameDescriptionLabel = new GridBagConstraints();
 		gbc_gameDescriptionLabel.fill = GridBagConstraints.VERTICAL;
 		gbc_gameDescriptionLabel.anchor = GridBagConstraints.WEST;
@@ -190,13 +210,21 @@ public class LobbyPanel extends JPanel {
 		gbc_gameDescriptionLabel.gridy = 3;
 		add(this.gameDescriptionLabel, gbc_gameDescriptionLabel);
 		
+		pipePanel = new PipePanel();
+		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
+		gbc_panel_1.gridwidth = 3;
+		gbc_panel_1.fill = GridBagConstraints.BOTH;
+		gbc_panel_1.gridx = 0;
+		gbc_panel_1.gridy = 5;
+		add(pipePanel, gbc_panel_1);
+		
 		
 		chatPanel =new ChatPanel();
 		GridBagConstraints gbc_panel1 = new GridBagConstraints();
 		gbc_panel1.gridwidth = 3;
 		gbc_panel1.fill = GridBagConstraints.BOTH;
 		gbc_panel1.gridx = 0;
-		gbc_panel1.gridy = 5;
+		gbc_panel1.gridy = 6;
 		add(chatPanel, gbc_panel1);
 
 	}
@@ -327,6 +355,17 @@ public class LobbyPanel extends JPanel {
 
 	public void setChatPanel(ChatPanel chatPanel) {
 		this.chatPanel = chatPanel;
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g)
+	{
+		super.paintComponent(g);
+		
+		if(backgroundImage != null)
+		{
+			g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+		}
 	}
 
 }

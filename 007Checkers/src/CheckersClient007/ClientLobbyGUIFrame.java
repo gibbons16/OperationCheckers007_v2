@@ -67,7 +67,7 @@ public class ClientLobbyGUIFrame extends JFrame
 			  }
 			});
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.setSize(600, 700);
+		this.setSize(625, 700);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
