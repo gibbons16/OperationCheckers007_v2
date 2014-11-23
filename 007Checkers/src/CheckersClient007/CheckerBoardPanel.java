@@ -22,9 +22,9 @@ public class CheckerBoardPanel extends JPanel {
 	public CheckerBoardPanel() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{177, 421, 144, 0};
-		gridBagLayout.rowHeights = new int[]{33, 391, 247, 0};
+		gridBagLayout.rowHeights = new int[]{33, 217, 155, 200, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, 0.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		btnLeaveTable = new JButton("Leave Table");
@@ -69,6 +69,7 @@ public class CheckerBoardPanel extends JPanel {
 		
 		board= new Board();
 		GridBagConstraints gbc_board = new GridBagConstraints();
+		gbc_board.gridheight = 2;
 		gbc_board.insets = new Insets(0, 0, 5, 5);
 		gbc_board.fill = GridBagConstraints.BOTH;
 		gbc_board.gridx = 1;
@@ -80,7 +81,7 @@ public class CheckerBoardPanel extends JPanel {
 		gbc_panel.gridwidth = 3;
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 0;
-		gbc_panel.gridy = 2;
+		gbc_panel.gridy = 3;
 		add(chatPanel, gbc_panel);
 
 

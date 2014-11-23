@@ -70,16 +70,16 @@ public class ChatPanel extends JPanel
 			System.out.println("ERROR: Chat image background not found.");
 			e.printStackTrace();
 		}
-		this.setBorder(new EmptyBorder(20, 20, 20, 20));
+		//this.setBorder(new EmptyBorder(20, 20, 20, 0));
 		
 		canPM = true;
 		canGlobalMessage = true;
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[] {37, 234, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[] {18, 80, -70, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		globalMessageRadioButton = new JRadioButton("Global");
