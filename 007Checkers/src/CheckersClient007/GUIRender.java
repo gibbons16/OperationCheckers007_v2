@@ -28,7 +28,7 @@ public class GUIRender {
 		clientGUI.getLobbyPanel().getChatPanel().setCanGlobalMessage(true);
 		clientGUI.getBoardPanel().getChatPanel().setCanGlobalMessage(true);
 		clientGUI.switchToTable();
-		
+		clientGUI.setStatsEnabled(true);	
 	}
 
 	public void newGlobalMessage(String who, String message) {
@@ -423,14 +423,17 @@ public class GUIRender {
 	}
 	public void addPersonalStatsView()
 	{
-		if(this.personalStatsModel == null && ClientController.getInstance().getUserName() != null){
+		if( ClientController.getInstance().getUserName() != null && this.personalStatsModel == null ){
 			personalStatsModel = new PersonalStatsModel(ClientController.getInstance().getUserName());
 		}
+		if(ClientController.getInstance().getUserName() != null)
+		{
 		 PersonalStats personalStats = new PersonalStats(ClientController.getInstance().getUserName());
 		personalStats.setVisible(true);
-		personalStats.setSize(600,500);
+		personalStats.setSize(200,200);
 		this.personalStatsModel.addView(personalStats);
 		this.personalStatsModel.updateViews();
+		}
 		
 	}
 

@@ -44,9 +44,9 @@ public class CheckerBoardPanel extends JPanel {
 		}
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{177, 421, 144, 0};
-		gridBagLayout.rowHeights = new int[]{33, 217, 155, -33, 200, 0};
+		gridBagLayout.rowHeights = new int[]{33, 217, 155, -14, 200, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JPanel panel_2 = new JPanel();

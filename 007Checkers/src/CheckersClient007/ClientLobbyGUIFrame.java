@@ -35,6 +35,10 @@ public class ClientLobbyGUIFrame extends JFrame
 	private LoginScreen loginPanel;
 	private LobbyPanel lobbyPanel;
 	private PersonalStats pesonalStats;
+	private JMenuBar menuBar;
+	private JMenu mnHelp;
+	private JMenuItem helpManual;
+	private JMenuItem openPersonalStats;
 	/**
 	 * Create the frame.
 	 */
@@ -69,12 +73,12 @@ public class ClientLobbyGUIFrame extends JFrame
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.setSize(625, 700);
 		
-		JMenuBar menuBar = new JMenuBar();
+		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnHelp = new JMenu("Help");
+		mnHelp = new JMenu("Help");
 		menuBar.add(mnHelp);
-		JMenuItem helpManual = new JMenuItem("Help Manual");
+		helpManual = new JMenuItem("Help Manual");
 		mnHelp.add(helpManual);
 		helpManual.addActionListener(new ActionListener()
 		{
@@ -88,7 +92,8 @@ public class ClientLobbyGUIFrame extends JFrame
 		});
 		
 		JMenu mnPersonalStats = new JMenu("Personal Stats");
-		JMenuItem openPersonalStats = new JMenuItem("Open Personal Stats");
+		openPersonalStats = new JMenuItem("Open Personal Stats");
+		openPersonalStats.setEnabled(false);
 		menuBar.add(mnPersonalStats);
 		mnPersonalStats.add(openPersonalStats);
 		openPersonalStats.addActionListener(new ActionListener(){
@@ -96,8 +101,6 @@ public class ClientLobbyGUIFrame extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				ClientController.getInstance().addPersonalStatsView();
-
-				
 			}
 			
 		});
@@ -166,6 +169,11 @@ public class ClientLobbyGUIFrame extends JFrame
 	public LobbyPanel getLobbyPanel()
 	{
 		return this.lobbyPanel;
+	}
+	
+	public void setStatsEnabled( boolean enable)
+	{
+		openPersonalStats.setEnabled(enable);
 	}
 	
 }

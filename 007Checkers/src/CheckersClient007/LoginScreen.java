@@ -11,6 +11,11 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 
+import java.awt.Color;
+import java.awt.SystemColor;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 public class LoginScreen extends JPanel {
 
 	private  ImageIcon loginLogo = new ImageIcon("src\\Images\\bondlogo007.jpg");
@@ -23,6 +28,8 @@ public class LoginScreen extends JPanel {
 	 * Create the panel.
 	 */
 	public LoginScreen() {
+		setBackground(SystemColor.windowText);
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -41,6 +48,7 @@ public class LoginScreen extends JPanel {
 		add(imageLabel, gbc_panel);
 		
 		JLabel lblUsername = new JLabel("Username");
+		lblUsername.setForeground(Color.WHITE);
 		GridBagConstraints gbc_lblUsername = new GridBagConstraints();
 		gbc_lblUsername.insets = new Insets(0, 0, 5, 5);
 		gbc_lblUsername.anchor = GridBagConstraints.EAST;
@@ -49,6 +57,9 @@ public class LoginScreen extends JPanel {
 		add(lblUsername, gbc_lblUsername);
 		
 		userNameTestField = new JTextField();
+		userNameTestField.setCaretColor(Color.GREEN);
+		userNameTestField.setForeground(Color.GREEN);
+		userNameTestField.setBackground(Color.BLACK);
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
 		gbc_textField_1.insets = new Insets(0, 0, 5, 0);
 		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
@@ -58,6 +69,7 @@ public class LoginScreen extends JPanel {
 		userNameTestField.setColumns(10);
 		
 		JLabel lblIp = new JLabel("IP");
+		lblIp.setForeground(Color.WHITE);
 		GridBagConstraints gbc_lblIp = new GridBagConstraints();
 		gbc_lblIp.insets = new Insets(0, 0, 5, 5);
 		gbc_lblIp.anchor = GridBagConstraints.EAST;
@@ -66,6 +78,9 @@ public class LoginScreen extends JPanel {
 		add(lblIp, gbc_lblIp);
 		
 		ipAddressTestField = new JTextField("130.108.28.165");
+		ipAddressTestField.setCaretColor(Color.GREEN);
+		ipAddressTestField.setBackground(Color.BLACK);
+		ipAddressTestField.setForeground(Color.GREEN);
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.insets = new Insets(0, 0, 5, 0);
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
@@ -80,7 +95,58 @@ public class LoginScreen extends JPanel {
 		gbc_btnNewButton.gridy = 8;
 		add(btnConnect, gbc_btnNewButton);
 
+		userNameTestField.addKeyListener(
+	            new KeyListener(){
+	            	
+					@Override
+					public void keyPressed(KeyEvent arg0)
+					{
+						if(arg0.getKeyCode() == KeyEvent.VK_ENTER){
+							if(userNameTestField.getText().length() > 0 && ipAddressTestField.getText().length() > 0)
+							{
+								ClientController.getInstance().getClientConnection().connectToServer(getIpAddress(), getUserName());
+				            	ClientController.getInstance().setUserName(getUserName());
+							}
+	                    }   
+					}
 
+					@Override
+					public void keyReleased(KeyEvent arg0)
+					{
+					}
+
+					@Override
+					public void keyTyped(KeyEvent arg0)
+					{
+					}
+	            }
+	        );
+		ipAddressTestField.addKeyListener(
+	            new KeyListener(){
+	            	
+					@Override
+					public void keyPressed(KeyEvent arg0)
+					{
+						if(arg0.getKeyCode() == KeyEvent.VK_ENTER){
+							if(userNameTestField.getText().length() > 0 && ipAddressTestField.getText().length() > 0)
+							{
+								ClientController.getInstance().getClientConnection().connectToServer(getIpAddress(), getUserName());
+				            	ClientController.getInstance().setUserName(getUserName());
+							}
+	                    }   
+					}
+
+					@Override
+					public void keyReleased(KeyEvent arg0)
+					{
+					}
+
+					@Override
+					public void keyTyped(KeyEvent arg0)
+					{
+					}
+	            }
+	        );
 	}
 	public String getUserName()
 	{
