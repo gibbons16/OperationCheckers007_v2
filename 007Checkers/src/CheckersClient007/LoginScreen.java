@@ -18,7 +18,7 @@ import java.awt.event.KeyListener;
 
 public class LoginScreen extends JPanel {
 
-	private  ImageIcon loginLogo = new ImageIcon("src\\Images\\bondlogo007.jpg");
+	private  ImageIcon loginLogo;
 	private JButton btnConnect;
 	private JTextField userNameTestField;
 	private JTextField ipAddressTestField;
@@ -29,7 +29,7 @@ public class LoginScreen extends JPanel {
 	 */
 	public LoginScreen() {
 		setBackground(SystemColor.windowText);
-		
+		loginLogo = new ImageIcon("Images/bondlogo007.jpg");
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};

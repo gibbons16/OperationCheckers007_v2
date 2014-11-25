@@ -21,10 +21,10 @@ public class Board extends JPanel {
     private final int NUM_SQUARES = 8;
     private Square[][] squares;
  
-    String BLACK_IMAGE = "src\\Images\\black.gif";
-    String RED_IMAGE = "src\\Images\\red.gif";
-    String RED_KING_IMAGE = "src\\Images\\redKing.gif";
-    String BLACK_KING_IMAGE = "src\\Images\\blackKing.gif";
+    String BLACK_IMAGE = "Images\\black.gif";
+    String RED_IMAGE = "Images\\red.gif";
+    String RED_KING_IMAGE = "Images\\redKing.gif";
+    String BLACK_KING_IMAGE = "Images\\blackKing.gif";
     private int width;
     private int height;
     // 0 - normal view  1 - flipped board view

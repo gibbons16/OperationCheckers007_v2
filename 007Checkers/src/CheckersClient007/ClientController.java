@@ -1,5 +1,6 @@
 package CheckersClient007;
 
+import java.net.URISyntaxException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -8,6 +9,7 @@ import java.rmi.server.UnicastRemoteObject;
 import javax.swing.SwingUtilities;
 
 import RMIConnection.ClientConnection;
+import RMIConnection.RMIConnectionEngine;
 import RMIConnection.Interfaces.CheckersClient;
 import RMIConnection.Interfaces.RMIServerInterface;
 
@@ -28,8 +30,14 @@ public class ClientController implements CheckersClient
 				
 //				tester.setLocationRelativeTo(null);
 //				tester.setVisible(true);
-				System.setProperty("java.security.policy","file:./src/CheckersClient007/client.policy");
-				System.setProperty("java.rmi.server.codebase", "file:./bin/");
+				try {
+					System.setProperty("java.security.policy",ClientController.class.getClassLoader().getResource("CheckersClient007/client.policy").toURI().toString());
+				} catch (URISyntaxException e1) {
+					
+					e1.printStackTrace();
+				}
+				System.setProperty("java.rmi.server.codebase", RMIServerInterface.class
+						.getProtectionDomain().getCodeSource().getLocation().toString());
 				
 				//now establish a presence in the RMI registry and try to get the checkers server connector.
 				try{   
@@ -100,9 +108,9 @@ public class ClientController implements CheckersClient
 		return thisController;
 	}
 	
-	public ClientConnection getClientConnection()
+	public static ClientConnection getClientConnection()
 	{
-		return this.connection;
+		return connection;
 	}
 	
 	public void setUserName(String userName)

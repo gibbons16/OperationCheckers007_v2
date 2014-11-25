@@ -41,9 +41,9 @@ public class ChatPanel extends JPanel
 	private GridBagConstraints gridConstraints;
 	
 	private BufferedImage backgroundImage;
-	private final String BACKGROUND_IMAGE_FILE_LOCATION = "src\\Images\\metal007background.jpg";
-	private final String EXECUTION_IMAGE_FILE_LOCATION = "src\\Images\\executebutton.png";
-	private final String EXECUTION_CLICKED_IMAGE_FILE_LOCATION = "src\\Images\\executebutton_clicked.png";
+	private final String BACKGROUND_IMAGE_FILE_LOCATION = "Images\\metal007background.jpg";
+	private final String EXECUTION_IMAGE_FILE_LOCATION = "Images\\executebutton.png";
+	private final String EXECUTION_CLICKED_IMAGE_FILE_LOCATION = "Images\\executebutton_clicked.png";
 	
 	private ButtonGroup chatBoxButtonGroup;
 	private JRadioButton globalMessageRadioButton;

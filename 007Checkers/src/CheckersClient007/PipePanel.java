@@ -13,7 +13,7 @@ public class PipePanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	private final String PIPE_IMAGE_FILE_LOCATION = "src\\Images\\pipe.gif";
+	private final String PIPE_IMAGE_FILE_LOCATION = "Images\\pipe.gif";
 	private BufferedImage pipeImage;
 	public PipePanel() {
 		try

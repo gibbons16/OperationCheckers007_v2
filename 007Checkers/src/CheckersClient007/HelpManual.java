@@ -26,7 +26,7 @@ public class HelpManual extends JFrame
 	
 	private String helpText;
 	
-	private final File helpTextFile = new File("src\\CheckersClient007\\checkers_helpmanual.txt");
+	private final File helpTextFile = new File(ClientController.class.getClassLoader().getResource("CheckersClient007/checkers_helpmanual.txt").getPath());
 	private final int DEFAULT_WIDTH = 400;
 	private final int DEFAULT_HEIGHT = 400;
 	private final double SIZE_ADJUSTMENT = 0.68;

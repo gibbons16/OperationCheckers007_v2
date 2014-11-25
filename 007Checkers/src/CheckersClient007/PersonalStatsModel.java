@@ -26,12 +26,12 @@ public class PersonalStatsModel {
 //	private int numberOfForfeits;
 //	private String numberOfTimesYouForfeited = "Number of times forfeitted";
 //	private int numberOfTimesForefeited;
-	private final String STATS_DIR = "src\\Stats";
+	private final String STATS_DIR = "Stats";
 	public PersonalStatsModel(String userName)
 	{
 		System.out.println("Username: " + userName);
 		views = new ArrayList<>();
-		statsFile = new File(STATS_DIR + "\\" + userName +".bin");
+		statsFile = new File(STATS_DIR + "/" + userName +".bin");
 		if(checkExistingUserStats())
 		{
 			loadStatsFile();

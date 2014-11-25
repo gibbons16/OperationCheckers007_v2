@@ -28,7 +28,7 @@ public class CheckerBoardPanel extends JPanel {
 	private JButton btnLeaveTable;
 	private BufferedImage backgroundImage;
 
-	private final String BACKGROUND_IMAGE_FILE_LOCATION = "src\\Images\\metal007background.jpg";
+	private final String BACKGROUND_IMAGE_FILE_LOCATION = "Images\\metal007background.jpg";
 	private JPanel pipePanel;
 	public CheckerBoardPanel() {
 		

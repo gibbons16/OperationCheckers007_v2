@@ -67,6 +67,7 @@ public class ClientLobbyGUIFrame extends JFrame
 			    if (confirmed == JOptionPane.YES_OPTION) {
 			      ClientController.getInstance().disconnect(true);
 			      dispose();
+			      System.exit(0);
 			    }
 			  }
 			});
