@@ -258,6 +258,8 @@ public class ChatPanel extends JPanel
 	public void addNewSystemMessage(String msg)
 	{
 		chatBoxTextArea.append(getFormattedLocalTime().concat(" [System Message] ").concat(msg).concat("\n"));
+		JScrollBar vertical = scrollPane.getVerticalScrollBar();
+		vertical.setValue( vertical.getMaximum() );
 	}
 	
 	public String getFormattedLocalTime()

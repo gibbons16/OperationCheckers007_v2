@@ -44,7 +44,7 @@ public class ClientLobbyGUIFrame extends JFrame
 	 */
 	public ClientLobbyGUIFrame()
 	{
-		
+		super("Operation Checkers 007");
 		boardPanel = new CheckerBoardPanel();
 		loginPanel = new LoginScreen();
 		lobbyPanel = new LobbyPanel();
